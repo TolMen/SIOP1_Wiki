@@ -1,0 +1,40 @@
+@startuml
+
+entity users {
+#id: int
+~username: varchar
+~password: varchar
++role: enum
+}
+
+class articles {
+#id: int
++title: varchar
++content : text
++created_at: datetime
++updated_at: datetime
+-user_id : int
+}
+
+class article_versions {
+#id: int
++content: text
++updated_at: datetime
+-article_id: int
+-updated_by: int
+}
+
+class bans {
+#id: int
++reason: text
++start_date: datetime
++end_date: datetime
+-user_id: int
+}
+
+users "1" --> "0..*" articles : posséde >
+users "1" --> "0..*" article_versions : est l'auteur d'une >
+articles "1" --> "0..*" article_versions : à comme archive > 
+users "1" --> "0..*" bans : peut être
+
+@enduml
