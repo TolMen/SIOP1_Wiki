@@ -1,4 +1,3 @@
-
 <?php
 
 session_start();
@@ -31,9 +30,9 @@ session_start();
 
     <!-- Feuilles de style personnalisées -->
     <link rel="stylesheet" href="css/baseStyle.css" />
-    <link rel="stylesheet" href="css/homeStyle.css" />
+    <link rel="stylesheet" href="css/templateArt.css" />
 
-    <title>Wiki - XXXX</title>
+    <title>Article</title>
 </head>
 
 <body>
@@ -41,6 +40,11 @@ session_start();
     <!-- Inclusion de la barre de navigation -->
     <?php include 'src/component/navbar.php' ?>
 
+    <!-- Milieu de page -->
+    <section class="infoArticle">
+        <?php include 'src/control/ArtControl/postArt.php'; ?>
+    </section>
+    <!-- Fin du milieu de la page -->
 
     <!-- Inclusion du pied de page -->
     <?php include 'src/component/footer.php' ?>
@@ -49,7 +53,6 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-
 </body>
 
 </html>
