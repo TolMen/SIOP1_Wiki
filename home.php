@@ -30,8 +30,8 @@ session_start();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
 
     <!-- Feuilles de style personnalisées -->
-    <link rel="stylesheet" href="asset/css/baseStyle.css" />
-    <link rel="stylesheet" href="asset/css/homeStyle.css" />
+    <link rel="stylesheet" href="css/baseStyle.css" />
+    <link rel="stylesheet" href="css/homeStyle.css" />
 
     <title>Wiki - XXXX</title>
 </head>
