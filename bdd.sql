@@ -6,7 +6,7 @@ USE siop1_wiki;
 
 -- Création des tables :
 -- Table `users`
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE, -- UNIQUE pour éviter les doublons
     password VARCHAR(255) NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE users (
 ) ENGINE=InnoDB;
 
 -- Table `articles`
-CREATE TABLE articles (
+CREATE TABLE IF NOT EXISTS articles (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE articles (
 ) ENGINE=InnoDB;
 
 -- Table `article_versions`
-CREATE TABLE article_versions (
+CREATE TABLE IF NOT EXISTS article_versions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     content TEXT NOT NULL,
     updated_by INT NOT NULL,
@@ -36,11 +36,21 @@ CREATE TABLE article_versions (
 ) ENGINE=InnoDB;
 
 -- Table `bans`
-CREATE TABLE bans (
+CREATE TABLE IF NOT EXISTS bans (
     id INT AUTO_INCREMENT PRIMARY KEY,
     reason TEXT NOT NULL,
     start_date DATETIME NOT NULL,
     end_date DATETIME DEFAULT NULL,
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Table `contact`
+CREATE TABLE IF NOT EXISTS contact (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    subject VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
