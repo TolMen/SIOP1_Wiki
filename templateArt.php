@@ -32,7 +32,13 @@ session_start();
     <link rel="stylesheet" href="css/baseStyle.css" />
     <link rel="stylesheet" href="css/templateArt.css" />
 
-    <title>Article</title>
+    <title>
+        Article 
+        <?php 
+            $postArtId = intval($_GET['id']);
+            echo $postArtId;
+        ?>
+    </title>
 </head>
 
 <body>
