@@ -1,0 +1,15 @@
+body>* {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.loginPage {
+    background: rgba(128, 128, 128, 0.50);
+    margin: 75px;
+    padding: 100px;
+    border: rgba(0, 0, 0, 0.50);
+    border-radius: 5%;
+    border-style: ridge;
+}
