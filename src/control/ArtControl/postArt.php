@@ -36,7 +36,7 @@ foreach ($articles as $article) {
         <p class="date"><?= date("d/m/Y", strtotime($dateToShow)); ?></p>
     </div>
     <i class="separator"></i>
-    <p class="text"><?= htmlspecialchars($article['content']); ?></p>
+    <p class="text"><?= nl2br(htmlspecialchars($article['content'])); ?></p>
 <?php
 }
 ?>
