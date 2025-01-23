@@ -34,7 +34,7 @@ session_start();
     <title>
         Article
         <?php
-        $postArtId = intval($_GET['id']);
+        $postArtId = intval($_GET['articleID']);
         echo $postArtId;
         ?>
     </title>
