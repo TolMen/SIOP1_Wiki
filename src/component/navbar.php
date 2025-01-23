@@ -10,22 +10,32 @@
                     <a class="nav-link" href="home.php" aria-current="page">Accueil</a>
                 </li>
 
-                <!-- Mettre une condition par rapport au role ADMIN -->
-                <li class="nav-item">
-                    <a class="nav-link" href="user_list.php">Utilisateurs</a>
-                </li>
+                <?php
+                if (!empty($_SESSION['userRole']) == 'admin') {
+                    echo '
+                        <li class="nav-item">
+                            <a class="nav-link" href="user_list.php">Utilisateurs</a>
+                        </li>
+                    ';
+                }
 
-                <!-- Mettre une condition par rapport au role -->
-                <li class="nav-item">
-                    <a class="nav-link" href="login.php">Connexion</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="register.php">Inscription</a>
-                </li>
-                <!-- Sinon -->
-                <li class="nav-item">
-                    <a class="nav-link text-danger" href="logout.php" title="Déconnexion"><i class="fa-solid fa-user-xmark"></i></a>
-                </li>
+                if (!empty($_SESSION['userID'])) {
+                    echo ' 
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" href="src/UserControl/logout.php" title="Déconnexion"><i class="fa-solid fa-user-xmark"></i></a>
+                        </li>
+                    ';
+                } else {
+                    echo '
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.php">Connexion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="register.php">Inscription</a>
+                        </li>
+                    ';
+                }
+                ?>
             </ul>
         </div>
     </div>
