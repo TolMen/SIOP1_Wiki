@@ -50,6 +50,18 @@ body {
     color: black;
 }
 
+.infoArticle a {
+    text-decoration: none;
+    padding-top: 5px;
+    color: grey;
+    font-weight: normal; 
+}
+
+.infoArticle a:hover {
+    color: black;
+    text-decoration: underline;
+}
+
 .infoArticle .text {
     padding: 25px 8% 25px;
     margin: 0;
