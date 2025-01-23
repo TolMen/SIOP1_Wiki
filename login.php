@@ -1,6 +1,14 @@
 <?php
 
+session_name("main");
 session_start();
+
+if (!empty($_GET["wrong"])) {
+	$wrong = htmlspecialchars($_GET['wrong'], ENT_QUOTES);
+}
+else {
+    $wrong = null;
+}
 
 ?>
 
@@ -41,17 +49,25 @@ session_start();
         <?php include 'src/component/navbar.php' ?>
 
         <div class="container">
-            <div class=loginPage>
-                <form method="POST" action="userlogin.php">
-                    <label for="identifiantID">Identifiant :</label><br>
-                    <input type="text" value="" id="identifiantID" name="identifiant"/><br>
+            <h1 class="title">Se connecter</h1>
+        </div>
+        <div class="container loginPage">
+            <form method="POST" action="src/control/UserControl/userlogin.php">
+                <div class="form-group">
+                    <label for="usernameID">Identifiant :</label><br>
+                    <input type="text" value="" id="usernameID" name="username"/><br>
 
                     <label for="passwordID">Mot de passe :</label><br>
                     <input type="password" value="" id="passwordID" name="password"/><br><br>
+                    <?php
+                        if ($wrong != null) {
+                            echo "<label class='wrongLogin'>Identifiant ou mot de passe incorrect</label><br><br>";
+                        }
+                    ?>
+                </div>
 
-                    <input class=buttonSubmit type="submit" value="Connexion"/>
-                </form>
-            </div>
+                <input class="buttonSubmit" type="submit" value="Se connecter"/>
+            </form>
         </div>
 
         <!-- Inclusion du pied de page -->

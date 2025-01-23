@@ -1,6 +1,14 @@
 <?php
 
+session_name("main");
 session_start();
+
+if (!empty($_GET["wrong"])) {
+	$wrong = htmlspecialchars($_GET['wrong'], ENT_QUOTES);
+}
+else {
+    $wrong = null;
+}
 
 ?>
 
@@ -30,7 +38,7 @@ session_start();
 
         <!-- Feuilles de style personnalisées -->
         <link rel="stylesheet" href="css/baseStyle.css" />
-        <link rel="stylesheet" href="css/registerStyle.css" />
+        <link rel="stylesheet" href="css/loginStyle.css" />
 
         <title>Wiki - Inscription</title>
     </head>
@@ -39,18 +47,27 @@ session_start();
     <body>
         <!-- Inclusion de la barre de navigation -->
         <?php include 'src/component/navbar.php' ?>
+
         <div class="container">
-            <div class=loginPage>
-                <form method="POST" action="userlogin.php">
-                    <label for="identifiantID">Pseudonyme :</label><br>
-                    <input type="text" value="" id="identifiantID" name="identifiant"/><br>
+            <h1 class="title">S'inscrire</h1>
+        </div>
+        <div class="container loginPage">
+            <form method="POST" action="src/control/UserControl/userregister.php">
+                <div class="form-group">
+                    <label for="usernameID">Pseudonyme :</label><br>
+                    <input type="text" value="" id="usernameID" name="username"/><br>
 
                     <label for="passwordID">Mot de passe :</label><br>
                     <input type="password" value="" id="passwordID" name="password"/><br><br>
+                    <?php
+                        if ($wrong != null) {
+                            echo "<label class='wrongLogin'>L'Identifiant exise déjà</label><br><br>";
+                        }
+                    ?>
+                </div>
 
-                    <input class=buttonSubmit type="submit" value="S'inscrire"/>
-                </form>
-            </div>
+                <input class="buttonSubmit" type="submit" value="Se connecter"/>
+            </form>
         </div>
 
         <!-- Inclusion du pied de page -->
