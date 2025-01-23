@@ -13,13 +13,13 @@ session_start();
     <meta name="mobile-web-app-capable" content="yes" />
 
     <!-- Informations SEO -->
-    <meta name="keywords" content="Articles, wiki, civilisation, ajouter">
+    <meta name="keywords" content="article, wiki, civilisations, histoire, cultures anciennes, connaissances, partage, gestion de contenu, SLAM, BTS SIO, projet collaboratif, PHP, développement web">
     <meta name="description" content="Page interactive permettant aux utilisateurs de publier des articles sur notre wiki collaboratif.
     Un projet SLAM réalisé dans le cadre du BTS SIO en équipe de 3." />
     <meta name="author" content="Nolan / Kelly / Jessy" />
 
     <!-- Icône du site -->
-    <link rel="icon" type="image/png" sizes="16x16" href="###" /> <!-- Trouver un favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon.ico" />
 
     <!-- Feuilles de style externes -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
