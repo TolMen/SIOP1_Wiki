@@ -11,25 +11,35 @@ class articles {
 #id: int
 +title: varchar
 +content : text
-+created_at: datetime
-+updated_at: datetime
++createdAt: date
++updatedAt: date
 -user_id : int
 }
 
 class article_versions {
 #id: int
++title: varchar
 +content: text
-+updated_at: datetime
++updatedAt: date
 -article_id: int
--updated_by: int
+-updatedBy: int
 }
 
 class bans {
 #id: int
 +reason: text
-+start_date: datetime
-+end_date: datetime
++start_date: date
++end_date: date
 -user_id: int
+}
+
+
+class contact {
+#id: int
++name: varchar
++email: varchar
++subject: varchar
++message: varchar
 }
 
 users "1" --> "0..*" articles : posséde >
