@@ -30,7 +30,7 @@ session_start();
 
     <!-- Feuilles de style personnalisées -->
     <link rel="stylesheet" href="css/baseStyle.css" />
-    <link rel="stylesheet" href="css/templateArt.css" />
+    <link rel="stylesheet" href="css/templateArtStyle.css" />
 
     <title>
         Article 
