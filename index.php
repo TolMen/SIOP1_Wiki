@@ -3,6 +3,7 @@
 /*
 - Démarre une session
 */
+session_name("main");
 session_start();
 
 /*
