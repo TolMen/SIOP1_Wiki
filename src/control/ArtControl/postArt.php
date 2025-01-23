@@ -8,8 +8,8 @@ require_once 'src/model/ArtModel/postArtModel.php';
 /*
 - Vérifie si l'id est passé dans l'URL
 */
-if (isset($_GET['id']) && !empty($_GET['id'])) {
-    $postArtId = intval($_GET['id']);
+if (!empty($_GET['articleID'])) {
+    $postArtId = intval($_GET['articleID']);
 } else {
     throw new Exception("Identifiant de l'article non spécifié.");
 }
@@ -27,7 +27,7 @@ foreach ($articles as $article) {
 - Vérifier si dateUpdate est null, pour choisir la date à affiché
 */
 
-    $dateToShow = !empty($article['updated_at']) ? $article['updated_at'] : $article['created_at'];
+    $dateToShow = !empty($article['updatedAt']) ? $article['updatedAt'] : $article['createdAt'];
 ?>
     <h2 class="title"><?= htmlspecialchars($article['title']); ?></h2>
     <i class="separator"></i>
@@ -35,6 +35,7 @@ foreach ($articles as $article) {
         <p class="author">Ecrit par l'utilisateur n°<?= htmlspecialchars($article['user_id']); ?></p>
         <p class="date"><?= date("d/m/Y", strtotime($dateToShow)); ?></p>
     </div>
+    <a href="templateArtV.php?articleVID=<?php echo $postArtId; ?>">Historique de l'article</a>
     <i class="separator"></i>
     <p class="text"><?= nl2br(htmlspecialchars($article['content'])); ?></p>
 <?php
