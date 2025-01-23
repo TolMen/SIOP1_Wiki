@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS articles (
 -- Table `article_versions`
 CREATE TABLE IF NOT EXISTS article_versions (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
     updatedBy INT NOT NULL,
     updatedAt DATE NOT NULL,
