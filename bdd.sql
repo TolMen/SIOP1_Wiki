@@ -3,6 +3,22 @@ SET NAMES utf8mb4;
 CREATE DATABASE IF NOT EXISTS siop1_wiki;
 USE siop1_wiki;
 
+-- ---------------------------------------------
+
+-- Désactive temporairement les contraintes de clé étrangère
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- Suppression des tables dans le bon ordre
+DROP TABLE IF EXISTS article_versions;
+DROP TABLE IF EXISTS articles;
+DROP TABLE IF EXISTS bans;
+DROP TABLE IF EXISTS contact;
+DROP TABLE IF EXISTS users;
+
+-- Réactive les contraintes de clé étrangère
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- ---------------------------------------------
 
 -- Création des tables :
 -- Table `users`
@@ -18,8 +34,8 @@ CREATE TABLE IF NOT EXISTS articles (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
-    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, -- Insére la date et l'heure au moment de la création
-    updated_at DATETIME DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP, -- Insére la date et l'heure au moment de la mise à jour
+    createdAt DATE NOT NULL,
+    updatedAt DATE DEFAULT NULL,
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
@@ -28,19 +44,19 @@ CREATE TABLE IF NOT EXISTS articles (
 CREATE TABLE IF NOT EXISTS article_versions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     content TEXT NOT NULL,
-    updated_by INT NOT NULL,
-    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    article_id INT NOT NULL, -- Insére la date et l'heure au moment de la création
+    updatedBy INT NOT NULL,
+    updatedAt DATE NOT NULL,
+    article_id INT NOT NULL,
     FOREIGN KEY (article_id) REFERENCES articles(id) ON DELETE CASCADE,
-    FOREIGN KEY (updated_by) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (updatedBy) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- Table `bans`
 CREATE TABLE IF NOT EXISTS bans (
     id INT AUTO_INCREMENT PRIMARY KEY,
     reason TEXT NOT NULL,
-    start_date DATETIME NOT NULL,
-    end_date DATETIME DEFAULT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE DEFAULT NULL,
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
@@ -55,28 +71,7 @@ CREATE TABLE IF NOT EXISTS contact (
     submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
-
--- Désactive temporairement les contraintes de clé étrangère
-SET FOREIGN_KEY_CHECKS = 0;
-
--- Supprime les données des tables dans le bon ordre
-DELETE FROM article_versions;
-DELETE FROM articles;
-DELETE FROM bans;
-DELETE FROM contact;
-DELETE FROM users;
-
--- Réinitialise les compteurs d'AUTO_INCREMENT
-ALTER TABLE article_versions AUTO_INCREMENT = 1;
-ALTER TABLE articles AUTO_INCREMENT = 1;
-ALTER TABLE bans AUTO_INCREMENT = 1;
-ALTER TABLE contact AUTO_INCREMENT = 1;
-ALTER TABLE users AUTO_INCREMENT = 1;
-
--- Réactive les contraintes de clé étrangère
-SET FOREIGN_KEY_CHECKS = 1;
-
--- -----------------------------------------------
+-- ---------------------------------------------
 
 -- Jeux de données
 
@@ -95,7 +90,7 @@ VALUES
 
 -- Insertion du contenu d'articles sur les civilisations
 
-INSERT INTO articles (title, content, created_at, user_id)
+INSERT INTO articles (title, content, createdAt, user_id)
 VALUES
 ("Les Incas : Maîtres des Andes et Architectes d'un Empire Légendaire",
 "La civilisation inca, épanouie entre le XIIIᵉ et le XVIᵉ siècle, a su dominer les vastes étendus de l'Amérique du Sud, englobant des territoires correspondant aujourd'hui au Pérou, à l'Équateur, à la Bolivie, ainsi qu'à des parties de la Colombie, du Chili et de l'Argentine. Au cœur de cet empire se trouvait Cuzco, la capitale sacrée, considérée comme le 'nombril du monde'.
