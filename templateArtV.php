@@ -9,13 +9,11 @@ session_start();
 <head>
     <!-- Inclusion des balise meta -->
     <?php include 'src/component/head.php'; ?>
-    <link rel="stylesheet" href="css/templateArtStyle.css" />
-
     <title>
-        Article
+        Historique de l'article
         <?php
-        $artID = intval($_GET['articleID']);
-        echo $artID;
+        $artVID = intval($_GET['articleVID']);
+        echo $artVID;
         ?>
     </title>
 </head>
@@ -25,11 +23,9 @@ session_start();
     <!-- Inclusion de la barre de navigation -->
     <?php include 'src/component/navbar.php' ?>
 
-    <!-- Milieu de page -->
-    <section class="infoArticle">
-        <?php include 'src/control/ArtControl/postArt.php'; ?>
-    </section>
-    <!-- Fin du milieu de la page -->
+
+
+
 
     <!-- Inclusion du pied de page -->
     <?php include 'src/component/footer.php' ?>
