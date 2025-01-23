@@ -6,8 +6,10 @@
 session_start();
 
 /*
-- Inclusion de fichier nécessaire
+- Inclusion de fichier nécessaire 
 */
+
+// $BDD <=> $connect
 require_once 'src/control/BDDControl/connectBDD.php';
 
 /*
