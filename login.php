@@ -1,6 +1,31 @@
 <?php
 
+session_name("main");
 session_start();
+
+// Paramètre denied, message selon le cas
+if (!empty($_GET["denied"])) {
+	$denied = htmlspecialchars($_GET['denied'], ENT_QUOTES);
+    // Si champ(s) vide
+    if ($denied == "empty_field") {
+        $denied = "Un ou plusieurs champs sont vide";
+    }
+    // Si utilisateur banni
+    elseif ($denied == "banned") {
+        $denied = "Utilisateur banni du site web";
+    }
+    // Si mauvais login
+    elseif ($denied == "wrong_login") {
+        $denied = "Identifiant ou mot de passe incorrect";
+    }
+    // Sinon rien
+    else {
+        $denied = null;
+    }
+}
+else {
+    $denied = null;
+}
 
 ?>
 
@@ -41,17 +66,26 @@ session_start();
         <?php include 'src/component/navbar.php' ?>
 
         <div class="container">
-            <div class=loginPage>
-                <form method="POST" action="userlogin.php">
-                    <label for="identifiantID">Identifiant :</label><br>
-                    <input type="text" value="" id="identifiantID" name="identifiant"/><br>
+            <h1 class="title">Se connecter</h1>
+        </div>
+        <div class="container loginPage">
+            <form method="POST" action="src/control/UserControl/userlogin.php">
+                <div class="form-group">
+                    <label for="usernameID">Identifiant :</label><br>
+                    <input type="text" value="" id="usernameID" name="username"/><br>
 
                     <label for="passwordID">Mot de passe :</label><br>
-                    <input type="password" value="" id="passwordID" name="password"/><br><br>
+                    <input type="password" id="passwordID" name="password"/><br><br>
+                    <?php
+                        // Message denied si non null
+                        if ($denied != null) {
+                            echo "<label class='badLogin'>$denied</label><br><br>";
+                        }
+                    ?>
+                </div>
 
-                    <input class=buttonSubmit type="submit" value="Connexion"/>
-                </form>
-            </div>
+                <input class="buttonSubmit" type="submit" value="Se connecter"/>
+            </form>
         </div>
 
         <!-- Inclusion du pied de page -->
