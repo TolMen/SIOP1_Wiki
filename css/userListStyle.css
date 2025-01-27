@@ -1,0 +1,67 @@
+body>* {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+body {
+    background: linear-gradient(to bottom right, blue, pink);
+}
+
+.userList>* {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.queryUsers {
+    background: white;
+
+    height: 50px;
+
+    border: rgba(0, 0, 0);
+    border-style: ridge;
+}
+
+.userCase {
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.75));
+
+    height: 50px;
+
+    border: rgba(0, 0, 0);
+    border-style: ridge;
+}
+
+.active {
+    background: white;
+
+    height: 50px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    border: rgba(0, 0, 0);
+    border-style: ridge;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    gap: 7px;
+}
+
+
+.inputID {
+    width: 60px;
+}
+
+.inputUsername {
+    width: 100px;
+}

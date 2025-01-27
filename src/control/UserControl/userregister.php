@@ -18,7 +18,8 @@ if (!empty($_POST["username"]) && !empty($_POST["password"])) {
     if (empty($user["username"])) {
         $state = $bdd->prepare("INSERT INTO users (username, password, role) VALUES (?, SHA2(?, 256), 'user')");
         $state->execute(array($username, $password));
-        $_SESSION["username"] = $username;
+        $_SESSION["userID"] = $user["id"];
+        $_SESSION["userRole"] = $user["role"];
         header("Location: ../../../home.php");
         exit;
     }
@@ -26,7 +27,6 @@ if (!empty($_POST["username"]) && !empty($_POST["password"])) {
         // Sinon denied
         wrongRegister("exists");
     }
-
 }
 else {
     // Sinon denied
@@ -34,8 +34,8 @@ else {
 }
 
 function wrongRegister($denied) {
-    $_SESSION["username"] = null;
-    echo "Existe, pas ok";
+    $_SESSION["userID"] = null;
+    $_SESSION["userRole"] = null;
     header("Location: ../../../register.php?denied=$denied");
     exit;
 }

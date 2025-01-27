@@ -5,7 +5,7 @@ session_start();
 
 // Paramètre denied, message selon le cas
 if (!empty($_GET["denied"])) {
-	$denied = htmlspecialchars($_GET['denied'], ENT_QUOTES);
+	$denied = htmlspecialchars($_GET["denied"], ENT_QUOTES);
     // Si champ(s) vide
     if ($denied == "empty_field") {
         $denied = "Un ou plusieurs champs sont vide";

@@ -16,9 +16,8 @@ if (!empty($_POST["username"]) && !empty($_POST["password"])) {
 
     // Vérifie si le login est bon
     if ($username == $user["username"] && hash("sha256", $password) == $user["password"]) {
-        $_SESSION["username"] = $username;
-        $_SESSION["role"] = $user["role"];
-        echo "Oui";
+        $_SESSION["userID"] = $user["id"];
+        $_SESSION["userRole"] = $user["role"];
 
         // Données bans BDD
         $state = $bdd->prepare("SELECT * FROM bans WHERE user_id = ?");
@@ -47,7 +46,8 @@ else {
 }
 
 function wrongLogin($denied) {
-    $_SESSION["username"] = null;
+    $_SESSION["userID"] = null;
+    $_SESSION["userRole"] = null;
     header("Location: ../../../login.php?denied=$denied");
     exit;
 }
