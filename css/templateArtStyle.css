@@ -22,7 +22,6 @@ body {
     font-size: 1em;
     font-weight: bold;
     padding: 0 50px;
-    margin: 0;
     color: black;
 }
 
@@ -49,6 +48,18 @@ body {
     letter-spacing: 1px;
     text-align: center;
     color: black;
+}
+
+.infoArticle a {
+    text-decoration: none;
+    padding-top: 5px;
+    color: grey;
+    font-weight: normal; 
+}
+
+.infoArticle a:hover {
+    color: black;
+    text-decoration: underline;
 }
 
 .infoArticle .text {

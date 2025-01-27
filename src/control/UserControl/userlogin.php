@@ -51,8 +51,3 @@ function wrongLogin($denied) {
     header("Location: ../../../login.php?denied=$denied");
     exit;
 }
-
-
-
-
-

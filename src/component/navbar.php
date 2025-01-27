@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <span class="navbar-brand"></i> Wiki - ###</span>
+        <span class="navbar-brand"></i> Civilipédia</span>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -11,7 +11,7 @@
                 </li>
 
                 <?php
-                if (!empty($_SESSION['userRole']) == 'admin') {
+                if (!empty($_SESSION['main']['userRole']) == 'admin') {
                     echo '
                         <li class="nav-item">
                             <a class="nav-link" href="user_list.php">Utilisateurs</a>
@@ -19,7 +19,7 @@
                     ';
                 }
 
-                if (!empty($_SESSION['userID'])) {
+                if (!empty($_SESSION['main']['userID'])) {
                     echo ' 
                         <li class="nav-item">
                             <a class="nav-link text-danger" href="src/UserControl/logout.php" title="Déconnexion"><i class="fa-solid fa-user-xmark"></i></a>
