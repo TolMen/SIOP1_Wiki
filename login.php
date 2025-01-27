@@ -1,13 +1,32 @@
 <?php
+
 session_name("main");
 session_start();
 
-if (!empty($_GET["wrong"])) {
-	$wrong = htmlspecialchars($_GET['wrong'], ENT_QUOTES);
+// Paramètre denied, message selon le cas
+if (!empty($_GET["denied"])) {
+	$denied = htmlspecialchars($_GET["denied"], ENT_QUOTES);
+    // Si champ(s) vide
+    if ($denied == "empty_field") {
+        $denied = "Un ou plusieurs champs sont vide";
+    }
+    // Si utilisateur banni
+    elseif ($denied == "banned") {
+        $denied = "Utilisateur banni du site web";
+    }
+    // Si mauvais login
+    elseif ($denied == "wrong_login") {
+        $denied = "Identifiant ou mot de passe incorrect";
+    }
+    // Sinon rien
+    else {
+        $denied = null;
+    }
 }
 else {
-    $wrong = null;
+    $denied = null;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -45,10 +64,12 @@ else {
                     <input type="text" value="" id="usernameID" name="username"/><br>
 
                     <label for="passwordID">Mot de passe :</label><br>
-                    <input type="password" value="" id="passwordID" name="password"/><br><br>
+
+                    <input type="password" id="passwordID" name="password"/><br><br>
                     <?php
-                        if ($wrong != null) {
-                            echo "<label class='wrongLogin'>Identifiant ou mot de passe incorrect</label><br><br>";
+                        // Message denied si non null
+                        if ($denied != null) {
+                            echo "<label class='badLogin'>$denied</label><br><br>";
                         }
                     ?>
                 </div>
