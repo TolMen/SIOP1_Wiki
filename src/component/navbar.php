@@ -26,6 +26,10 @@
                 if (!empty($_SESSION['userID'])) {
                     echo ' 
                         <li class="nav-item">
+                            <a class="nav-link" href="createArt.php">Publier un article</a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link text-danger" href="src/control/UserControl/logout.php" title="Déconnexion">Déconnexion</a>
                         </li>
                     ';
