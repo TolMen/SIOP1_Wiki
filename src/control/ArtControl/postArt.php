@@ -19,14 +19,15 @@ if (!empty($_GET['articleID'])) {
 */
 $artPostModel = new ArtPostModel();
 $articles = $artPostModel->getPostArt($bdd, $postArtId);
+
 /*
 - Boucle pour chaque article récupéré afin de les afficher dans une structure HTML
 */
 foreach ($articles as $article) {
-    /*
+
+/*
 - Vérifier si dateUpdate est null, pour choisir la date à affiché
 */
-
     $dateToShow = !empty($article['updatedAt']) ? $article['updatedAt'] : $article['createdAt'];
 ?>
     <h2 class="title"><?= htmlspecialchars($article['title']); ?></h2>
@@ -35,7 +36,11 @@ foreach ($articles as $article) {
         <p class="author">Ecrit par l'utilisateur n°<?= htmlspecialchars($article['user_id']); ?></p>
         <p class="date"><?= date("d/m/Y", strtotime($dateToShow)); ?></p>
     </div>
-    <a href="templateArtV.php?articleVID=<?php echo $postArtId; ?>">Historique de l'article</a>
+    <div class="link">
+        <a href="templateArtV.php?articleVID=<?php echo $postArtId; ?>">Historique</a>
+        <span> - </span>
+        <a href="updateArt.php?articleID=<?php echo $postArtId; ?>">Modification</a>
+    </div>
     <i class="separator"></i>
     <p class="text"><?= nl2br(htmlspecialchars($article['content'])); ?></p>
 <?php
