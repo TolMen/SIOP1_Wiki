@@ -23,8 +23,8 @@ if (isset($_POST['publishArticle'])) {
         /*
         - Redirection vers le tableau de bord
         */
-        header('Location: home.php');
-        throw new Exception("Redirection vers le tableau de bord");
+        header('Location: ../../../home.php');
+        throw new Exception("Redirection vers la page d'accueil");
     } else {
         echo "Erreur lors de l'envoi de l'article";
     }
