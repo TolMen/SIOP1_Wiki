@@ -46,37 +46,28 @@ else {
     <?php include 'src/component/navbar.php' ?>
 
     <div class="container">
-        <div class=loginPage>
-            <form method="POST" action="userlogin.php">
-                <label for="identifiantID">Identifiant :</label><br>
-                <input type="text" value="" id="identifiantID" name="identifiant" /><br>
+        <h1 class="title">Se connecter</h1>
+    </div>
+    <div class="container loginPage">
+        <form method="POST" action="src/control/UserControl/userlogin.php">
+            <div class="form-group">
+                <label for="usernameID">Identifiant :</label><br>
+                <input type="text" value="" id="usernameID" name="username"/><br>
 
                 <label for="passwordID">Mot de passe :</label><br>
-                <input type="password" value="" id="passwordID" name="password" /><br><br>
 
-        <div class="container">
-            <h1 class="title">Se connecter</h1>
-        </div>
-        <div class="container loginPage">
-            <form method="POST" action="src/control/UserControl/userlogin.php">
-                <div class="form-group">
-                    <label for="usernameID">Identifiant :</label><br>
-                    <input type="text" value="" id="usernameID" name="username"/><br>
-
-                    <label for="passwordID">Mot de passe :</label><br>
-
-                    <input type="password" id="passwordID" name="password"/><br><br>
-                    <?php
-                        // Message denied si non null
-                        if ($denied != null) {
-                            echo "<label class='badLogin'>$denied</label><br><br>";
-                        }
-                    ?>
-                </div>
-                <input class=buttonSubmit type="submit" value="Connexion" />
-            </form>
-        </div>
-    </div>
+                <input type="password" id="passwordID" name="password"/><br><br>
+                <?php
+                    // Message denied si non null
+                    if ($denied != null) {
+                        echo "<label class='badLogin'>$denied</label><br><br>";
+                    }
+                ?>
+            </div>
+            <input class=buttonSubmit type="submit" value="Connexion" />
+        </form>
+    </div><br>
+    <div>Nouveau sur le site ?&nbsp;<a class="otherWayLink" href="register.php">S'inscrire</a></div>
 
     <!-- Inclusion du pied de page -->
     <?php include 'src/component/footer.php' ?>

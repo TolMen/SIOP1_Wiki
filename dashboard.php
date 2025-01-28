@@ -3,6 +3,12 @@
 session_name("main");
 session_start();
 
+// Vérifier si non connecté ou non admin, si oui, revenir à la page précédente
+if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
+    header("Location: javascript://history.go(-1)");
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +48,8 @@ session_start();
         <?php include 'src/component/navbar.php' ?>
 
         <!-- Code -->
+        <a href="src/control/UserControl/logout.php">Se déconnecter</a>
+        <a href="user_list.php">Liste des utilisateurs</a>
 
         <!-- Inclusion du pied de page -->
         <?php include 'src/component/footer.php' ?>
