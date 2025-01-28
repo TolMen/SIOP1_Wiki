@@ -15,7 +15,7 @@
                 </li>
 
                 <?php
-                if ($_SESSION['userRole'] == 'admin') {
+                if (isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'admin') {
                     echo '
                         <li class="nav-item">
                             <a class="nav-link" href="dashboard.php">Dashboard</a>
@@ -23,7 +23,7 @@
                     ';
                 }
 
-                if ($_SESSION['userID']) {
+                if (!empty($_SESSION['userID'])) {
                     echo ' 
                         <li class="nav-item">
                             <a class="nav-link text-danger" href="src/control/UserControl/logout.php" title="Déconnexion">Déconnexion</a>
