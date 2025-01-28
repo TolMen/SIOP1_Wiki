@@ -31,7 +31,7 @@ if (isset($_GET['articleID'])) {
     <!-- Inclusion des balise meta -->
     <?php include 'src/component/head.php'; ?>
 
-    <title>Edit Article</title>
+    <title>Modification d'article</title>
 </head>
 
 <body>
