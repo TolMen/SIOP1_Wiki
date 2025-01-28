@@ -3,7 +3,7 @@
 /* 
 - Inclusion des fichiers nécessaire
 */
-require_once 'src/control/BDDControl/connectBDD.php';
+require_once '../../control/BDDControl/connectBDD.php';
 
 class AddArticleModel
 {
@@ -11,10 +11,10 @@ class AddArticleModel
     /*
     - Cette fonction insére les informations des articles
     */
-    public function insertArticle(PDO $bdd, $title, $content, $createdAt)
+    public function insertArticle(PDO $bdd, $title, $content, $createdAt, $userID)
     {
-        $insertArt = 'INSERT INTO articles (title, content, createdAt) VALUES (?, ?, ?)';
+        $insertArt = 'INSERT INTO articles (title, content, createdAt, user_id) VALUES (?, ?, ?, ?)';
         $insertArticle = $bdd->prepare($insertArt);
-        return $insertArticle->execute([$title, $content, $createdAt]);
+        return $insertArticle->execute([$title, $content, $createdAt, $userID]);
     }
 }
