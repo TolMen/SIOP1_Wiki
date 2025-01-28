@@ -3,7 +3,7 @@
 /* 
 - Inclusion des fichiers nécessaire
 */
-require_once '../../control/BDDControl/connectBDD.php';
+require_once 'src/control/BDDControl/connectBDD.php';
 
 class AddArticleModel
 {
