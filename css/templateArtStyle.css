@@ -50,14 +50,20 @@ body {
     color: black;
 }
 
-.infoArticle a {
+.infoArticle .link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.infoArticle .link a {
     text-decoration: none;
     padding-top: 5px;
     color: grey;
     font-weight: normal; 
 }
 
-.infoArticle a:hover {
+.infoArticle .link a:hover {
     color: black;
     text-decoration: underline;
 }
