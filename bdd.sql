@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS articles (
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
     createdAt DATE NOT NULL,
-    updatedAt DATE DEFAULT NULL,
+    updatedAt DATE NULL,
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
