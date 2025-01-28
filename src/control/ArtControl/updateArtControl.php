@@ -38,7 +38,7 @@ if (isset($_POST['updateArticle'])) {
         /*
         - Redirection vers le tableau de bord
         */
-        header('Location: ../../../home.php');
+        header('Location: ../../../templateArt.php?articleID=' . $articleId);
         throw new Exception("Redirection vers la page d'accueil");
     } else {
         echo "Erreur lors de l'envoi de l'article";
