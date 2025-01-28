@@ -11,7 +11,7 @@
                 </li>
 
                 <?php
-                if (!empty($_SESSION['main']['userRole']) == 'admin') {
+                if (!empty($_SESSION['userRole']) == 'admin') {
                     echo '
                         <li class="nav-item">
                             <a class="nav-link" href="user_list.php">Utilisateurs</a>
@@ -19,10 +19,10 @@
                     ';
                 }
 
-                if (!empty($_SESSION['main']['userID'])) {
+                if (!empty($_SESSION['userID'])) {
                     echo ' 
                         <li class="nav-item">
-                            <a class="nav-link text-danger" href="src/UserControl/logout.php" title="Déconnexion"><i class="fa-solid fa-user-xmark"></i></a>
+                            <a class="nav-link text-danger" href="src/UserControl/logout.php" title="Déconnexion">Déconnexion</a>
                         </li>
                     ';
                 } else {
