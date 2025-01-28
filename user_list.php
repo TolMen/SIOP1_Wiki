@@ -47,7 +47,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
         $requeteSql = $requeteSql." AND bans.id IS NULL";
     }
     // Sinon afficher tous
-    $requeteSql = $requeteSql." ORDER BY userid";
+    $requeteSql = $requeteSql." ORDER BY userid LIMIT 50;";
 
     $state = $bdd->prepare($requeteSql);
     $state->execute(array($id, $username, $role));
@@ -79,7 +79,7 @@ else {
         <meta name="author" content="Nolan / Kelly / Jessy" />
 
         <!-- Icône du site -->
-        <link rel="icon" type="image/png" sizes="16x16" href="###" /> <!-- Trouver un favicon -->
+        <link rel="icon" type="favicon.ico" sizes="16x16" href="###" /> <!-- Trouver un favicon -->
 
         <!-- Feuilles de style externes -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -90,7 +90,7 @@ else {
         <link rel="stylesheet" href="css/baseStyle.css" />
         <link rel="stylesheet" href="css/userListStyle.css" />
 
-        <title>Wiki - Dashboard</title>
+        <title>Wiki - Liste des utilisateurs</title>
     </head>
 
 
@@ -152,14 +152,52 @@ else {
                         }
                         // isBanned
                         if ($user["user_id"]) {
-                            echo "<div class='col-3'>Oui</div>";
+                            echo "<div class='col-3'>&nbsp;&nbsp;Oui<img src='assets/img/eye_popup.png' alt='+'  data-bs-toggle='modal' data-bs-target='#imagePopup' style='cursor: pointer; width: 15px;'></div>";
+
+                            echo "<div class='modal fade' id='imagePopup' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>";
+                                echo "<div class='modal-dialog'>";
+                                    echo "<div class='modal-content'>";
+                                        echo "<div class='modal-header'>";
+                                            echo "<h5 class='modal-title' id='exampleModalLabel'>Sanction actuelle</h5>";
+                                            echo "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>";
+                                        echo "</div>";
+                                        echo "<div class='modal-body'>";
+                                        // Intérieur
+                                            $state = $bdd->prepare("SELECT * FROM bans WHERE user_id = ? ORDER BY start_date LIMIT 1");
+                                            $state->execute(array($user["user_id"]));
+                                            $ban = $state->fetch();
+
+                                            // Si ban def
+                                            if (empty($ban["end_date"])) {
+                                                echo "<br><h5>Bannissement définitif</h5>"."<br>";
+                                                echo "Raison : ".$ban["reason"]."<br>";
+                                                echo "Date : ".$ban["start_date"];
+                                            }
+                                            else {
+                                                echo "<br><h5>Bannissement temporaire</h5>"."<br>";
+                                                echo "Raison : ".$ban["reason"]."<br>";
+                                                echo "Date : ".$ban["start_date"]."<br>";
+                                                echo "Fin : ".$ban["end_date"]."<br><br>";
+                                            }
+
+
+                                        // Intérieur
+                                        echo "</div>";
+                                        echo "<div class='modal-footer'>";
+                                        echo "</div>";
+                                    echo "</div>";
+                                echo "</div>";
+                            echo "</div>";
                         }
                         else {
                             echo "<div class='col-3'>Non</div>";
                         }
                     echo "</div>";
                     echo "<div class='col-1'></div>";
-                    echo "<div class='userCase col-3'>Code pour bannir</div>";
+
+                    // Code pour bannir ou débannir
+                    echo "<div class='userCase col-3'>";
+                    echo "</div>";
                 }
             ?>
         </div>
