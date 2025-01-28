@@ -1,6 +1,10 @@
 <?php
 session_name("main");
 session_start();
+if (empty($_SESSION['userID'])) {
+    header('Location: home.php');
+    exit;
+}
 
 /* Inclusion des fichiers nécessaires */
 require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
