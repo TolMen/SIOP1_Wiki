@@ -47,21 +47,27 @@ body {
     border-style: ridge;
 }
 
-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100%;
-    width: 100%;
-    gap: 7px;
-}
-
-
 .inputID {
     width: 60px;
 }
 
 .inputUsername {
     width: 100px;
+}
+
+.inputReason {
+    width: 100px;
+}
+
+.buttonSubmit {
+    background: #ffffff;
+    height: 50px;
+    width: 150px;
+    border: rgb(0, 0, 0);
+    border-radius: 25px;
+    border-style: ridge;
+}
+
+.buttonSubmit:hover {
+    background: rgba(255, 255, 255, 0.5);
 }

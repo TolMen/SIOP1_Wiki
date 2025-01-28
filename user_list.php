@@ -96,7 +96,7 @@ else {
 
     <body>
         <!-- Inclusion de la barre de navigation -->
-        <?php include 'src/component/navbar.php' ?>
+        <?php require_once 'src/component/navbar.php' ?>
 
         <!-- Code -->
         <div class='userList row'>
@@ -134,72 +134,79 @@ else {
             <div class="col-1"></div>
             <div class="UserCase active col-3"></div>
             <?php 
-                foreach ($users as $user) {
-                    echo "<div class='userCase col-6'>";
-                        // ID
-                        echo "<div class='col-3'>".$user["userid"]."</div>";
-                        // username
-                        echo "<div class='col-3'>".$user["username"]."</div>";
-                        // role
-                        if ($user["role"] == "user") {
-                            echo "<div class='col-3'>Utilisateur</div>";
-                        }
-                        elseif ($user["role"] == "admin") {
-                            echo "<div class='col-3'>Administrateur</div>";
-                        }
-                        else {
-                            echo "<div class='col-3'>Inconnu</div>";
-                        }
-                        // isBanned
-                        if ($user["user_id"]) {
-                            echo "<div class='col-3'>&nbsp;&nbsp;Oui<img src='assets/img/eye_popup.png' alt='+'  data-bs-toggle='modal' data-bs-target='#imagePopup' style='cursor: pointer; width: 15px;'></div>";
+                foreach ($users as $user) { ?>
+                    <div class="userCase col-6">
+                        <!-- ID -->
+                        <div class="col-3"><?php echo $user["userid"] ?></div>
+                        <!-- Username -->
+                        <div class="col-3"><?php echo $user["username"] ?></div>
+                        <!-- Role -->
+                        <?php if ($user["role"] == "user") { ?>
+                            <div class="col-3">Utilisateur</div>
+                        <?php }
+                        elseif ($user["role"] == "admin") { ?>
+                            <div class="col-3">Administrateur</div>
+                        <?php }
+                        else { ?>
+                            <div class="col-3">Inconnu</div>
+                        <?php } ?>
+                        <!-- IsBanned -->
+                        <?php
+                        if ($user["user_id"]) { ?>
+                            <div class="col-3">&nbsp;&nbsp;Oui<img src="assets/img/eye_popup.png" alt="+" data-bs-toggle="modal" data-bs-target="#imagePopup" style="cursor: pointer; width: 15px;"></div><div class="modal fade" id="imagePopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header">
+                                <!-- Titre -->
+                                <h5 class="modal-title" id="exampleModalLabel">Sanction actuelle</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">
+                                <!-- Intérieur -->
+                                <?php
+                                $state = $bdd->prepare("SELECT * FROM bans WHERE user_id = ? ORDER BY start_date LIMIT 1");
+                                $state->execute(array($user["user_id"]));
+                                $ban = $state->fetch();
 
-                            echo "<div class='modal fade' id='imagePopup' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>";
-                                echo "<div class='modal-dialog'>";
-                                    echo "<div class='modal-content'>";
-                                        echo "<div class='modal-header'>";
-                                            echo "<h5 class='modal-title' id='exampleModalLabel'>Sanction actuelle</h5>";
-                                            echo "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>";
-                                        echo "</div>";
-                                        echo "<div class='modal-body'>";
-                                        // Intérieur
-                                            $state = $bdd->prepare("SELECT * FROM bans WHERE user_id = ? ORDER BY start_date LIMIT 1");
-                                            $state->execute(array($user["user_id"]));
-                                            $ban = $state->fetch();
+                                // Si ban def
+                                if (empty($ban["end_date"])) { ?>
+                                    <br><h5>Bannissement définitif</h5>
+                                    Raison : <?php echo $ban["reason"] ?><br><br>
+                                    Date : <?php echo strftime("%d/%m/%Y",strtotime($ban["start_date"])) ?><br><br>
+                                <?php }
+                                // Si ban temp
+                                else { ?>
+                                    <br><h5>Bannissement temporaire</h5>
+                                    Raison : <?php echo $ban["reason"] ?><br><br>
+                                    Date : <?php echo strftime("%d/%m/%Y", strtotime($ban["start_date"])) ?><br>
+                                    Fin : <?php echo strftime("%d/%m/%Y", strtotime($ban["end_date"])) ?><br><br>
+                                <?php } ?>
+                            </div><div class="modal-footer"></div></div></div></div>
+                        <?php }
+                        else { ?>
+                            <div class="col-12 col-sm-3">Non</div>
+                        <?php } ?>
 
-                                            // Si ban def
-                                            if (empty($ban["end_date"])) {
-                                                echo "<br><h5>Bannissement définitif</h5>"."<br>";
-                                                echo "Raison : ".$ban["reason"]."<br>";
-                                                echo "Date : ".$ban["start_date"];
-                                            }
-                                            else {
-                                                echo "<br><h5>Bannissement temporaire</h5>"."<br>";
-                                                echo "Raison : ".$ban["reason"]."<br>";
-                                                echo "Date : ".$ban["start_date"]."<br>";
-                                                echo "Fin : ".$ban["end_date"]."<br><br>";
-                                            }
+                    <!-- Séparation -->
+                    </div><div class="col-1"></div>
 
+                    <!-- Code pour bannir ou débannir -->
+                    <div class="userCase col-3">
+                        <!-- Si non banni -->
+                        <?php if ($user["user_id"] == null) { ?>
+                            <div class="col-3"><img src="assets/img/ban.png" alt="+" data-bs-toggle="modal" data-bs-target="#imagePopup<?php echo $user["userid"]; ?>" style="cursor: pointer; width: 15px;"></div><div class="modal fade" id="imagePopup<?php echo $user["userid"]; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header">
+                                <!-- Titre -->
+                                <h5 class="modal-title" id="exampleModalLabel">Bannissement</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">
+                                <!-- Intérieur -->
+                                <form method="POST" action="user_list.php">
+                                    <label><h5>Voulez-vous bannir temporairement <?php echo $user["username"] ?> ?</h5></label><br><br>
+                                    <label for="ReasonID">Raison :</label>
+                                    <input class="inputReason" type="text" id="ReasonID" name="reason"/><br>
 
-                                        // Intérieur
-                                        echo "</div>";
-                                        echo "<div class='modal-footer'>";
-                                        echo "</div>";
-                                    echo "</div>";
-                                echo "</div>";
-                            echo "</div>";
-                        }
-                        else {
-                            echo "<div class='col-3'>Non</div>";
-                        }
-                    echo "</div>";
-                    echo "<div class='col-1'></div>";
+                                    <label for="end_dateID">Fin :</label>
+                                    <input type="date" id="end_dateID" name="end_date"/><br><br>
 
-                    // Code pour bannir ou débannir
-                    echo "<div class='userCase col-3'>";
-                    echo "</div>";
-                }
-            ?>
+                                    <input class="buttonSubmit" type="submit" value="Bannir"/>
+                                </form>
+
+                            </div><div class="modal-footer"></div></div></div></div>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
         </div>
 
         <!-- Inclusion du pied de page -->
@@ -212,3 +219,5 @@ else {
         </script>
     </body>
 </html>
+
+
