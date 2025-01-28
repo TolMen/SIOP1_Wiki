@@ -60,11 +60,6 @@ if (isset($_GET['articleID'])) {
                         <label class="form-label">Contenu</label>
                         <textarea class="form-control" id="content" name="content" rows="5" autocomplete="off" required><?php echo $article['content']; ?></textarea>
                     </div>
-                    <!-- Date de Mise à jour -->
-                    <div class="mb-3">
-                        <label class="form-label">Date de Mise à jour</label>
-                        <input type="date" class="form-control" id="updatedAt" name="updatedAt" autocomplete="off" required>
-                    </div>
                     <!-- Bouton de validation -->
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary w-100" name="updateArticle">Valider les modifications</button>

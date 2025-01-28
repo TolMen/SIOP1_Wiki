@@ -21,10 +21,11 @@ class UpdateArticleModel
     /*
     - Fonction pour mettre à jour les informations de l'article
     */
-    public function updateArticle(PDO $bdd, $articleId, $title, $content, $updatedAt)
+    public function updateArticle(PDO $bdd, $articleId, $title, $content)
     {
-        $updateArt = 'UPDATE articles SET title = ?, content = ?, updatedAt = ? WHERE id = ?';
+        $updateArt = 'UPDATE articles SET title = ?, content = ?, updatedAt = NOW() WHERE id = ?';
         $updateArticle = $bdd->prepare($updateArt);
-        return $updateArticle->execute([$title, $content, $updatedAt, $articleId]);
+        return $updateArticle->execute([$title, $content, $articleId]);
     }
+
 }
