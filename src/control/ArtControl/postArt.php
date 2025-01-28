@@ -33,7 +33,7 @@ foreach ($articles as $article) {
     <h2 class="title"><?= htmlspecialchars($article['title']); ?></h2>
     <i class="separator"></i>
     <div class="littleInfo">
-        <p class="author">Ecrit par l'utilisateur n°<?= htmlspecialchars($article['user_id']); ?></p>
+        <p class="author">Utilisateur n°<?= htmlspecialchars($article['user_id']); ?></p>
         <p class="date"><?= date("d/m/Y", strtotime($dateToShow)); ?></p>
     </div>
     <div class="link">
