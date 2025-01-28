@@ -1,6 +1,10 @@
 <?php
 session_name("main");
 session_start();
+if (empty($_SESSION['userID'])) {
+    header('Location: home.php');
+    exit;
+}
 ?>
 
 <!DOCTYPE html>

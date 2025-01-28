@@ -39,7 +39,7 @@ session_start();
         </form>
        </div>
 
-        <div>
+        <div id="list_art">
             <div class="articles-grid">
                 <!-- Article 1 -->
                 <div class="article-card">

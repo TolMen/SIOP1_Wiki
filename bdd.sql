@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS articles (
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
     createdAt DATE NOT NULL,
-    updatedAt DATE DEFAULT NULL,
+    updatedAt DATE NULL,
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
@@ -45,11 +45,11 @@ CREATE TABLE IF NOT EXISTS article_versions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
-    updatedBy INT NOT NULL,
-    updatedAt DATE NOT NULL,
+    createdAt DATE NOT NULL,
+    user_id INT NOT NULL,
     article_id INT NOT NULL,
     FOREIGN KEY (article_id) REFERENCES articles(id) ON DELETE CASCADE,
-    FOREIGN KEY (updatedBy) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- Table `bans`
@@ -105,7 +105,7 @@ L'architecture inca témoigne de leur maîtrise technique et esthétique. Des si
 
 Malgré leur puissance, les Incas ont été confrontés à l'arrivée des conquistadors espagnols au XVIᵉ siècle. En 1532, l'empereur Atahualpa fut capturé par Francisco Pizarro, marquant le début de la chute de l'empire inca. Cependant, l'héritage inca perdure à travers les traditions, les langues et les vestiges archéologiques qui continuent de fasciner le monde entier.
 ", 
-NOW(), 1),
+NOW(), 2),
 
 ("Les Mayas : Astronomes Érudits et Architectes des Cités Éternelles", 
 "La civilisation maya, l'une des plus fascinantes de Mésoamérique, s'est épanouie sur une vaste région englobant le sud du Mexique, le Guatemala, le Belize, ainsi que des parties du Honduras et du Salvador. Connus pour leurs avancées remarquables en écriture, art, architecture, agriculture, mathématiques et astronomie, les Mayas ont laissé un héritage culturel inestimable. 
@@ -147,7 +147,7 @@ La société viking était centrée autour des clans familiaux, où l'honneur, l
 
 L'impact des Vikings sur l'histoire mondiale est immense. De la toponymie aux traditions culturelles, en passant par des vestiges archéologiques qui témoignent de leur passage, leur influence se fait encore sentir aujourd’hui. Leurs raids ont contribué à façonner les frontières et les sociétés européennes, et leur culture continue de fasciner par sa richesse et son mystère. Les Vikings, loin d’être de simples pillards, ont été des bâtisseurs de civilisations, laissant derrière eux une empreinte indélébile sur l'histoire de l'humanité.
 ", 
-NOW(), 1),
+NOW(), 2),
 
 ("Les Atlantes : Peuple légendaire des confins de l''Afrique antique", 
 "Les Atlantes sont un peuple mythique évoqué par les auteurs antiques, notamment Hérodote, qui les situe dans les régions désertiques de la Libye, à proximité de la montagne nommée « Atlas ». Cette localisation précise demeure incertaine, et les informations sur ce peuple sont principalement légendaires.
@@ -210,7 +210,7 @@ Les Minoens utilisaient un système d’écriture appelé Linéaire A, encore in
 
 Vers 1450 av. J.-C., la civilisation minoenne déclina brusquement, probablement à cause de l’éruption volcanique de Santorin, suivie d’invasions des Mycéniens. Malgré leur disparition, leur héritage perdure dans la mythologie grecque et les vestiges archéologiques.
 ", 
-NOW(), 1),
+NOW(), 3),
 
 ("Les Mycéniens : Les Guerriers d’Homère", 
 "Les Mycéniens, qui ont dominé la Grèce continentale entre 1600 et 1100 av. J.-C., sont considérés comme les prédécesseurs directs des Grecs classiques. Leur civilisation tire son nom de la cité de Mycènes, l’une des nombreuses cités fortifiées qui étaient au cœur de leur culture.
@@ -222,3 +222,24 @@ Ils maîtrisaient l’écriture sous la forme du Linéaire B, un système utilis
 La civilisation mycénienne déclina vers 1100 av. J.-C., marquant le début de l’âge sombre grec. Les raisons de cet effondrement restent débattues, impliquant peut-être des invasions, des troubles internes et des catastrophes naturelles. Cependant, leur influence se retrouve dans la culture grecque classique, notamment dans leur architecture, leur art et leurs récits héroïques.
 ",
 NOW(), 1);
+
+
+-- Insertion du contenu d'articles sur les civilisations
+
+INSERT INTO article_versions (title, content, createdAt, user_id, article_id)
+VALUES
+("Les Incas : Maîtres des andes & Architectes d'un empire légendaire",
+"La civilisation inca, épanouie entre le XIIIᵉ et le XVIᵉ siècle, a su dominer les vastes étendus de l'Amérique du Sud, englobant des territoires correspondant aujourd'hui au Pérou, à l'Équateur, à la Bolivie, ainsi qu'à des parties de la Colombie, du Chili et de l'Argentine. Au cœur de cet empire se trouvait Cuzco, la capitale sacrée, considérée comme le 'nombril du monde'.
+
+Les Incas ont développé une société hautement organisée, avec une administration centralisée et une infrastructure impressionnante. Le réseau routier inca, s'étendant sur des milliers de kilomètres, facilitait les communications et le contrôle des vastes territoires. Les chasquis, messagers rapides, parcouraient ces routes pour transmettre des informations à travers l'empire.
+
+L'agriculture était au cœur de l'économie inca. Grâce à des techniques ingénieuses comme les terrasses de culture et des systèmes d'irrigation avancés, ils cultivaient une variété de produits tels que le maïs, la pomme de terre et le quinoa. L'élevage de camélidés, comme les lamas et les alpagas, fournissait de la laine, de la viande et servait de moyen de transport.
+", "2025/01/01", 1, 1),
+
+("Les Minoens : L’Âge d’Or de la crète", 
+"Les Minoens, qui ont prospéré sur l’île de Crète entre 3000 et 1450 av. J.-C., sont l’une des premières grandes civilisations européennes. Leur culture doit son nom au légendaire roi Minos, connu pour le mythe du Minotaure.
+", "2025/01/01", 1, 9),
+
+("Les Vikings", 
+"En attente d'informations
+", "2025/01/01", 1, 1);

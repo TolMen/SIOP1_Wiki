@@ -62,7 +62,7 @@ else {
             <input class=buttonSubmit type="submit" value="S'inscrire" />
         </form>
     </div><br>
-    <div>Déjà inscrit ?&nbsp;<a class="otherWayLink" href="register.php">Se connecter</a></div>
+    <div>Déjà inscrit ?&nbsp;<a class="otherWayLink" href="login.php">Se connecter</a></div>
 
     <!-- Inclusion du pied de page -->
     <?php include 'src/component/footer.php' ?>
