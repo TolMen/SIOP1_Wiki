@@ -1,7 +1,7 @@
 <?php
 
 /* 
-- Inclusion des fichiers nécessaire
+- Inclusion des fichiers nécessaires
 */
 require_once '../../control/BDDControl/connectBDD.php';
 
@@ -19,13 +19,22 @@ class UpdateArticleModel
     }
 
     /*
-    - Fonction pour mettre à jour les informations de l'article
+    - Fonction pour sauvegarder l'ancienne version de l'article
     */
-    public function updateArticle(PDO $bdd, $articleId, $title, $content)
+    public function saveArticleVersion(PDO $bdd, $articleId, $title, $content, $createdAt, $userId)
     {
-        $updateArt = 'UPDATE articles SET title = ?, content = ?, updatedAt = NOW() WHERE id = ?';
-        $updateArticle = $bdd->prepare($updateArt);
-        return $updateArticle->execute([$title, $content, $articleId]);
+        $insertVersion = 'INSERT INTO article_versions (title, content, createdAt, user_id, article_id) VALUES (?, ?, ?, ?, ?)';
+        $stmt = $bdd->prepare($insertVersion);
+        return $stmt->execute([$title, $content, $createdAt, $userId, $articleId]);
     }
 
+    /*
+    - Fonction pour mettre à jour les informations de l'article
+    */
+    public function updateArticle(PDO $bdd, $articleId, $title, $content, $userId)
+    {
+        $updateArt = 'UPDATE articles SET title = ?, content = ?, updatedAt = NOW(), user_id = ? WHERE id = ?';
+        $updateArticle = $bdd->prepare($updateArt);
+        return $updateArticle->execute([$title, $content, $userId, $articleId]);
+    }
 }

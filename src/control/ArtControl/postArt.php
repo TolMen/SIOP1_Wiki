@@ -28,7 +28,7 @@ foreach ($articles as $article) {
 /*
 - Vérifier si dateUpdate est null, pour choisir la date à affiché
 */
-    $dateToShow = !empty($article['updatedAt']) ? $article['updatedAt'] : $article['createdAt'];
+$dateToShow = !empty($article['updatedAt']) ? $article['updatedAt'] : $article['createdAt'];
 ?>
     <h2 class="title"><?= htmlspecialchars($article['title']); ?></h2>
     <i class="separator"></i>
@@ -37,12 +37,11 @@ foreach ($articles as $article) {
         <p class="date"><?= date("d/m/Y", strtotime($dateToShow)); ?></p>
     </div>
     <div class="link">
-        <a href="templateArtV.php?articleVID=<?php echo $postArtId; ?>">Historique</a>
-        <span> - </span>
-        <a href="updateArt.php?articleID=<?php echo $postArtId; ?>">Modification</a>
+        <a href="templateArtV.php?articleVID=<?php echo $postArtId; ?>">Historique -</a>
+        <a href="updateArt.php?articleID=<?php echo $postArtId; ?>"> - Modification</a>
     </div>
     <i class="separator"></i>
-    <p class="text"><?= nl2br(htmlspecialchars($article['content'])); ?></p>
+    <div class="text"><?= nl2br($article['content']); ?></div>
 <?php
 }
 ?>
