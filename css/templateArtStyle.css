@@ -68,6 +68,14 @@ body {
     text-decoration: underline;
 }
 
+.infoArticle .text {
+    padding: 25px 8% 25px;
+    margin: 0;
+    letter-spacing: 1px;
+    text-align: center;
+    color: black;
+}
+
 /* ---------------------------------------------------------------------- */
 
 /* CSS Responsive */
