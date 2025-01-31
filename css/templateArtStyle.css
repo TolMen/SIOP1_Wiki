@@ -21,7 +21,7 @@ body {
     text-align: center;
     font-size: 1em;
     font-weight: bold;
-    padding: 0 50px;
+    margin: 0;
     color: black;
 }
 
@@ -66,14 +66,6 @@ body {
 .infoArticle .link a:hover {
     color: black;
     text-decoration: underline;
-}
-
-.infoArticle .text {
-    padding: 25px 8% 25px;
-    margin: 0;
-    letter-spacing: 1px;
-    text-align: center;
-    color: black;
 }
 
 /* ---------------------------------------------------------------------- */
