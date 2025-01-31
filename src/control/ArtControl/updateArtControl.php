@@ -21,7 +21,31 @@ if (isset($_GET['articleID'])) {
     if (!$article) {
         die("Erreur : Article introuvable.");
     }
+
+    // Sauvegarder l'ancienne version de l'article dans la table article_versions
+    $updateArticleModel->saveArticleVersion(
+        $bdd, 
+        $articleId, 
+        $article['title'], 
+        $article['content'], 
+        $article['createdAt'], 
+        $article['user_id']
+    );
 }
+
+/*
+- Récupère l'ID de l'utilisateur connecté
+*/
+session_name("main");
+session_start();
+if (empty($_SESSION['userID'])) {
+    die("Utilisateur non connecté.");
+}
+$userId = $_SESSION['userID'];
+
+/*
+- Mise à jour de l'article
+*/
 
 if (isset($_POST['updateArticle'])) {
 
@@ -34,7 +58,7 @@ if (isset($_POST['updateArticle'])) {
     /*
     - Mise à jour de l'article
     */
-    if ($updateArticleModel->updateArticle($bdd, $articleId, $title, $content)) {
+    if ($updateArticleModel->updateArticle($bdd, $articleId, $title, $content, $userId)) {
 
         /*
         - Redirection vers le tableau de bord
