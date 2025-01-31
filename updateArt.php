@@ -16,10 +16,10 @@ if (isset($_GET['articleID'])) {
     $updateArticleModel = new UpdateArticleModel();
 
     // Récupérer l'article
-    $article = $updateArticleModel->getArticleId($bdd, $articleID);
+    $articleAncien = $updateArticleModel->getArticleId($bdd, $articleID);
 
     // Vérifiez si l'article existe
-    if (!$article) {
+    if (!$articleAncien) {
         die("Erreur : Article introuvable.");
     }
 } else {
@@ -53,12 +53,12 @@ if (isset($_GET['articleID'])) {
                     <div class="mb-3">
                         <label class="form-label">Titre</label>
                         <input type="text" class="form-control" id="title" name="title"
-                            value="<?php echo $article['title']; ?>" autocomplete="off" required>
+                            value="<?php echo $articleAncien['title']; ?>" autocomplete="off" required>
                     </div>
                     <!-- Contenu -->
                     <div class="mb-3">
                         <label class="form-label">Contenu</label>
-                        <textarea class="form-control" id="content" name="content" rows="5" autocomplete="off" required><?php echo $article['content']; ?></textarea>
+                        <textarea class="form-control" id="content" name="content" rows="5" autocomplete="off" required><?php echo $articleAncien['content']; ?></textarea>
                     </div>
                     <!-- Bouton de validation -->
                     <div class="text-center">
