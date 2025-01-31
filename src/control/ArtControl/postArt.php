@@ -37,12 +37,11 @@ foreach ($articles as $article) {
         <p class="date"><?= date("d/m/Y", strtotime($dateToShow)); ?></p>
     </div>
     <div class="link">
-        <a href="templateArtV.php?articleVID=<?php echo $postArtId; ?>">Historique</a>
-        <span> - </span>
-        <a href="updateArt.php?articleID=<?php echo $postArtId; ?>">Modification</a>
+        <a href="templateArtV.php?articleVID=<?php echo $postArtId; ?>">Historique -</a>
+        <a href="updateArt.php?articleID=<?php echo $postArtId; ?>"> - Modification</a>
     </div>
     <i class="separator"></i>
-    <p class="text"><?= nl2br(htmlspecialchars($article['content'])); ?></p>
+    <?= nl2br($article['content']); ?>
 <?php
 }
 ?>
