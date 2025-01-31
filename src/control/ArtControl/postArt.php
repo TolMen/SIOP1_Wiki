@@ -28,7 +28,7 @@ foreach ($articles as $article) {
 /*
 - Vérifier si dateUpdate est null, pour choisir la date à affiché
 */
-    $dateToShow = !empty($article['updatedAt']) ? $article['updatedAt'] : $article['createdAt'];
+$dateToShow = !empty($article['updatedAt']) ? $article['updatedAt'] : $article['createdAt'];
 ?>
     <h2 class="title"><?= htmlspecialchars($article['title']); ?></h2>
     <i class="separator"></i>
@@ -41,7 +41,7 @@ foreach ($articles as $article) {
         <a href="updateArt.php?articleID=<?php echo $postArtId; ?>"> - Modification</a>
     </div>
     <i class="separator"></i>
-    <?= nl2br($article['content']); ?>
+    <div class="text"><?= nl2br($article['content']); ?></div>
 <?php
 }
 ?>
