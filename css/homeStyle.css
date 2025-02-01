@@ -147,10 +147,10 @@
   text-decoration: underline;
 }
 
-.the_title {
+/* .the_title {
   font-weight: 900;
   color: aqua;
-}
+} */
 
 .description {
   display: flex;

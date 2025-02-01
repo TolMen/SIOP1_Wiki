@@ -80,7 +80,7 @@ if (empty($articles)) {
 
         <section id="search">
 
-
+            <!-- Recherche par mot-cle -->
             <div id="search_content">
                 <form class="formulaire" method="POST" action="search.php">
                     <div class="content_recherche">
