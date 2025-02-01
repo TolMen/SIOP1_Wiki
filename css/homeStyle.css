@@ -27,8 +27,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 5px;
   backdrop-filter: blur(2px);
   width: 45%;
+}
+
+.phrase_accroche p {
+  color: white;
+  font-style: italic;
+  font-size: 15px;
 }
 #presentation_section {
   place-content: center;
@@ -44,6 +51,7 @@
   padding: 8px;
   display: flex;
   place-content: center;
+  margin-bottom: 25px;
 }
 
 .content_recherche {
@@ -73,19 +81,23 @@
 .articles-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 4 articles par ligne */
-  gap: 20px;
+  gap: 50px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 /* Carte de chaque article */
 .article-card {
-  background-color: #fff;
+  background-color: white;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .article-card:hover {
@@ -109,17 +121,18 @@
 }
 
 .article-card h3 {
-  font-size: 18px;
-  color: #333;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  color: black;
 }
 
 .article-card p {
   font-size: 14px;
-  color: #777;
+  color: #bca9a9;
 }
 
 .article-card .date {
-  font-weight: bold;
   color: #555;
 }
 
@@ -132,4 +145,69 @@
 
 .article-card .read-more:hover {
   text-decoration: underline;
+}
+
+/* .the_title {
+  font-weight: 900;
+  color: aqua;
+} */
+
+.description {
+  display: flex;
+  justify-content: center;
+  padding: 4px;
+}
+.description-content {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); 
+}
+.img-size {
+  height: 300px;
+}
+.img-description-content {
+  display: flex;
+  justify-content: center;
+}
+.infos h2 {
+  font-weight: 600;
+  color: rgb(186, 137, 72);
+  text-align: center;  
+
+}
+.infos p {
+text-align: center;  
+}
+.infos p {
+  margin-top: 15px;
+}
+.body-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 30px;
+}
+.line-content {
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  gap: 15px; 
+}
+
+.line {
+  flex-grow: 1; 
+  height: 2px;
+  background-color:  #0066cc;
+  max-width: 150px; 
+}
+
+.line-content span {
+  font-size: 18px; 
+  font-weight: bold; 
+  color:  #0066cc; 
+  text-transform: uppercase; 
+  letter-spacing: 1px; 
 }
