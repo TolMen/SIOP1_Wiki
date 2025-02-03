@@ -20,20 +20,28 @@ if (!empty($_GET['articleID'])) {
 $artPostModel = new ArtPostModel();
 $articles = $artPostModel->getPostArt($bdd, $postArtId);
 
+if (!empty($articles)) {
+    $postArtUser = $articles[0]['user_id']; // On récupère l'ID de l'auteur depuis l'article
+    $userArticles = $artPostModel->getPostArtUser($bdd, $postArtUser);
+} else {
+    throw new Exception("Article non trouvé.");
+}
+
+
 /*
 - Boucle pour chaque article récupéré afin de les afficher dans une structure HTML
 */
 foreach ($articles as $article) {
 
-/*
+    /*
 - Vérifier si dateUpdate est null, pour choisir la date à affiché
 */
-$dateToShow = !empty($article['updatedAt']) ? $article['updatedAt'] : $article['createdAt'];
+    $dateToShow = !empty($article['updatedAt']) ? $article['updatedAt'] : $article['createdAt'];
 ?>
     <h2 class="title"><?= htmlspecialchars($article['title']); ?></h2>
     <i class="separator"></i>
     <div class="littleInfo">
-        <p class="author">Utilisateur n°<?= htmlspecialchars($article['user_id']); ?></p>
+        <p class="author">Utilisateur : <?= htmlspecialchars($userArticles['username'] ?? 'Inconnu'); ?></p>
         <p class="date"><?= date("d/m/Y", strtotime($dateToShow)); ?></p>
     </div>
     <div class="link">
