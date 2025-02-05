@@ -101,7 +101,7 @@ if (empty($articles)) {
                             <div class="content">
                                 <h3><?php echo htmlspecialchars($article['title']); ?></h3>
                                 <span class="date">Publiée le <?php echo htmlspecialchars($article['createdAt']); ?></span>
-                                <a href="article.php?id=<?php echo $article['id']; ?>" class="read-more">Continuer la lecture</a>
+                                <a href="templateArt.php?articleID=<?php echo $article['id']; ?>" class="read-more">Continuer la lecture</a>
                             </div>
                         </div>
                     <?php

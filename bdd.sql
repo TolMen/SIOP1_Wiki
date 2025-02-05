@@ -136,7 +136,7 @@ Aujourd'hui, l'héritage aztèque perdure à travers les traditions, la langue n
 ", 
 NOW(), 1),
 
-("Les Vikings : Navigateurs audacieux et bâtisseurs d''empires", 
+("Les Vikings : Navigateurs audacieux et bâtisseurs d'empires", 
 "Les Vikings, originaires des régions actuelles de la Norvège, du Danemark et de la Suède, sont des figures emblématiques du Moyen Âge, connus pour leur audace, leur expertise maritime et leur influence durable sur l'histoire de l'Europe et au-delà. Entre le VIIIᵉ et le XIᵉ siècle, ces peuples scandinaves ont marqué le monde par leurs raids, leurs explorations et leurs conquêtes, s'étendant sur de vastes territoires, de l'Islande au Groenland, en passant par la Normandie, la Russie, et même l'Amérique du Nord.
 
 Les Vikings étaient des maîtres navigateurs, construisant des drakkars, des navires longs et robustes, parfaitement adaptés pour les raids rapides le long des côtes, mais aussi pour de longues explorations maritimes. Ces embarcations leur ont permis de franchir des mers tumultueuses et d'établir des colonies à des milliers de kilomètres de leur terre d'origine. Leurs voyages ne se limitaient pas seulement aux côtes européennes, mais les menaient également en Asie centrale, au Moyen-Orient et jusqu’en Amérique du Nord, où ils fondèrent des colonies comme l’Anse aux Meadows au Canada, plusieurs siècles avant Christophe Colomb.
