@@ -13,7 +13,7 @@ class UpdateArticleModel
     */
     public function getArticleId(PDO $bdd, $articleId)
     {
-        $recupArt = $bdd->prepare('SELECT * FROM articles WHERE id = ?');
+        $recupArt = $bdd->prepare('SELECT * FROM article WHERE id = ?');
         $recupArt->execute([$articleId]);
         return $recupArt->fetch(PDO::FETCH_ASSOC);
     }

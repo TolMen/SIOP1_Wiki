@@ -39,7 +39,7 @@ foreach ($articles as $article) {
     /*
 - Vérifier si dateUpdate est null, pour choisir la date à affiché
 */
-    $dateToShow = !empty($article['updatedAt']) ? $article['updatedAt'] : $article['createdAt'];
+    $dateToShow = !empty($article['updated_at']) ? $article['updated_at'] : $article['created_at'];
 ?>
     <div class="container mt-4">
         <div class="row">

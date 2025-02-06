@@ -25,7 +25,7 @@ if (isset($_GET['articleID'])) {
 
     // Récupérer l'ancienne URL de l'image
     $oldImageUrl = null;
-    $query = $bdd->prepare('SELECT url FROM images WHERE article_id = ? ORDER BY createdAt DESC LIMIT 1');
+    $query = $bdd->prepare('SELECT url FROM image WHERE article_id = ? ORDER BY created_at DESC LIMIT 1');
     $query->execute([$articleId]);
 
     if ($query->rowCount() > 0) {
@@ -38,7 +38,7 @@ if (isset($_GET['articleID'])) {
         $articleId,
         $article['title'],
         $article['content'],
-        $article['createdAt'],
+        $article['created_at'],
         $article['user_id'],
         $oldImageUrl // Ajouter l'ancienne URL de l'image
     );

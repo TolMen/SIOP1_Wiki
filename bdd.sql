@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 -- Création des tables :
 -- Table `users`
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE IF NOT EXISTS user (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE, -- UNIQUE pour éviter les doublons
     password VARCHAR(255) NOT NULL,
@@ -30,46 +30,46 @@ CREATE TABLE IF NOT EXISTS users (
 ) ENGINE=InnoDB;
 
 -- Table `articles`
-CREATE TABLE IF NOT EXISTS articles (
+CREATE TABLE IF NOT EXISTS article (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
-    createdAt DATE NOT NULL,
-    updatedAt DATE NULL,
+    created_at DATE NOT NULL,
+    updated_at DATE NULL,
     user_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- Table `article_versions`
-CREATE TABLE IF NOT EXISTS article_versions (
+CREATE TABLE IF NOT EXISTS article_version (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
-    createdAt DATE NOT NULL,
+    created_at DATE NOT NULL,
     image_url TEXT NULL,
     user_id INT NOT NULL,
     article_id INT NOT NULL,
-    FOREIGN KEY (article_id) REFERENCES articles(id) ON DELETE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (article_id) REFERENCES article(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- Table `images`
-CREATE TABLE IF NOT EXISTS images (
+CREATE TABLE IF NOT EXISTS image (
     id INT AUTO_INCREMENT PRIMARY KEY,
     url TEXT NOT NULL,
-    createdAt DATE NOT NULL,
+    created_at DATE NOT NULL,
     article_id INT NOT NULL,
-    FOREIGN KEY (article_id) REFERENCES articles(id) ON DELETE CASCADE
+    FOREIGN KEY (article_id) REFERENCES article(id) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
 -- Table `bans`
-CREATE TABLE IF NOT EXISTS bans (
+CREATE TABLE IF NOT EXISTS ban (
     id INT AUTO_INCREMENT PRIMARY KEY,
     reason TEXT NOT NULL,
     start_date DATE NOT NULL,
     end_date DATE DEFAULT NULL,
     user_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- Table `contact`
@@ -87,21 +87,21 @@ CREATE TABLE IF NOT EXISTS contact (
 -- Jeux de données
 
 -- Insertion des utilisateurs fictifs avec génération de hash
-INSERT INTO users (username, password, role) VALUES
+INSERT INTO user (username, password, role) VALUES
 ('root', SHA2('root', 256), 'admin'), -- Utilisateur administrateur
 ('user1', SHA2('password1', 256), 'user'),       -- Premier utilisateur fictif
 ('user2', SHA2('password2', 256), 'user');       -- Deuxième utilisateur fictif
 
 
 -- Insertion d'un ban temporaire pour 'user2' pour une durée de 7 jours
-INSERT INTO bans (reason, start_date, end_date, user_id)
+INSERT INTO ban (reason, start_date, end_date, user_id)
 VALUES 
 ('Violation des règles de conduite', NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY), 3);
 
 
 -- Insertion du contenu d'articles sur les civilisations
 
-INSERT INTO articles (title, content, createdAt, user_id)
+INSERT INTO article (title, content, created_at, user_id)
 VALUES
 ("Les Incas : Maîtres des Andes et Architectes d'un Empire Légendaire",
 "La civilisation inca, épanouie entre le XIIIᵉ et le XVIᵉ siècle, a su dominer les vastes étendus de l'Amérique du Sud, englobant des territoires correspondant aujourd'hui au Pérou, à l'Équateur, à la Bolivie, ainsi qu'à des parties de la Colombie, du Chili et de l'Argentine. Au cœur de cet empire se trouvait Cuzco, la capitale sacrée, considérée comme le 'nombril du monde'.
@@ -236,7 +236,7 @@ NOW(), 1);
 
 -- Insertion du contenu d'articles sur les civilisations
 
-INSERT INTO article_versions (title, content, createdAt, user_id, article_id)
+INSERT INTO article_version (title, content, created_at, user_id, article_id)
 VALUES
 ("Les Incas : Maîtres des andes & Architectes d'un empire légendaire",
 "La civilisation inca, épanouie entre le XIIIᵉ et le XVIᵉ siècle, a su dominer les vastes étendus de l'Amérique du Sud, englobant des territoires correspondant aujourd'hui au Pérou, à l'Équateur, à la Bolivie, ainsi qu'à des parties de la Colombie, du Chili et de l'Argentine. Au cœur de cet empire se trouvait Cuzco, la capitale sacrée, considérée comme le 'nombril du monde'.

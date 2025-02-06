@@ -13,7 +13,7 @@ class ArtPostModel
     */
     public function getPostArt(PDO $bdd, $postArtId)
     {
-        $recupPostArt = $bdd->prepare('SELECT * FROM articles WHERE id = :id');
+        $recupPostArt = $bdd->prepare('SELECT * FROM article WHERE id = :id');
         $recupPostArt->execute(['id' => $postArtId]);
         return $recupPostArt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -24,7 +24,7 @@ class ArtPostModel
     public function getPostArtUser(PDO $bdd, $postArtUserId)
     {
         $recupPostArtUser = $bdd->prepare(
-            'SELECT username FROM users WHERE id = :id'
+            'SELECT username FROM user WHERE id = :id'
         );
         $recupPostArtUser->execute(['id' => $postArtUserId]);
         return $recupPostArtUser->fetch(PDO::FETCH_ASSOC);
@@ -35,7 +35,7 @@ class ArtPostModel
     */
     public function getArticleImage(PDO $bdd, $articleID)
     {
-        $query = $bdd->prepare('SELECT url FROM images WHERE article_id = :article_id LIMIT 1');
+        $query = $bdd->prepare('SELECT url FROM image WHERE article_id = :article_id LIMIT 1');
         $query->execute(['article_id' => $articleID]);
         return $query->fetch(PDO::FETCH_ASSOC);
     }
