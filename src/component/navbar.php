@@ -14,6 +14,10 @@
                     <a class="nav-link" href="home.php#list_art" aria-current="page">Liste des articles</a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.php" aria-current="page">Contact</a>
+                </li>
+
                 <?php
                 if (isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'admin') {
                     echo '
