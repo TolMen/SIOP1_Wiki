@@ -32,7 +32,7 @@ if (empty($articles)) {
     <?php include 'src/component/navbar.php' ?>
 
     <div class="body-content">
-        <section id="presentation_section" class="">
+        <section id="presentation_section" >
             <div class="container phrase_accroche">
                 <div class="row">
                     <h1>BIENVENUE </h1>
