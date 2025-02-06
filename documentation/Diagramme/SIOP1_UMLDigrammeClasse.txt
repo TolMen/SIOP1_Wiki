@@ -20,9 +20,16 @@ class article_versions {
 #id: int
 +title: varchar
 +content: text
-+updatedAt: date
++createdAt: date
 -article_id: int
--updatedBy: int
+-user_id: int
+}
+
+class images {
+#id: int
++url: text
++createdAt: date
+-article_id: int
 }
 
 class bans {
@@ -46,5 +53,6 @@ users "1" --> "0..*" articles : posséde >
 users "1" --> "0..*" article_versions : est l'auteur d'une >
 articles "1" --> "0..*" article_versions : à comme archive > 
 users "1" --> "0..*" bans : peut être
+articles "1" --> "1" images : posséde >
 
 @enduml
