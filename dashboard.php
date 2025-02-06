@@ -1,3 +1,4 @@
+
 <?php
 
 session_name("main");
@@ -13,7 +14,6 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
 
 <!DOCTYPE html>
 <html lang="fr">
-
     <head>
         <!-- Balises méta essentielles -->
         <meta charset="UTF-8" />
@@ -42,14 +42,14 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
         <title>Wiki - Dashboard</title>
     </head>
 
-
     <body>
         <!-- Inclusion de la barre de navigation -->
         <?php include 'src/component/navbar.php' ?>
 
         <!-- Code -->
-        <a href="src/control/UserControl/logout.php">Se déconnecter</a>
+        <a href="article_list.php">Liste des articles</a>
         <a href="user_list.php">Liste des utilisateurs</a>
+        <a href="src/control/UserControl/logout.php">Se déconnecter</a>
 
         <!-- Inclusion du pied de page -->
         <?php include 'src/component/footer.php' ?>
