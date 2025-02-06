@@ -19,6 +19,9 @@ if (!empty($_GET['articleID'])) {
 */
 $artPostModel = new ArtPostModel();
 $articles = $artPostModel->getPostArt($bdd, $postArtId);
+$imageData = $artPostModel->getArticleImage($bdd, $postArtId);
+$imageUrl = $imageData['url'] ?? 'assets/img/civilisation.jpg'; // Image par défaut si aucune image en BDD
+
 
 if (!empty($articles)) {
     $postArtUser = $articles[0]['user_id']; // On récupère l'ID de l'auteur depuis l'article
@@ -59,12 +62,13 @@ foreach ($articles as $article) {
                 </div>
             </div>
 
-            <!-- Colonne droite : Image par défaut qui suit le scroll et reste centrée -->
+            <!-- Colonne droite : Image qui suit le scroll -->
             <div class="col-md-4 d-flex justify-content-center d-none d-md-block">
                 <div class="sticky-top" style="top: 175px; height: 450px;">
-                    <img src="assets/img/civilisation.jpg" alt="Image par défaut" class="img-fluid rounded shadow mx-auto d-block">
+                    <img src="<?= htmlspecialchars($imageUrl) ?>" alt="Image de l'article" class="img-fluid rounded shadow mx-auto d-block">
                 </div>
             </div>
+
         </div>
     </div>
 <?php
