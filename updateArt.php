@@ -60,6 +60,10 @@ if (isset($_GET['articleID'])) {
                         <label class="form-label">Contenu</label>
                         <textarea class="form-control" id="content" name="content" rows="5" autocomplete="off" required><?php echo $articleAncien['content']; ?></textarea>
                     </div>
+                    <div class="mb-3">
+                        <label for="images" class="form-label">Nouvelle image</label>
+                        <input type="file" id="images" name="images" class="form-control">
+                    </div>
                     <!-- Bouton de validation -->
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary w-100" name="updateArticle">Valider les modifications</button>
