@@ -15,6 +15,15 @@ class AddArticleModel
     {
         $insertArt = 'INSERT INTO articles (title, content, createdAt, user_id) VALUES (?, ?, ?, ?)';
         $insertArticle = $bdd->prepare($insertArt);
-        return $insertArticle->execute([$title, $content, $createdAt, $userID]);
+        $insertArticle->execute([$title, $content, $createdAt, $userID]);
+
+        return $bdd->lastInsertId();
+    }
+
+    public function insertImage(PDO $bdd, $url, $createdAt, $articleID)
+    {
+        $insertImg = 'INSERT INTO images (url, createdAt, article_id) VALUES (?, ?, ?)';
+        $insertImage = $bdd->prepare($insertImg);
+        return $insertImage->execute([$url, $createdAt, $articleID]);
     }
 }
