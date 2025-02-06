@@ -4,7 +4,7 @@ session_start();
 require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
 
 // Préparation la requête pour récupérer tous les articles
-$state = $bdd->prepare("SELECT id, title, content, createdAt FROM articles ORDER BY id DESC");
+$state = $bdd->prepare("SELECT id, title, content, created_at FROM article ORDER BY id DESC");
 $state->execute();
 $articles = $state->fetchAll();
 
@@ -100,7 +100,7 @@ if (empty($articles)) {
                             <img src="assets/img/section1background.jpg" alt="Image de l'article">
                             <div class="content">
                                 <h3><?php echo htmlspecialchars($article['title']); ?></h3>
-                                <span class="date">Publiée le <?php echo htmlspecialchars($article['createdAt']); ?></span>
+                                <span class="date">Publiée le <?php echo htmlspecialchars($article['created_at']); ?></span>
                                 <a href="templateArt.php?articleID=<?php echo $article['id']; ?>" class="read-more">Continuer la lecture</a>
                             </div>
                         </div>

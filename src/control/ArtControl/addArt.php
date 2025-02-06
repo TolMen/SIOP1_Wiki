@@ -3,13 +3,13 @@
 session_name("main");
 session_start();
 
-/* 
-- Inclusion des fichiers nécessaire
+/*
+- Inclusion des fichiers nécessaires
 */
 require_once '../../model/ArtModel/addArtModel.php';
+require_once '../../model/Services/ImageService.php'; // Inclure le service d'image
 
 if (isset($_POST['publishArticle'])) {
-
     /*
     - Sécurisation des données
     */
@@ -22,12 +22,45 @@ if (isset($_POST['publishArticle'])) {
     - Crée une instance de classe, puis récupère les informations
     */
     $addArticleModel = new AddArticleModel();
-    if ($addArticleModel->insertArticle($bdd, $title, $content, $createdAt, $userID)) {
+    $articleID = $addArticleModel->insertArticle($bdd, $title, $content, $createdAt, $userID);
+
+    if ($articleID) {
+        // Vérifier si un fichier image est envoyé
+        if (isset($_FILES['images']) && $_FILES['images']['error'] == 0) {
+            $uploadDir = '../../../assets/imgUpload/'; // Dossier cible
+
+            $fileTmpPath = $_FILES['images']['tmp_name'];
+            $fileName = $_FILES['images']['name'];
+            $fileSize = $_FILES['images']['size'];
+            $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+            // Vérifications des types autorisés
+            $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+
+            if (!in_array($fileExt, $allowedTypes)) {
+                echo "Format non supporté.";
+                exit;
+            }
+
+            // Générer un nom unique avec l'ID de l'article
+            $uniqueName = 'imgArticle' . $articleID . '_' . uniqid() . '.' . $fileExt;
+            $destPath = $uploadDir . $uniqueName;
+
+            // Compression et redimensionnement (Max: 800x800, Qualité: 75)
+            if (ImageService::compressAndResizeImage($fileTmpPath, $destPath, 800, 800, 75)) {
+                // Insérer l’image en BDD
+                $imgUrl = 'assets/imgUpload/' . $uniqueName;
+                $addArticleModel->insertImage($bdd, $imgUrl, $createdAt, $articleID);
+            } else {
+                echo "Erreur lors de la compression de l'image.";
+                exit;
+            }
+        }
 
         /*
         - Redirection vers le tableau de bord
         */
-        header('Location: ../../../home.php');
+        header('Location: ../../../templateArt.php?articleID=' . $articleID);
         throw new Exception("Redirection vers la page d'accueil");
     } else {
         echo "Erreur lors de l'envoi de l'article";

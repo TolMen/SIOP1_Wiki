@@ -27,18 +27,22 @@ if (empty($_SESSION['userID'])) {
         <h2 class="text-center mb-4">Publier un article</h2>
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
-                <form method="POST" action="src/control/ArtControl/addArt.php" class="bg-light p-4 rounded shadow">
+                <form method="POST" action="src/control/ArtControl/addArt.php" enctype="multipart/form-data" class="bg-light p-4 rounded shadow">
                     <div class="mb-3">
-                        <label for="title" class="form-label">Titre</label>
+                        <label for="title" class="form-label">Titre *</label>
                         <input type="text" id="title" name="title" class="form-control" placeholder="Entrez le titre de l'article" required>
                     </div>
                     <div class="mb-3">
-                        <label for="content" class="form-label">Contenu</label>
+                        <label for="content" class="form-label">Contenu *</label>
                         <textarea id="content" name="content" rows="6" class="form-control" placeholder="Écrivez le contenu ici..." required></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="datePublication" class="form-label">Date de publication</label>
-                        <input type="date" id="createdAt" name="createdAt" class="form-control" required>
+                        <label for="images" class="form-label">Images *</label>
+                        <input type="file" id="images" name="images" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="datePublication" class="form-label">Date de publication *</label>
+                        <input type="date" id="createdAt" name="createdAt" value="<?php echo date('Y-m-d'); ?>" class=" form-control" required>
                     </div>
                     <div class="text-center">
                         <button type="submit" name="publishArticle" class="btn btn-primary">

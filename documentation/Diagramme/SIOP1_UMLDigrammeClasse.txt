@@ -1,31 +1,38 @@
 @startuml
 
-entity users {
+entity user {
 #id: int
 ~username: varchar
 ~password: varchar
 +role: enum
 }
 
-class articles {
+class article {
 #id: int
 +title: varchar
 +content : text
-+createdAt: date
-+updatedAt: date
++created_at: date
++updated_at: date
 -user_id : int
 }
 
-class article_versions {
+class article_version {
 #id: int
 +title: varchar
 +content: text
-+updatedAt: date
++created_at: date
 -article_id: int
--updatedBy: int
+-user_id: int
 }
 
-class bans {
+class image {
+#id: int
++url: text
++created_at: date
+-article_id: int
+}
+
+class ban {
 #id: int
 +reason: text
 +start_date: date
@@ -42,9 +49,10 @@ class contact {
 +message: varchar
 }
 
-users "1" --> "0..*" articles : posséde >
-users "1" --> "0..*" article_versions : est l'auteur d'une >
-articles "1" --> "0..*" article_versions : à comme archive > 
-users "1" --> "0..*" bans : peut être
+user "1" --> "0..*" article : posséde >
+user "1" --> "0..*" article_version : est l'auteur d'une >
+article "1" --> "0..*" article_version : à comme archive > 
+user "1" --> "0..*" ban : peut être
+article "1" --> "1" image : posséde >
 
 @enduml

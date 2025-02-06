@@ -9,7 +9,7 @@ if (!empty($_POST['mot_cle'])) {
     $motCle = htmlspecialchars($_POST['mot_cle'], ENT_QUOTES);
 
     // Préparation et exécution de la requête SQL pour rechercher dans les titres et contenus
-    $state = $bdd->prepare("SELECT id, title, content, createdAt FROM articles WHERE title LIKE ? OR content LIKE ? ORDER BY id ");
+    $state = $bdd->prepare("SELECT id, title, content, created_at FROM article WHERE title LIKE ? OR content LIKE ? ORDER BY id ");
     $state->execute(['%' . $motCle . '%', '%' . $motCle . '%']);
     $articlesbymotcle = $state->fetchAll();
 } else {
@@ -40,7 +40,7 @@ if (!empty($_POST['mot_cle'])) {
                         <img src="assets/img/section1background.jpg" class="img-fluid" alt="Image de l'article">
                         <div class="content">
                             <h3><?php echo htmlspecialchars($articlebymotcle['title']); ?></h3>
-                            <span class="date">Publiée le <?php echo htmlspecialchars($articlebymotcle['createdAt']); ?></span>
+                            <span class="date">Publiée le <?php echo htmlspecialchars($articlebymotcle['created_at']); ?></span>
                             <a href="article.php?id=<?php echo $articlebymotcle['id']; ?>" class="read-more">Continuer la lecture</a>
                         </div>
                     </div>

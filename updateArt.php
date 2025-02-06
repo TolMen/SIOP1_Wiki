@@ -48,7 +48,7 @@ if (isset($_GET['articleID'])) {
         <h2 class="text-center mb-4">Modifier l'article</h2>
         <div class="card shadow-lg">
             <div class="card-body">
-                <form method="POST" action="src/control/ArtControl/updateArtControl.php?articleID=<?php echo $articleID; ?>">
+                <form method="POST" enctype="multipart/form-data" action="src/control/ArtControl/updateArtControl.php?articleID=<?php echo $articleID; ?>">
                     <!-- Titre -->
                     <div class="mb-3">
                         <label class="form-label">Titre</label>
@@ -59,6 +59,10 @@ if (isset($_GET['articleID'])) {
                     <div class="mb-3">
                         <label class="form-label">Contenu</label>
                         <textarea class="form-control" id="content" name="content" rows="5" autocomplete="off" required><?php echo $articleAncien['content']; ?></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="images" class="form-label">Nouvelle image (Non obligatoire)</label>
+                        <input type="file" id="images" name="images" class="form-control">
                     </div>
                     <!-- Bouton de validation -->
                     <div class="text-center">

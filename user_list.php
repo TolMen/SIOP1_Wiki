@@ -32,15 +32,15 @@ if (!empty($_POST["isBanned"])) {
 // Vérifier si connecté et admin, si oui, procéder
 if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
     // Préparation requête sans isBanned
-    $requeteSql = "SELECT users.id as userid, username, role, bans.id, bans.user_id FROM users LEFT JOIN bans ON bans.user_id = users.id WHERE users.id LIKE ? AND username LIKE ? AND role LIKE ?";
+    $requeteSql = "SELECT user.id as userid, username, role, ban.id, ban.user_id FROM user LEFT JOIN bans ON ban.user_id = user.id WHERE user.id LIKE ? AND username LIKE ? AND role LIKE ?";
 
     // N'afficher que les bannis
     if ($isBanned == "True") {
-        $requeteSql = $requeteSql . " AND bans.id IS NOT NULL";
+        $requeteSql = $requeteSql . " AND ban.id IS NOT NULL";
     }
     // N'afficher que les non bannis
     elseif ($isBanned == "False") {
-        $requeteSql = $requeteSql . " AND bans.id IS NULL";
+        $requeteSql = $requeteSql . " AND ban.id IS NULL";
     }
     // Sinon afficher tous
     $requeteSql = $requeteSql . " ORDER BY userid LIMIT 50;";
@@ -137,7 +137,7 @@ else {
                                 <div class="modal-body">
                                     <!-- Intérieur -->
                                     <?php
-                                    $state = $bdd->prepare("SELECT * FROM bans WHERE user_id = ? ORDER BY start_date LIMIT 1");
+                                    $state = $bdd->prepare("SELECT * FROM ban WHERE user_id = ? ORDER BY start_date LIMIT 1");
                                     $state->execute(array($user["user_id"]));
                                     $ban = $state->fetch();
 
