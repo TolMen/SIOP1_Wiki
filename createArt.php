@@ -42,7 +42,7 @@ if (empty($_SESSION['userID'])) {
                     </div>
                     <div class="mb-3">
                         <label for="datePublication" class="form-label">Date de publication *</label>
-                        <input type="date" id="createdAt" name="createdAt" class="form-control" required>
+                        <input type="date" id="createdAt" name="createdAt" value="<?php echo date('Y-m-d'); ?>" class=" form-control" required>
                     </div>
                     <div class="text-center">
                         <button type="submit" name="publishArticle" class="btn btn-primary">
