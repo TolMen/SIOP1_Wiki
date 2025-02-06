@@ -10,19 +10,31 @@
                     <a class="nav-link" href="home.php" aria-current="page">Accueil</a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="home.php#list_art" aria-current="page">Liste des articles</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.php" aria-current="page">Contact</a>
+                </li>
+
                 <?php
-                if (!empty($_SESSION['main']['userRole']) == 'admin') {
+                if (isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'admin') {
                     echo '
                         <li class="nav-item">
-                            <a class="nav-link" href="user_list.php">Utilisateurs</a>
+                            <a class="nav-link" href="dashboard.php">Dashboard</a>
                         </li>
                     ';
                 }
 
-                if (!empty($_SESSION['main']['userID'])) {
+                if (!empty($_SESSION['userID'])) {
                     echo ' 
                         <li class="nav-item">
-                            <a class="nav-link text-danger" href="src/UserControl/logout.php" title="Déconnexion"><i class="fa-solid fa-user-xmark"></i></a>
+                            <a class="nav-link" href="createArt.php">Publier un article</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" href="src/control/UserControl/logout.php" title="Déconnexion">Déconnexion</a>
                         </li>
                     ';
                 } else {

@@ -1,0 +1,82 @@
+h2{
+    text-align: center;
+    padding: 10px;
+    color: #0066cc;
+    font-family: "Pacifico", serif;
+    font-weight: 200;
+    font-style: italic;
+}
+/* Grille des articles */
+.articles-grid {
+    display: grid;
+    /* grid-template-columns: repeat(4, 1fr);  */
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+  
+  /* Carte de chaque article */
+  .article-card {
+    background-color: white;
+    border: 1px solid #942121;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px 2px rgba(92, 102, 249, 0.1);
+    transition: transform 0.2s ease;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 350px;
+  }
+  
+  .article-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Image */
+  .article-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  /* Contenu de l'article */
+  .article-card .content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    place-content: center;
+  }
+  
+  .article-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    color: black;
+  }
+  
+  .article-card p {
+    font-size: 14px;
+    color: #bca9a9;
+  }
+  
+  .article-card .date {
+    color: #555;
+  }
+  
+  .article-card .read-more {
+    text-decoration: none;
+    font-size: 14px;
+    color: #0066cc;
+    font-weight: bold;
+  }
+  
+  .article-card .read-more:hover {
+    text-decoration: underline;
+  }
+body{
+    /* background-color: #0066cc; */
+}  

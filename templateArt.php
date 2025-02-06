@@ -1,6 +1,13 @@
 <?php
 session_name("main");
 session_start();
+
+/* 
+- Inclut le fichier sans afficher son contenu qui est stocké en mémoire tampon et ensuite supprimé
+*/
+ob_start();
+include_once 'src/control/ArtControl/postArt.php';
+ob_end_clean();
 ?>
 
 <!DOCTYPE html>
@@ -9,14 +16,10 @@ session_start();
 <head>
     <!-- Inclusion des balise meta -->
     <?php include 'src/component/head.php'; ?>
-    <link rel="stylesheet" href="css/templateArtStyle.css" />
 
     <title>
-        Article
-        <?php
-        $artID = intval($_GET['articleID']);
-        echo $artID;
-        ?>
+        Article : 
+        <?= htmlspecialchars($article['title']); ?>
     </title>
 </head>
 
