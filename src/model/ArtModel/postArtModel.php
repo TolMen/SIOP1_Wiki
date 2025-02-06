@@ -29,4 +29,14 @@ class ArtPostModel
         $recupPostArtUser->execute(['id' => $postArtUserId]);
         return $recupPostArtUser->fetch(PDO::FETCH_ASSOC);
     }
+
+    /*
+    - Cette fonction récupère l'image de l'article
+    */
+    public function getArticleImage(PDO $bdd, $articleID)
+    {
+        $query = $bdd->prepare('SELECT url FROM images WHERE article_id = :article_id LIMIT 1');
+        $query->execute(['article_id' => $articleID]);
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
 }
