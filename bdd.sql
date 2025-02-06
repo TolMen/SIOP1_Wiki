@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS article_versions (
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
     createdAt DATE NOT NULL,
+    image_url TEXT NULL,
     user_id INT NOT NULL,
     article_id INT NOT NULL,
     FOREIGN KEY (article_id) REFERENCES articles(id) ON DELETE CASCADE,
