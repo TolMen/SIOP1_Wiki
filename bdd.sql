@@ -52,6 +52,15 @@ CREATE TABLE IF NOT EXISTS article_versions (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+-- Table `images`
+CREATE TABLE IF NOT EXISTS images (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    url TEXT NOT NULL,
+    createdAt DATE NOT NULL,
+    article_id INT NOT NULL,
+    FOREIGN KEY (article_id) REFERENCES articles(id) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
 -- Table `bans`
 CREATE TABLE IF NOT EXISTS bans (
     id INT AUTO_INCREMENT PRIMARY KEY,
