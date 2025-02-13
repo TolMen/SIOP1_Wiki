@@ -1,3 +1,4 @@
+
 <?php
 
 session_name("main");
@@ -36,10 +37,8 @@ else {
     <!-- Inclusion des balise meta -->
     <?php include 'src/component/head.php'; ?>
     <link rel="stylesheet" href="css/loginStyle.css" />
-
     <title>Wiki - Connexion</title>
 </head>
-
 
 <body>
     <!-- Inclusion de la barre de navigation -->

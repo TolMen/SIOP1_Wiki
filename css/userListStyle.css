@@ -7,7 +7,7 @@ body>* {
 }
 
 body {
-    background: linear-gradient(to bottom right, blue, pink);
+    background: gainsboro;
 }
 
 .userList>* {

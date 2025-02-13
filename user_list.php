@@ -33,7 +33,7 @@ if (!empty($_POST["isBanned"])) {
 // Vérifier si connecté et admin, si oui, procéder
 if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
     // Préparation requête sans isBanned
-    $requeteSql = "SELECT user.id as userid, username, role, ban.id, ban.user_id FROM user LEFT JOIN bans ON ban.user_id = user.id WHERE user.id LIKE ? AND username LIKE ? AND role LIKE ?";
+    $requeteSql = "SELECT user.id as userid, username, role, ban.id, ban.user_id FROM user LEFT JOIN ban ON ban.user_id = user.id WHERE user.id LIKE ? AND username LIKE ? AND role LIKE ?";
 
     // N'afficher que les bannis
     if ($isBanned == "True") {
@@ -110,67 +110,6 @@ else {
         <div class="col-1"></div>
         <div class="UserCase active col-3"></div>
         <?php
-        foreach ($users as $user) { ?>
-            <div class="userCase col-6">
-                <!-- ID -->
-                <div class="col-3"><?php echo $user["userid"] ?></div>
-                <!-- Username -->
-                <div class="col-3"><?php echo $user["username"] ?></div>
-                <!-- Role -->
-                <?php if ($user["role"] == "user") { ?>
-                    <div class="col-3">Utilisateur</div>
-                <?php } elseif ($user["role"] == "admin") { ?>
-                    <div class="col-3">Administrateur</div>
-                <?php } else { ?>
-                    <div class="col-3">Inconnu</div>
-                <?php } ?>
-                <!-- IsBanned -->
-                <?php
-                if ($user["user_id"]) { ?>
-                    <div class="col-3">&nbsp;&nbsp;Oui<img src="assets/img/eye_popup.png" alt="+" data-bs-toggle="modal" data-bs-target="#imagePopup" style="cursor: pointer; width: 15px;"></div>
-                    <div class="modal fade" id="imagePopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <!-- Titre -->
-                                    <h5 class="modal-title" id="exampleModalLabel">Sanction actuelle</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <!-- Intérieur -->
-                                    <?php
-                                    $state = $bdd->prepare("SELECT * FROM ban WHERE user_id = ? ORDER BY start_date LIMIT 1");
-                                    $state->execute(array($user["user_id"]));
-                                    $ban = $state->fetch();
-
-                                    // Si ban def
-                                    if (empty($ban["end_date"])) { ?>
-                                        <br>
-                                        <h5>Bannissement définitif</h5>
-                                        Raison : <?php echo $ban["reason"] ?><br><br>
-                                        Date : <?php echo strftime("%d/%m/%Y", strtotime($ban["start_date"])) ?><br><br>
-                                    <?php }
-                                    // Si ban temp
-                                    else { ?>
-                                        <br>
-                                        <h5>Bannissement temporaire</h5>
-                                        Raison : <?php echo $ban["reason"] ?><br><br>
-                                        Date : <?php echo strftime("%d/%m/%Y", strtotime($ban["start_date"])) ?><br>
-                                        Fin : <?php echo strftime("%d/%m/%Y", strtotime($ban["end_date"])) ?><br><br>
-                                    <?php } ?>
-                                </div>
-                                <div class="modal-footer"></div>
-                            </div>
-                        </div>
-                    </div>
-                <?php } else { ?>
-                    <div class="col-12 col-sm-3">Non</div>
-                <?php } ?>
-
-                <!-- Séparation -->
-            </div>
-            <div class="col-1"></div>
-            <div class="UserCase active col-3">Options de modération</div>
-            <?php 
                 foreach ($users as $user) { ?>
                     <div class="userCase col-6">
                         <!-- ID -->
@@ -192,7 +131,7 @@ else {
                                 <h5 class="modal-title" id="exampleModalLabel">Sanction actuelle</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">
                                 <!-- Intérieur -->
                                 <?php
-                                $state = $bdd->prepare("SELECT * FROM bans WHERE user_id = ? ORDER BY start_date LIMIT 1");
+                                $state = $bdd->prepare("SELECT * FROM ban WHERE user_id = ? ORDER BY start_date LIMIT 1");
                                 $state->execute(array($user["user_id"]));
                                 $ban = $state->fetch();
 
@@ -276,7 +215,6 @@ else {
                     </div>
                 <?php } ?>
             </div>
-        <?php } ?>
     </div>
 
     <!-- Inclusion du pied de page -->
