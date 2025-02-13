@@ -15,6 +15,7 @@ if (empty($articles)) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -101,7 +102,12 @@ if (empty($articles)) {
                             <div class="content">
                                 <h3><?php echo htmlspecialchars($article['title']); ?></h3>
                                 <span class="date">Publiée le <?php echo htmlspecialchars($article['created_at']); ?></span>
-                                <a href="templateArt.php?articleID=<?php echo $article['id']; ?>" class="read-more">Continuer la lecture</a>
+                                <div class="article_choix">
+                                    <a href="templateArt.php?articleID=<?php echo $article['id']; ?>" class="read-more">Continuer la lecture</a>
+                                    <a href="src/control/UserControl/delete_article.php?articleID=<?php echo $article['id']; ?>">
+                                     <img src="assets/svg/trash.svg" alt="">
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     <?php
