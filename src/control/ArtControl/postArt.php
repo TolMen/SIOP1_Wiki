@@ -20,12 +20,14 @@ if (!empty($_GET['articleID'])) {
 $artPostModel = new ArtPostModel();
 $articles = $artPostModel->getPostArt($bdd, $postArtId);
 $imageData = $artPostModel->getArticleImage($bdd, $postArtId);
-$imageUrl = $imageData['url'] ?? 'assets/img/civilisation.jpg'; // Image par défaut si aucune image en BDD
+$imageUrl = $imageData['url'] ?? 'assets/img/civilisation.jpg'; // Image par défaut
 
 
 if (!empty($articles)) {
-    $postArtUser = $articles[0]['user_id']; // On récupère l'ID de l'auteur depuis l'article
+    $postArtUser = $articles[0]['user_id']; // On récupère l'ID des modificateurs depuis l'article
+    $postArtFirstUser = $articles[0]['firstAuthor']; // On récupère l'ID de l'auteur depuis l'article
     $userArticles = $artPostModel->getPostArtUser($bdd, $postArtUser);
+    $userFirstArticles = $artPostModel->getFirstPostArtUser($bdd, $postArtFirstUser);
 } else {
     throw new Exception("Article non trouvé.");
 }
@@ -54,7 +56,8 @@ foreach ($articles as $article) {
                 <div class="text text-center"> <?= nl2br($article['content']); ?> </div>
 
                 <div class="text-muted border-top pt-1">
-                    <p class="mb-0 mt-2">Utilisateur : <?= htmlspecialchars($userArticles['username'] ?? 'Inconnu'); ?></p>
+                    <p class="mb-0 mt-2">Utilisateur : <?= htmlspecialchars($userArticles['username'] ?? 'Aucune modification'); ?></p>
+                    <p class="mb-0 mt-0">Auteur d'origine : <?= htmlspecialchars($userFirstArticles['username']); ?></p>
                     <p class="mb-0">Publié le : <?= date("d/m/Y", strtotime($dateToShow)); ?></p>
                 </div>
 

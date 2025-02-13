@@ -19,9 +19,21 @@ class ArtPostModel
     }
 
     /*
-    - Cette fonction récupère le pseudo de l'utilisateur qui a écrit l'article
+    - Cette fonction récupère le pseudo de l'utilisateur qui a modifié l'article
     */
     public function getPostArtUser(PDO $bdd, $postArtUserId)
+    {
+        $recupPostArtUser = $bdd->prepare(
+            'SELECT username FROM user WHERE id = :id'
+        );
+        $recupPostArtUser->execute(['id' => $postArtUserId]);
+        return $recupPostArtUser->fetch(PDO::FETCH_ASSOC);
+    }
+
+    /*
+    - Cette fonction récupère le pseudo de l'utilisateur qui a écrit l'article
+    */
+    public function getFirstPostArtUser(PDO $bdd, $postArtUserId)
     {
         $recupPostArtUser = $bdd->prepare(
             'SELECT username FROM user WHERE id = :id'

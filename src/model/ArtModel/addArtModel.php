@@ -11,11 +11,11 @@ class AddArticleModel
     /*
     - Cette fonction insére les informations des articles
     */
-    public function insertArticle(PDO $bdd, $title, $content, $createdAt, $userID)
+    public function insertArticle(PDO $bdd, $title, $content, $createdAt, $userID, $firstAuthor)
     {
-        $insertArt = 'INSERT INTO article (title, content, created_at, user_id) VALUES (?, ?, ?, ?)';
+        $insertArt = 'INSERT INTO article (title, content, created_at, user_id, firstAuthor) VALUES (?, ?, ?, ?, ?)';
         $insertArticle = $bdd->prepare($insertArt);
-        $insertArticle->execute([$title, $content, $createdAt, $userID]);
+        $insertArticle->execute([$title, $content, $createdAt, $userID, $firstAuthor]);
 
         return $bdd->lastInsertId();
     }
