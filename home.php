@@ -33,7 +33,7 @@ if (empty($articles)) {
     <?php include 'src/component/navbar.php' ?>
 
     <div class="body-content">
-        <section id="presentation_section" >
+        <section id="presentation_section">
             <div class="container phrase_accroche">
                 <div class="row">
                     <h1>BIENVENUE </h1>
@@ -103,10 +103,14 @@ if (empty($articles)) {
                                 <h3><?php echo htmlspecialchars($article['title']); ?></h3>
                                 <span class="date">Publiée le <?php echo htmlspecialchars($article['created_at']); ?></span>
                                 <div class="article_choix">
-                                    <a href="templateArt.php?articleID=<?php echo $article['id']; ?>" class="read-more">Continuer la lecture</a>
-                                    <a href="src/control/UserControl/delete_article.php?articleID=<?php echo $article['id']; ?>">
-                                     <img src="assets/svg/trash.svg" alt="">
+                                    <a href="templateArt.php?articleID=<?php echo $article['id']; ?>" class="read-more">
+                                        Continuer la lecture
                                     </a>
+                                    <?php if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] === "admin") { ?>
+                                        <a href="src/control/UserControl/delete_article.php?articleID=<?php echo $article['id']; ?>">
+                                            <img src="assets/svg/trash.svg" alt="Supprimer l'article">
+                                        </a>
+                                    <?php   } ?>
                                 </div>
                             </div>
                         </div>

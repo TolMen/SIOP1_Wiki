@@ -10,21 +10,20 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
     exit;
 }
 
-if (empty($_SESSION["userID"])){
+if (!empty($_SESSION["userID"])) {
     $articleID = htmlspecialchars($_GET["articleID"], ENT_QUOTES);
-    $firstAuthorId = $bdd->prepare("SELECT firstAuthor FROM articles WHERE id = ?");
-    $firstAuthorId->execute(array($articleID));  
+    $firstAuthorId = $bdd->prepare("SELECT firstAuthor FROM article WHERE id = ?");
+    $firstAuthorId->execute(array($articleID));
     $firstAuthorId->fetch();
 }
 
-if(empty($_SESSION["userRole"] == "admin")  ||  (empty($_SESSION["userID"])== $firstAuthorId)){
-    $id = htmlspecialchars($_GET["id"], ENT_QUOTES);
-    $state = $bdd->prepare("DELETE FROM articles WHERE id = ?");
-    $state->execute(array($id));    
+if ($_SESSION["userRole"] == "admin"  ||  $_SESSION["userID"] == $firstAuthorId) {
+    $state = $bdd->prepare("DELETE FROM article WHERE id = ?");
+    $state->execute(array($articleID));
 }
 
-if(empty($_SESSION["userRole"] != "admin")){
+if ($_SESSION["userRole"] == "admin") {
     header("Location: ../../../article_list.php");
-}else{
-    header("Location: ../../../home.php");  
+} else {
+    header("Location: ../../../home.php");
 }

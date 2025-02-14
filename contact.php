@@ -18,9 +18,7 @@ require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
 
 <body>
     <?php include 'src/component/navbar.php'; ?>
-
     
-
     <section id="presentation_section">
 
     <div class="contact_content">
