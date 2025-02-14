@@ -29,9 +29,9 @@ if (!empty($_POST["name"]) && !empty($_POST["email"]) && !empty($_POST["subject"
 
 <head>
     <?php include 'src/component/head.php'; ?>
-    <link rel="stylesheet" href="css/form_success.css" />
+    <link rel="stylesheet" href="css/contactSuccessStyle.css" />
 
-    <title>Formulaire Envoyé</title>
+    <title>Message envoyé</title>
 </head>
 
 <body>
@@ -42,7 +42,7 @@ if (!empty($_POST["name"]) && !empty($_POST["email"]) && !empty($_POST["subject"
             <div class="affichage">
                 <img src="assets/svg/check-circle.svg" alt="">
                 <h1>Merci
-                    <?php echo $resultatsforms["name"]; ?>
+                    <?php echo $resultatsforms["name"]; ?> <br>
                     Votre <?php echo $resultatsforms["subject"]; ?> a bien été envoyé!
                 </h1>
                 <a href="home.php">Retour à l'accueil </a>

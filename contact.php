@@ -11,7 +11,7 @@ require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
 
 <head>
     <?php include 'src/component/head.php'; ?>
-    <link rel="stylesheet" href="css/contact.css" />
+    <link rel="stylesheet" href="css/contactStyle.css" />
 
     <title>Contact</title>
 </head>
@@ -34,7 +34,7 @@ require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
             <div class="row col-sm-4 col-md-6 col-lg-4  ">
 
                 <div>
-                    <form action="form_success.php" method="post">
+                    <form action="contactSuccess.php" method="post">
                         <label for="name">Nom :</label>
                         <input type="text" id="name" name="name" placeholder="Votre nom" required />
 
