@@ -26,12 +26,12 @@ else {
 }
 
 if ($method == "ban") {
-    $state = $bdd->prepare("INSERT INTO bans (reason, start_date, end_date, user_id) VALUES (?, NOW(), ?, ?)");
+    $state = $bdd->prepare("INSERT INTO ban (reason, start_date, end_date, user_id) VALUES (?, NOW(), ?, ?)");
     $state->execute(array($reason, $end_date, $user_id));
 }
 
 if ($method == "unban") {
-    $state = $bdd->prepare("DELETE FROM bans WHERE user_id = ?");
+    $state = $bdd->prepare("DELETE FROM ban WHERE user_id = ?");
     $state->execute(array($user_id));
 }
 

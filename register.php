@@ -1,27 +1,8 @@
+
 <?php
 
 session_name("main");
 session_start();
-
-// Paramètre denied, message selon le cas
-if (!empty($_GET["denied"])) {
-	$denied = htmlspecialchars($_GET["denied"], ENT_QUOTES);
-    // Si champ(s) vide
-    if ($denied == "empty_field") {
-        $denied = "Un ou plusieurs champs sont vide";
-    }
-    // Si utilisateur déjà existant
-    elseif ($denied == "exists") {
-        $denied = "Identifiant déjà existant";
-    }
-    // Sinon rien
-    else {
-        $denied = null;
-    }
-}
-else {
-    $denied = null;
-}
 
 ?>
 
@@ -31,9 +12,7 @@ else {
 <head>
     <!-- Inclusion des balise meta -->
     <?php include 'src/component/head.php'; ?>
-    <link rel="stylesheet" href="css/baseStyle.css" />
-    <link rel="stylesheet" href="css/registerStyle.css" />
-
+    <link rel="stylesheet" href="css/authStyle.css" />
     <title>Wiki - Inscription</title>
 </head>
 
@@ -42,27 +21,29 @@ else {
     <?php include 'src/component/navbar.php' ?>
 
     <div class="container">
-        <h1 class="title">S'inscrire</h1>
+        <h1>S'inscrire</h1>
     </div>
-    <div class="container registerPage">
+    <main class="container">
         <form method="POST" action="src/control/UserControl/userregister.php">
             <div class="form-group">
-                <label for="usernameID">Pseudonyme :</label><br>
-                <input type="text" id="usernameID" name="username"/><br>
 
-                <label for="passwordID">Mot de passe :</label><br>
-                <input type="password" id="passwordID" name="password"/><br><br>
-                <?php
-                    // Message denied si non null
-                    if ($denied != null) {
-                        echo "<label class='badRegister'>$denied</label><br><br>";
-                    }
-                ?>
+                <label>Pseudonyme :</label><br>
+                <input type="text" name="username" minlength="2" maxlength="15" pattern="[a-z0-9._]{2,15}" title="Seules les lettres minuscules, chiffres, '.' et '_' sont autorisés" required/><br>
+
+                <label>Mot de passe :</label><br>
+                <input type="password" name="password" required/><br><br>
+
+                <?php if (!empty(htmlspecialchars(!empty($_GET["invalid"]), ENT_QUOTES))) { ?>
+                    <label class="invalid">Identifiant déjà existant</label><br><br>
+                <?php } else { ?>
+                    <label></label><br>
+                <?php } ?>
+
             </div>
-            <input class=buttonSubmit type="submit" value="S'inscrire" />
+            <input class=buttonSubmit type="submit" value="Connexion" />
         </form>
-    </div><br>
-    <div>Déjà inscrit ?&nbsp;<a class="otherWayLink" href="login.php">Se connecter</a></div>
+    </main><br>
+    <div>Déjà un compte ?&nbsp;<a href="login.php">Se connecter</a></div>
 
     <!-- Inclusion du pied de page -->
     <?php include 'src/component/footer.php' ?>
