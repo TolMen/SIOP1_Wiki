@@ -211,3 +211,15 @@ text-align: center;
   text-transform: uppercase; 
   letter-spacing: 1px; 
 }
+
+.article_choix{
+  display: flex;
+  gap:15px;
+  justify-content: center;
+
+}
+
+.article_choix img{
+  height: 20px;
+  width: 20px;
+}
