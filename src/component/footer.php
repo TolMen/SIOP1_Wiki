@@ -3,9 +3,9 @@
         <p class="mb-0">
             &copy;
             <!-- Affiche l'année en cours -->
-            <?php 
+            <?php
             date_default_timezone_set("Europe/Paris");
-            echo date("Y"); 
+            echo date("Y");
             ?>
             Nolan / Kelly / Jessy | Tous les droits sont réservés. <br />
             <!-- Description du projet -->
