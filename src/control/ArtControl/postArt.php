@@ -56,9 +56,9 @@ foreach ($articles as $article) {
                 <div class="text text-center"> <?= nl2br($article['content']); ?> </div>
 
                 <div class="text-muted border-top pt-1">
-                    <p class="mb-0 mt-2">Utilisateur : <?= htmlspecialchars($userArticles['username'] ?? 'Aucune modification'); ?></p>
-                    <p class="mb-0 mt-0">Auteur d'origine : <?= htmlspecialchars($userFirstArticles['username']); ?></p>
-                    <p class="mb-0">Publié le : <?= date("d/m/Y", strtotime($dateToShow)); ?></p>
+                    <p class="mb-0 mt-2">✏️ Dernière modification par : <?= htmlspecialchars($userArticles['username'] ?? 'Aucune modification'); ?></p>
+                    <p class="mb-0">📅 En date du : <?= date("d/m/Y", strtotime($dateToShow)); ?></p>
+                    <p class="mb-0 mt-0">📝 Auteur d'origine : <?= htmlspecialchars($userFirstArticles['username']); ?></p>
                 </div>
 
                 <div class="mt-2">
