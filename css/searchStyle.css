@@ -1,4 +1,4 @@
-h2{
+h2 {
     text-align: center;
     padding: 10px;
     color: #0066cc;
@@ -14,10 +14,10 @@ h2{
     max-width: 1200px;
     margin: 0 auto;
     margin-top: 20px;
-  }
-  
-  /* Carte de chaque article */
-  .article-card {
+}
+
+/* Carte de chaque article */
+.article-card {
     background-color: white;
     border: 1px solid #942121;
     border-radius: 8px;
@@ -29,54 +29,51 @@ h2{
     flex-direction: column;
     gap: 10px;
     height: 350px;
-  }
-  
-  .article-card:hover {
+}
+
+.article-card:hover {
     transform: translateY(-5px);
-  }
-  
-  /* Image */
-  .article-card img {
+}
+
+/* Image */
+.article-card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
-  }
-  
-  /* Contenu de l'article */
-  .article-card .content {
+}
+
+/* Contenu de l'article */
+.article-card .content {
     padding: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     place-content: center;
-  }
-  
-  .article-card h3 {
+}
+
+.article-card h3 {
     font-size: 15px;
     font-weight: 700;
     text-align: center;
     color: black;
-  }
-  
-  .article-card p {
+}
+
+.article-card p {
     font-size: 14px;
     color: #bca9a9;
-  }
-  
-  .article-card .date {
+}
+
+.article-card .date {
     color: #555;
-  }
-  
-  .article-card .read-more {
+}
+
+.article-card .read-more {
     text-decoration: none;
     font-size: 14px;
     color: #0066cc;
     font-weight: bold;
-  }
-  
-  .article-card .read-more:hover {
+}
+
+.article-card .read-more:hover {
     text-decoration: underline;
-  }
-body{
-    /* background-color: #0066cc; */
-}  
+}
