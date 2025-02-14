@@ -23,7 +23,7 @@ if (!empty($_POST['mot_cle'])) {
 
 <head>
     <?php include 'src/component/head.php'; ?>
-    <link rel="stylesheet" href="css/search.css" />
+    <link rel="stylesheet" href="css/searchStyle.css" />
 
     <title>Résultats de recherche</title>
 </head>

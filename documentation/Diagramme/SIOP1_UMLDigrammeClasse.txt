@@ -10,10 +10,11 @@ entity user {
 class article {
 #id: int
 +title: varchar
-+content : text
++content: text
 +created_at: date
 +updated_at: date
--user_id : int
+-firstAuthor: int
+-user_id: int
 }
 
 class article_version {
