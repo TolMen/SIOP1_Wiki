@@ -7,7 +7,7 @@ session_start();
 - Inclusion des fichiers nécessaires
 */
 require_once '../../model/ArtModel/addArtModel.php';
-require_once '../../model/Services/ImageService.php'; // Inclure le service d'image
+require_once '../../model/Services/ImageService.php'; // Compression de la taille des images
 
 if (isset($_POST['publishArticle'])) {
     /*
@@ -17,15 +17,18 @@ if (isset($_POST['publishArticle'])) {
     $content = strip_tags($_POST['content'], '<p><b><i><u><strong><em><h1><h2><h3><h4><h5><h6><ol><ul><li><a><img><table><tr><td><th><tbody><thead><tfoot><caption><colgroup><col><pre><code><blockquote><q><hr><br><span><sup><sub><del><ins><mark><video><audio><source><iframe><address><time><article><aside><figcaption><figure><details><summary><kbd>');
     $createdAt = $_POST['createdAt'];
     $userID = $_SESSION['userID'];
+    $firstAuthor = $_SESSION['userID'];
 
     /*
     - Crée une instance de classe, puis récupère les informations
     */
     $addArticleModel = new AddArticleModel();
-    $articleID = $addArticleModel->insertArticle($bdd, $title, $content, $createdAt, $userID);
+    $articleID = $addArticleModel->insertArticle($bdd, $title, $content, $createdAt, $userID, $firstAuthor);
 
     if ($articleID) {
-        // Vérifier si un fichier image est envoyé
+        /*
+        - Vérifie si un fichier image est envoyé
+        */
         if (isset($_FILES['images']) && $_FILES['images']['error'] == 0) {
             $uploadDir = '../../../assets/imgUpload/'; // Dossier cible
 
@@ -34,21 +37,23 @@ if (isset($_POST['publishArticle'])) {
             $fileSize = $_FILES['images']['size'];
             $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
-            // Vérifications des types autorisés
-            $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+            $allowedTypes = ['jpg', 'jpeg', 'png', 'gif']; // Vérifications des types autorisés
 
             if (!in_array($fileExt, $allowedTypes)) {
                 echo "Format non supporté.";
                 exit;
             }
 
-            // Générer un nom unique avec l'ID de l'article
+            /*
+            - Génére un nom unique avec l'ID de l'article
+            */
             $uniqueName = 'imgArticle' . $articleID . '_' . uniqid() . '.' . $fileExt;
             $destPath = $uploadDir . $uniqueName;
 
-            // Compression et redimensionnement (Max: 800x800, Qualité: 75)
+            /*
+            - Compression et redimensionnement (Max: 800x800, Qualité: 75)
+            */
             if (ImageService::compressAndResizeImage($fileTmpPath, $destPath, 800, 800, 75)) {
-                // Insérer l’image en BDD
                 $imgUrl = 'assets/imgUpload/' . $uniqueName;
                 $addArticleModel->insertImage($bdd, $imgUrl, $createdAt, $articleID);
             } else {

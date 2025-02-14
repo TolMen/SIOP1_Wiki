@@ -16,9 +16,20 @@ ob_end_clean();
 <head>
     <!-- Inclusion des balise meta -->
     <?php include 'src/component/head.php'; ?>
+    <style>
+        @media screen and (min-width: 768px) {
+            .article-container {
+                padding-right: 100px;
+            }
+
+            .img-mobile {
+                height: 225px;
+            }
+        }
+    </style>
 
     <title>
-        Article : 
+        Article :
         <?= htmlspecialchars($article['title']); ?>
     </title>
 </head>

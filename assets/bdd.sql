@@ -36,7 +36,9 @@ CREATE TABLE IF NOT EXISTS article (
     content TEXT NOT NULL,
     created_at DATE NOT NULL,
     updated_at DATE NULL,
+    firstAuthor INT NOT NULL,
     user_id INT NOT NULL,
+    FOREIGN KEY (firstAuthor) REFERENCES user(id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
@@ -101,7 +103,7 @@ VALUES
 
 -- Insertion du contenu d'articles sur les civilisations
 
-INSERT INTO article (title, content, created_at, user_id)
+INSERT INTO article (title, content, created_at, firstAuthor, user_id)
 VALUES
 ("Les Incas : Maîtres des Andes et Architectes d'un Empire Légendaire",
 "La civilisation inca, épanouie entre le XIIIᵉ et le XVIᵉ siècle, a su dominer les vastes étendus de l'Amérique du Sud, englobant des territoires correspondant aujourd'hui au Pérou, à l'Équateur, à la Bolivie, ainsi qu'à des parties de la Colombie, du Chili et de l'Argentine. Au cœur de cet empire se trouvait Cuzco, la capitale sacrée, considérée comme le 'nombril du monde'.
@@ -115,7 +117,7 @@ L'architecture inca témoigne de leur maîtrise technique et esthétique. Des si
 
 Malgré leur puissance, les Incas ont été confrontés à l'arrivée des conquistadors espagnols au XVIᵉ siècle. En 1532, l'empereur Atahualpa fut capturé par Francisco Pizarro, marquant le début de la chute de l'empire inca. Cependant, l'héritage inca perdure à travers les traditions, les langues et les vestiges archéologiques qui continuent de fasciner le monde entier.
 ", 
-NOW(), 2),
+NOW(), 1, 2),
 
 ("Les Mayas : Astronomes Érudits et Architectes des Cités Éternelles", 
 "La civilisation maya, l'une des plus fascinantes de Mésoamérique, s'est épanouie sur une vaste région englobant le sud du Mexique, le Guatemala, le Belize, ainsi que des parties du Honduras et du Salvador. Connus pour leurs avancées remarquables en écriture, art, architecture, agriculture, mathématiques et astronomie, les Mayas ont laissé un héritage culturel inestimable. 
@@ -129,7 +131,7 @@ Vers la fin de la période classique, entre le VIIIᵉ et le IXᵉ siècle, de n
 
 Malgré ces bouleversements, les Mayas ont perduré, et aujourd'hui, des millions de descendants continuent de vivre dans les régions ancestrales, préservant leur langue et leurs traditions, témoignant de la résilience et de la continuité de cette civilisation emblématique.
 ", 
-NOW(), 1),
+NOW(), 1, 1),
 
 ("Les Aztèques : Guerriers Valeureux et Bâtisseurs d''un Empire Flottant", 
 "Les Aztèques, également appelés Mexicas, étaient un peuple amérindien de langue nahuatl qui a dominé la Mésoamérique entre le XIVᵉ et le XVIᵉ siècle. Originaires d'Aztlan, une région mythique du nord, ils ont migré vers le plateau central du Mexique, fondant en 1325 leur capitale, Mexico-Tenochtitlan, sur les îles du lac Texcoco.
@@ -144,7 +146,7 @@ L'arrivée des conquistadors espagnols, menés par Hernán Cortés en 1519, a ma
 
 Aujourd'hui, l'héritage aztèque perdure à travers les traditions, la langue nahuatl encore parlée par des communautés, et les vestiges archéologiques qui continuent de fasciner et d'inspirer le monde entier.
 ", 
-NOW(), 1),
+NOW(), 1, 1),
 
 ("Les Vikings : Navigateurs audacieux et bâtisseurs d'empires", 
 "Les Vikings, originaires des régions actuelles de la Norvège, du Danemark et de la Suède, sont des figures emblématiques du Moyen Âge, connus pour leur audace, leur expertise maritime et leur influence durable sur l'histoire de l'Europe et au-delà. Entre le VIIIᵉ et le XIᵉ siècle, ces peuples scandinaves ont marqué le monde par leurs raids, leurs explorations et leurs conquêtes, s'étendant sur de vastes territoires, de l'Islande au Groenland, en passant par la Normandie, la Russie, et même l'Amérique du Nord.
@@ -157,7 +159,7 @@ La société viking était centrée autour des clans familiaux, où l'honneur, l
 
 L'impact des Vikings sur l'histoire mondiale est immense. De la toponymie aux traditions culturelles, en passant par des vestiges archéologiques qui témoignent de leur passage, leur influence se fait encore sentir aujourd’hui. Leurs raids ont contribué à façonner les frontières et les sociétés européennes, et leur culture continue de fasciner par sa richesse et son mystère. Les Vikings, loin d’être de simples pillards, ont été des bâtisseurs de civilisations, laissant derrière eux une empreinte indélébile sur l'histoire de l'humanité.
 ", 
-NOW(), 2),
+NOW(), 1, 2),
 
 ("Les Atlantes : Peuple légendaire des confins de l''Afrique antique", 
 "Les Atlantes sont un peuple mythique évoqué par les auteurs antiques, notamment Hérodote, qui les situe dans les régions désertiques de la Libye, à proximité de la montagne nommée « Atlas ». Cette localisation précise demeure incertaine, et les informations sur ce peuple sont principalement légendaires.
@@ -170,7 +172,7 @@ Outre Hérodote, d'autres auteurs antiques mentionnent les Atlantes, bien que le
 
 En somme, les Atlantes demeurent un peuple mystérieux de l'Antiquité, dont les récits ont traversé les âges, alimentant l'imaginaire collectif et inspirant diverses légendes, notamment celle de l'Atlantide.
 ", 
-NOW(), 1),
+NOW(), 1, 1),
 
 ("Les Peuples de la Mésopotamie : Berceaux des Civilisations Anciennes", 
 "La Mésopotamie, située entre les fleuves Tigre et Euphrate, est souvent qualifiée de « berceau de la civilisation ». Cette région a été le foyer de plusieurs peuples et civilisations qui ont marqué l'histoire antique par leurs innovations culturelles, politiques et technologiques.
@@ -189,7 +191,7 @@ Au VIᵉ siècle av. J.-C., les Chaldéens, également appelés Néobabyloniens,
 
 La Mésopotamie a ainsi été le théâtre de civilisations successives, chacune contribuant à l'évolution de la région et laissant un héritage durable dans les domaines de l'écriture, du droit, des sciences et de l'urbanisme.
 ", 
-NOW(), 1),
+NOW(), 1, 1),
 
 ("Les Hittites : Pionniers du Fer et Diplomates de l’Antiquité", 
 "La civilisation hittite, établie en Anatolie (l’actuelle Turquie), a prospéré entre le XVIIᵉ et le XIIᵉ siècle av. J.-C. Leur capitale, Hattusa, située dans les collines du nord de l'Anatolie, était un centre politique et religieux entouré de puissantes fortifications et ornée de portes monumentales comme la Porte des Lions. Les Hittites étaient des maîtres de la métallurgie du fer, une technologie qui leur conférait un avantage militaire significatif et renforçait leur économie.
@@ -198,7 +200,7 @@ Sur le plan militaire, ils se sont distingués par l’utilisation des chars de 
 
 La religion hittite était polythéiste, intégrant des divinités locales et étrangères, ce qui reflétait la diversité culturelle de leur empire. Cependant, vers 1200 av. J.-C., les Hittites disparurent brutalement, probablement à cause des invasions des Peuples de la mer et des bouleversements internes. Leur héritage demeure important, notamment dans les domaines de la diplomatie et de la métallurgie.
 ", 
-NOW(), 1),
+NOW(), 1, 1),
 
 ("Les Phéniciens : Navigateurs Ingénieux et Créateurs de l’Alphabet", 
 "Les Phéniciens, établis sur les côtes de l’actuel Liban, ont prospéré entre le XIIᵉ et le IIIᵉ siècle av. J.-C. Connus comme des maîtres navigateurs, ils étaient d’excellents commerçants, reliant les côtes méditerranéennes grâce à un réseau de ports florissants comme Tyr, Sidon et Byblos. Ils ont également fondé de nombreuses colonies, dont la plus célèbre est Carthage, qui deviendra plus tard une puissance majeure.
@@ -209,7 +211,7 @@ Les Phéniciens étaient célèbres pour leur teinture pourpre, produite à part
 
 Malgré leur prospérité, les Phéniciens ont subi la domination des Assyriens, des Babyloniens, et enfin des Romains, ce qui a marqué le déclin progressif de leur civilisation. Leur héritage perdure à travers l’alphabet et les vestiges de leurs colonies.
 ", 
-NOW(), 1),
+NOW(), 1, 1),
 
 ("Les Minoens : L’Âge d’Or de la Crète", 
 "Les Minoens, qui ont prospéré sur l’île de Crète entre 3000 et 1450 av. J.-C., sont l’une des premières grandes civilisations européennes. Leur culture doit son nom au légendaire roi Minos, connu pour le mythe du Minotaure. La société minoenne était centrée sur le commerce maritime, reliant la Crète à l’Égypte, au Proche-Orient et à la Grèce continentale.
@@ -220,7 +222,7 @@ Les Minoens utilisaient un système d’écriture appelé Linéaire A, encore in
 
 Vers 1450 av. J.-C., la civilisation minoenne déclina brusquement, probablement à cause de l’éruption volcanique de Santorin, suivie d’invasions des Mycéniens. Malgré leur disparition, leur héritage perdure dans la mythologie grecque et les vestiges archéologiques.
 ", 
-NOW(), 3),
+NOW(), 1, 3),
 
 ("Les Mycéniens : Les Guerriers d’Homère", 
 "Les Mycéniens, qui ont dominé la Grèce continentale entre 1600 et 1100 av. J.-C., sont considérés comme les prédécesseurs directs des Grecs classiques. Leur civilisation tire son nom de la cité de Mycènes, l’une des nombreuses cités fortifiées qui étaient au cœur de leur culture.
@@ -231,7 +233,7 @@ Ils maîtrisaient l’écriture sous la forme du Linéaire B, un système utilis
 
 La civilisation mycénienne déclina vers 1100 av. J.-C., marquant le début de l’âge sombre grec. Les raisons de cet effondrement restent débattues, impliquant peut-être des invasions, des troubles internes et des catastrophes naturelles. Cependant, leur influence se retrouve dans la culture grecque classique, notamment dans leur architecture, leur art et leurs récits héroïques.
 ",
-NOW(), 1);
+NOW(), 1, 1);
 
 
 -- Insertion du contenu d'articles sur les civilisations

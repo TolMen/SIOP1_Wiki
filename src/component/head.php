@@ -11,7 +11,7 @@
     <meta name="author" content="Nolan / Kelly / Jessy" />
 
     <!-- Icône du site -->
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon.ico" />
 
     <!-- Script -->
     <script src="https://cdn.tiny.cloud/1/997xkqpa1g46b2womha0n37h0fv2o2rd9gk9espe7dmw08rx/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
