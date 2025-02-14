@@ -1,3 +1,12 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -27,12 +36,17 @@ label {
     color: #555;
 }
 #presentation_section {
+    flex: 1;
     place-content: center;
     background-image: url("../assets/img/bg_contact2.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
+
 .submit {
     background-color: #0066cc;
     color: white;
