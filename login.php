@@ -4,30 +4,6 @@
 session_name("main");
 session_start();
 
-// Paramètre denied, message selon le cas
-if (!empty($_GET["denied"])) {
-	$denied = htmlspecialchars($_GET["denied"], ENT_QUOTES);
-    // Si champ(s) vide
-    if ($denied == "empty_field") {
-        $denied = "Un ou plusieurs champs sont vide";
-    }
-    // Si utilisateur banni
-    elseif ($denied == "banned") {
-        $denied = "Utilisateur banni du site web";
-    }
-    // Si mauvais login
-    elseif ($denied == "wrong_login") {
-        $denied = "Identifiant ou mot de passe incorrect";
-    }
-    // Sinon rien
-    else {
-        $denied = null;
-    }
-}
-else {
-    $denied = null;
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +12,7 @@ else {
 <head>
     <!-- Inclusion des balise meta -->
     <?php include 'src/component/head.php'; ?>
-    <link rel="stylesheet" href="css/loginStyle.css" />
+    <link rel="stylesheet" href="css/authStyle.css" />
     <title>Wiki - Connexion</title>
 </head>
 
@@ -45,28 +21,29 @@ else {
     <?php include 'src/component/navbar.php' ?>
 
     <div class="container">
-        <h1 class="title">Se connecter</h1>
+        <h1>Se connecter</h1>
     </div>
-    <div class="container loginPage">
+    <main class="container">
         <form method="POST" action="src/control/UserControl/userlogin.php">
             <div class="form-group">
-                <label for="usernameID">Identifiant :</label><br>
-                <input type="text" value="" id="usernameID" name="username"/><br>
 
-                <label for="passwordID">Mot de passe :</label><br>
+                <label>Identifiant :</label><br>
+                <input type="text" name="username" minlength="2" maxlength="15" pattern="[a-z0-9._]{2,15}" title="Seules les lettres minuscules, chiffres, '.' et '_' sont autorisés" required/><br>
 
-                <input type="password" id="passwordID" name="password"/><br><br>
-                <?php
-                    // Message denied si non null
-                    if ($denied != null) {
-                        echo "<label class='badLogin'>$denied</label><br><br>";
-                    }
-                ?>
+                <label>Mot de passe :</label><br>
+                <input type="password" name="password" required/><br><br>
+
+                <?php if (!empty(htmlspecialchars(!empty($_GET["invalid"]), ENT_QUOTES))) { ?>
+                    <label class="invalid">Identifiant ou mot de passe invalide</label><br><br>
+                <?php } else { ?>
+                    <label></label><br>
+                <?php } ?>
+
             </div>
             <input class=buttonSubmit type="submit" value="Connexion" />
         </form>
-    </div><br>
-    <div>Nouveau sur le site ?&nbsp;<a class="otherWayLink" href="register.php">S'inscrire</a></div>
+    </main><br>
+    <div>Besoin d'un compte ?&nbsp;<a href="register.php">S'inscrire</a></div>
 
     <!-- Inclusion du pied de page -->
     <?php include 'src/component/footer.php' ?>

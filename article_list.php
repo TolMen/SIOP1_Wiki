@@ -39,7 +39,7 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
     exit;
 }
 
-$query = $bdd->prepare("SELECT id, title, user_id FROM articles WHERE id LIKE ? AND title LIKE ? AND content LIKE ? AND user_id LIKE ? ORDER BY id LIMIT 50");
+$query = $bdd->prepare("SELECT id, title, user_id FROM article WHERE id LIKE ? AND title LIKE ? AND content LIKE ? AND user_id LIKE ? ORDER BY id LIMIT 50");
 $query->execute(array($id, $title, $content, $user_id));
 $articles = $query->fetchAll();
 

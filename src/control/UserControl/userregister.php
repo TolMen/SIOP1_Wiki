@@ -24,18 +24,18 @@ if (!empty($_POST["username"]) && !empty($_POST["password"])) {
         exit;
     }
     else {
-        // Sinon denied
+        // Sinon invalid
         wrongRegister("exists");
     }
 }
 else {
-    // Sinon denied
+    // Sinon invalid
     wrongRegister("empty_field");
 }
 
-function wrongRegister($denied) {
+function wrongRegister($invalid) {
     $_SESSION["userID"] = null;
     $_SESSION["userRole"] = null;
-    header("Location: ../../../register.php?denied=$denied");
+    header("Location: ../../../register.php?invalid=$invalid");
     exit;
 }
