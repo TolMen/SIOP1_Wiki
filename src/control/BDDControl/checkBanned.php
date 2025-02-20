@@ -6,8 +6,8 @@ if (!empty($_SESSION["userID"])) {
     $query->execute(array($_SESSION["userID"]));
     $user = $query->fetch();
 
-    if (!empty($_SESSION["userID"])) {
-        header("Location: src/control/UserControl/logout.php");
+    if (!empty($user["id"])) {
+        header("Location: ../UserControl/logout.php");
         exit;
     }
 }
