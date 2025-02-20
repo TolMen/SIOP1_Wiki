@@ -77,3 +77,34 @@ h2 {
 .article-card .read-more:hover {
     text-decoration: underline;
 }
+
+#search_content {
+    /* background-color: pink; */
+    padding: 8px;
+    display: flex;
+    place-content: center;
+    margin-bottom: 25px;
+}
+
+.content_recherche {
+    display: flex;
+    background-color: white;
+    gap: 5px;
+}
+.content_recherche input {
+    border: none;
+}
+.formulaire {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border: solid;
+    border-radius: 10px;
+    padding: 7px;
+    width: min-content;
+}
+.recherche {
+    color: rgb(194, 118, 188);
+    border: none;
+    background-color: transparent;
+}

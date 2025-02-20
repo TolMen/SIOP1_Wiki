@@ -34,18 +34,20 @@ if (empty($articles)) {
     <?php include 'src/component/navbar.php' ?>
 
     <div class="body-content">
+       
         <section id="presentation_section">
-            <div class="container phrase_accroche">
-                <div class="row">
-                    <h1>BIENVENUE </h1>
-                    <h5>SUR</h5>
-                    <h2>CIVILIPEDIA</h2>
+            <div class="container phrase_accroche ">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <h1 class="">BIENVENUE</h1>
+                        <h5 class="">SUR</h5>
+                        <h2 class="">CIVILIPEDIA</h2>
+                    </div>
                 </div>
-
-                <p>Votre source d'informations sur les civilisations du monde.</p>
+                <p class="lead text-center">Votre source d'informations sur les civilisations du monde.</p>
             </div>
         </section>
-
+        
         <section class="description ">
             <div class="description-content">
                 <div class="container">
@@ -113,6 +115,7 @@ if (empty($articles)) {
                                         </a>
                                     <?php   } ?>
                                 </div>
+                                <a href="historique.php?articleID=<?php echo $article['id']; ?>" class="read-morehistorique">Voir l'historique</a>
                             </div>
                         </div>
                     <?php

@@ -8,7 +8,6 @@ include_once 'src/control/BDDControl/checkBanned.php'; // Vérification si l'uti
 
 if (!empty($_POST['mot_cle'])) {
     $motCle = htmlspecialchars($_POST['mot_cle'], ENT_QUOTES);
-
     // Préparation et exécution de la requête SQL pour rechercher dans les titres et contenus
     $state = $bdd->prepare("SELECT id, title, content, created_at FROM article WHERE title LIKE ? OR content LIKE ? ORDER BY id ");
     $state->execute(['%' . $motCle . '%', '%' . $motCle . '%']);
@@ -33,6 +32,18 @@ if (!empty($_POST['mot_cle'])) {
     <?php include 'src/component/navbar.php'; ?>
     <div class="container">
     <h2>Résultat (s) pour "<?php echo htmlspecialchars($motCle); ?>"</h2>
+
+    <!-- Recherche par mot-cle -->
+    <div id="search_content">
+        <form class="formulaire" method="POST" action="search.php">
+            <div class="content_recherche">
+                <img src="assets/svg/search.svg" alt="">
+                <input type="search" name="mot_cle" id="" placeholder="Entrez un mot-clé" required>
+            </div>
+            <input class="recherche" type="submit" value="Rechercher" />
+        </form>
+    </div>
+    
     <div class="row">
         <?php if (!empty($articlesbymotcle)) {
             foreach ($articlesbymotcle as $articlebymotcle) { ?>
