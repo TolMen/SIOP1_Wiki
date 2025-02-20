@@ -8,6 +8,7 @@ session_start();
 */
 require_once '../../model/ArtModel/addArtModel.php';
 require_once '../../model/Services/ImageService.php'; // Compression de la taille des images
+include_once '../BDDControl/checkBanned.php';
 
 if (isset($_POST['publishArticle'])) {
     /*

@@ -5,6 +5,9 @@ if (empty($_SESSION['userID'])) {
     header('Location: home.php');
     exit;
 }
+include_once 'src/control/BDDControl/connectBDD.php';
+include_once 'src/control/BDDControl/checkBanned.php';
+
 ?>
 
 <!DOCTYPE html>

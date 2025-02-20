@@ -2,6 +2,7 @@
 session_name("main");
 session_start();
 require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
+include_once 'src/control/BDDControl/checkBanned.php'; // Vérification si l'utilisateur est banni
 
 // Vérification de la soumission d'un mot-clé 
 

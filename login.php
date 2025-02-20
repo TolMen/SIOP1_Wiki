@@ -3,7 +3,6 @@
 
 session_name("main");
 session_start();
-
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +26,7 @@ session_start();
         <form method="POST" action="src/control/UserControl/userlogin.php">
             <div class="form-group">
 
-                <label>Identifiant :</label><br>
+                <label>Pseudonyme :</label><br>
                 <input type="text" name="username" minlength="2" maxlength="15" pattern="[a-z0-9._]{2,15}" title="Seules les lettres minuscules, chiffres, '.' et '_' sont autorisés" required/><br>
 
                 <label>Mot de passe :</label><br>
@@ -43,7 +42,7 @@ session_start();
             <input class=buttonSubmit type="submit" value="Connexion" />
         </form>
     </main><br>
-    <div>Besoin d'un compte ?&nbsp;<a href="register.php">S'inscrire</a></div>
+    <div class="switchAuth">Besoin d'un compte ?&nbsp;<a href="register.php">S'inscrire</a></div>
 
     <!-- Inclusion du pied de page -->
     <?php include 'src/component/footer.php' ?>
