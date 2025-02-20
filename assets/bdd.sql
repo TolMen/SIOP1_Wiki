@@ -254,4 +254,4 @@ L'agriculture était au cœur de l'économie inca. Grâce à des techniques ing�
 
 ("Les Vikings", 
 "En attente d'informations
-", "2025/01/01", 1, 1);
+", "2025/01/01", 1, 4);
