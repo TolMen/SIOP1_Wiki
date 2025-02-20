@@ -2,6 +2,7 @@
 session_name("main");
 session_start();
 require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
+include_once 'src/control/BDDControl/checkBanned.php'; // Vérification si l'utilisateur est banni
 
 // Préparation la requête pour récupérer tous les articles
 $state = $bdd->prepare("SELECT id, title, content, created_at FROM article ORDER BY id DESC");

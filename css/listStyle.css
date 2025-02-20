@@ -1,3 +1,4 @@
+
 body > * {
     display: flex;
     justify-content: center;
@@ -6,7 +7,7 @@ body > * {
 }
 
 body {
-    background: gainsboro;
+    background: rgba(220, 220, 220, 0.60);
 }
 
 .userList > * {
@@ -23,6 +24,9 @@ body {
     min-height: 50px;
     border: rgba(0, 0, 0);
     border-style: ridge;
+    border-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
 
 .userCase {
@@ -34,6 +38,7 @@ body {
     min-height: 50px;
     border: rgba(0, 0, 0);
     border-style: ridge;
+    border-radius: 10px;
 }
 
 .active {
@@ -43,6 +48,7 @@ body {
     margin-bottom: 0px;
     border: rgba(0, 0, 0);
     border-style: ridge;
+    border-radius: 10px;
 }
 
 .inputID {

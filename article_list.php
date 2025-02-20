@@ -5,43 +5,20 @@ session_name("main");
 session_start();
 require_once 'src/control/BDDControl/connectBDD.php'; // $bdd
 
-// Paramètre ID
-if (!empty($_POST["id"])) {
-	$id = "%".htmlspecialchars($_POST["id"], ENT_QUOTES)."%";
-}
-else {
-    $id = "%";
-}
-// Paramètre title
-if (!empty($_POST["title"])) {
-	$title = "%".htmlspecialchars($_POST["title"], ENT_QUOTES)."%";
-}
-else {
-    $title = "%";
-}
-// Paramètre content
-if (!empty($_POST["content"])) {
-	$content = "%".htmlspecialchars($_POST["content"], ENT_QUOTES)."%";
-}
-else {
-    $content = "%";
-}
-// Paramètre user_id
-if (!empty($_POST["user_id"])) {
-	$user_id = "%".htmlspecialchars($_POST["user_id"], ENT_QUOTES)."%";
-}
-else {
-    $user_id = "%";
-}
+$id = !empty($_POST["id"]) ? htmlspecialchars($_POST["id"], ENT_QUOTES) : "%";
+$title = !empty($_POST["title"]) ? "%".htmlspecialchars($_POST["title"]."%", ENT_QUOTES) : "%";
+$content = !empty($_POST["content"]) ? "%".htmlspecialchars($_POST["content"]."%", ENT_QUOTES) : "%";
+$user_id = !empty($_POST["user_id"]) ? htmlspecialchars($_POST["user_id"], ENT_QUOTES) : "%";
 
-if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
+if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
+    $query = $bdd->prepare("SELECT id, title, user_id, created_at, updated_at FROM article WHERE id LIKE ? AND title LIKE ? AND content LIKE ? AND user_id LIKE ? ORDER BY id LIMIT 50");
+    $query->execute(array($id, $title, $content, $user_id));
+    $articles = $query->fetchAll();
+}
+else {
     header("Location: javascript://history.go(-1)");
     exit;
 }
-
-$query = $bdd->prepare("SELECT id, title, user_id FROM article WHERE id LIKE ? AND title LIKE ? AND content LIKE ? AND user_id LIKE ? ORDER BY id LIMIT 50");
-$query->execute(array($id, $title, $content, $user_id));
-$articles = $query->fetchAll();
 
 ?>
 
@@ -70,7 +47,7 @@ $articles = $query->fetchAll();
 
         <!-- Feuilles de style personnalisées -->
         <link rel="stylesheet" href="css/baseStyle.css" />
-        <link rel="stylesheet" href="css/userListStyle.css" />
+        <link rel="stylesheet" href="css/listStyle.css" />
 
         <title>Wiki - Liste des articles</title>
     </head>
@@ -121,9 +98,9 @@ $articles = $query->fetchAll();
                             <!-- Titre -->
                             <h5 class="modal-title" id="exampleModalLabel">Informations complémentaires</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">
                             <!-- Intérieur -->
-                            Créer le : <?php echo $article["createdAt"] ?><br>
-                            Mis à jour le : <?php echo $article["updatedAt"] ?><br>
-                            Lie de l'article : lien.com a voir<br>
+                            Créer le : <?php echo $article["created_at"] ?><br>
+                            Mis à jour le : <?php echo $article["updated_at"] ? !empty($article["updated_at"]) : $article["created_at"] ?><br>
+                            <a href="templateArt.php?articleID=<?php echo $article["id"] ?>">Lien de l'article</a><br>
                         </div><div class="modal-footer"></div></div></div></div>
 
                     <!-- Séparation -->

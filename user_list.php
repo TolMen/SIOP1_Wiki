@@ -5,52 +5,27 @@ session_name("main");
 session_start();
 require_once 'src/control/BDDControl/connectBDD.php'; // $bdd
 
-// Paramètre ID
-if (!empty($_POST["id"])) {
-    $id = "%" . htmlspecialchars($_POST["id"], ENT_QUOTES) . "%";
-} else {
-    $id = "%";
-}
-// Paramètre username
-if (!empty($_POST["username"])) {
-    $username = "%" . htmlspecialchars($_POST["username"], ENT_QUOTES) . "%";
-} else {
-    $username = "%";
-}
-// Paramètre role
-if (!empty($_POST["role"])) {
-    $role = "%" . htmlspecialchars($_POST["role"], ENT_QUOTES) . "%";
-} else {
-    $role = "%";
-}
-// Paramètre isBanned
-if (!empty($_POST["isBanned"])) {
-    $isBanned = htmlspecialchars($_POST["isBanned"], ENT_QUOTES);
-} else {
-    $isBanned = null;
-}
+$id = !empty($_POST["id"]) ? htmlspecialchars($_POST["id"], ENT_QUOTES) : "%";
+$username = !empty($_POST["username"]) ? "%".htmlspecialchars($_POST["username"]."%", ENT_QUOTES) : "%";
+$role = !empty($_POST["role"]) ? htmlspecialchars($_POST["role"], ENT_QUOTES) : "%";
+$isBanned = !empty($_POST["isBanned"]) ? htmlspecialchars($_POST["isBanned"], ENT_QUOTES) : null;
 
-// Vérifier si connecté et admin, si oui, procéder
 if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
-    // Préparation requête sans isBanned
-    $requeteSql = "SELECT user.id as userid, username, role, ban.id, ban.user_id FROM user LEFT JOIN ban ON ban.user_id = user.id WHERE user.id LIKE ? AND username LIKE ? AND role LIKE ?";
+    $query = "SELECT user.id as userid, username, role, ban.id, ban.user_id FROM user LEFT JOIN ban ON ban.user_id = user.id WHERE user.id LIKE ? AND username LIKE ? AND role LIKE ?";
 
-    // N'afficher que les bannis
     if ($isBanned == "True") {
-        $requeteSql = $requeteSql . " AND ban.id IS NOT NULL";
+        $query = $query . " AND ban.id IS NOT NULL";
     }
-    // N'afficher que les non bannis
     elseif ($isBanned == "False") {
-        $requeteSql = $requeteSql . " AND ban.id IS NULL";
+        $query = $query . " AND ban.id IS NULL";
     }
-    // Sinon afficher tous
-    $requeteSql = $requeteSql . " ORDER BY userid LIMIT 50;";
 
-    $state = $bdd->prepare($requeteSql);
+    $query = $query . " ORDER BY userid LIMIT 50;";
+
+    $state = $bdd->prepare($query);
     $state->execute(array($id, $username, $role));
     $users = $state->fetchAll();
 }
-// Sinon, revenir à la page précedente
 else {
     header("Location: javascript://history.go(-1)");
     exit;
@@ -64,7 +39,7 @@ else {
 <head>
     <!-- Inclusion des balise meta -->
     <?php include 'src/component/head.php'; ?>
-    <link rel="stylesheet" href="css/userListStyle.css" />
+    <link rel="stylesheet" href="css/listStyle.css" />
 
     <title>Wiki - Liste des utilisateurs</title>
 </head>
@@ -108,7 +83,7 @@ else {
             <div class="col-3">Banni ?</div>
         </div>
         <div class="col-1"></div>
-        <div class="UserCase active col-3"></div>
+        <div class="UserCase active col-3">Option de modération</div>
         <?php
                 foreach ($users as $user) { ?>
                     <div class="userCase col-6">
@@ -139,14 +114,14 @@ else {
                                 if (empty($ban["end_date"])) { ?>
                                     <br><h5>Bannissement définitif</h5>
                                     Raison : "<?php echo $ban["reason"] ?>"<br>
-                                    Date : <?php echo strftime("%d/%m/%Y",strtotime($ban["start_date"])) ?><br><br>
+                                    Date : <?php echo date("d/m/Y",strtotime($ban["start_date"])) ?><br><br>
                                 <?php }
                                 // Si ban temp
                                 else { ?>
                                     <br><h5>Bannissement temporaire</h5>
                                     Raison : "<?php echo $ban["reason"] ?>"<br><br>
-                                    Date : <?php echo strftime("%d/%m/%Y", strtotime($ban["start_date"])) ?><br>
-                                    Fin : <?php echo strftime("%d/%m/%Y", strtotime($ban["end_date"])) ?><br><br>
+                                    Date : <?php echo date("d/m/Y", strtotime($ban["start_date"])) ?><br>
+                                    Fin : <?php echo date("d/m/Y", strtotime($ban["end_date"])) ?><br><br>
                                 <?php } ?>
                             </div><div class="modal-footer"></div></div></div></div>
                         <?php }

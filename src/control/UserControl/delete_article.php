@@ -4,6 +4,7 @@
 session_name("main");
 session_start();
 require_once '../BDDControl/connectBDD.php'; // $bdd
+include_once '../BDDControl/checkBanned.php'; // Vérification si l'utilisateur est banni
 
 if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
     header("Location: javascript://history.go(-1)");

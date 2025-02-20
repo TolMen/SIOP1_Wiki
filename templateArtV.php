@@ -1,6 +1,8 @@
 <?php
 session_name("main");
 session_start();
+include_once 'src/control/BDDControl/connectBDD.php';
+include_once 'src/control/BDDControl/checkBanned.php';
 ?>
 
 <!DOCTYPE html>

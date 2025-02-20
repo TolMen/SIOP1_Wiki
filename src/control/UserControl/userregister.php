@@ -3,6 +3,7 @@
 session_name("main");
 session_start();
 require_once '../BDDControl/connectBDD.php'; // $bdd
+include '../BDDControl/checkBanned.php'; // Vérification si l'utilisateur est banni
 
 // Vérifier si forms non vide
 if (!empty($_POST["username"]) && !empty($_POST["password"])) {
