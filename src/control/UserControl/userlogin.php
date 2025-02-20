@@ -7,22 +7,15 @@ require_once '../BDDControl/connectBDD.php'; // $bdd
 $username = htmlspecialchars($_POST["username"], ENT_QUOTES);
 $password = htmlspecialchars($_POST["password"], ENT_QUOTES);
 
-$state = $bdd->prepare("SELECT user.id AS id, username, password, role, ban.id AS is_banned FROM user INNER JOIN ban ON ban.user_id = user.id WHERE username = 'user1'");
-$state->execute(array($username));
+$state = $bdd->prepare("SELECT id, username, password, role FROM user WHERE username = ? AND password = ?");
+$state->execute(array($username, hash("sha256", $password)));
 $user = $state->fetch();
 
-if ($username == $user["username"] && hash("sha256", $password) == $user["password"]) {
+if ($user["id"]) {
     $_SESSION["userID"] = $user["id"];
     $_SESSION["userRole"] = $user["role"];
 
-    $state = $bdd->prepare("");
-    $state->execute(array($user["id"]));
-    $ban = $state->fetch();
-
-    if (!empty($ban["is_banned"])) {
-        header("Location: ../../../login.php?invalid=True");
-        exit;
-    }
+    include("../BDDControl/checkBanned.php");
 
     if ($_SESSION["userRole"] == "admin") {
         header("Location: ../../../dashboard.php");
