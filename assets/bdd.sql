@@ -1,4 +1,12 @@
 -- Configuration BDD
+-- Désactive temporairement les contraintes de clé étrangère
+SET FOREIGN_KEY_CHECKS = 0;
+
+DROP DATABASE IF EXISTS siop1_wiki;
+
+-- Réactive les contraintes de clé étrangère
+SET FOREIGN_KEY_CHECKS = 1;
+
 SET NAMES utf8mb4;
 CREATE DATABASE IF NOT EXISTS siop1_wiki;
 USE siop1_wiki;
@@ -34,8 +42,8 @@ CREATE TABLE IF NOT EXISTS article (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
-    created_at DATE NOT NULL,
-    updated_at DATE NULL,
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME NULL,
     firstAuthor INT NOT NULL,
     user_id INT NOT NULL,
     FOREIGN KEY (firstAuthor) REFERENCES user(id) ON DELETE CASCADE,
@@ -47,7 +55,7 @@ CREATE TABLE IF NOT EXISTS article_version (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
-    created_at DATE NOT NULL,
+    created_at DATETIME NOT NULL,
     image_url TEXT NULL,
     user_id INT NOT NULL,
     article_id INT NOT NULL,
@@ -246,12 +254,12 @@ VALUES
 Les Incas ont développé une société hautement organisée, avec une administration centralisée et une infrastructure impressionnante. Le réseau routier inca, s'étendant sur des milliers de kilomètres, facilitait les communications et le contrôle des vastes territoires. Les chasquis, messagers rapides, parcouraient ces routes pour transmettre des informations à travers l'empire.
 
 L'agriculture était au cœur de l'économie inca. Grâce à des techniques ingénieuses comme les terrasses de culture et des systèmes d'irrigation avancés, ils cultivaient une variété de produits tels que le maïs, la pomme de terre et le quinoa. L'élevage de camélidés, comme les lamas et les alpagas, fournissait de la laine, de la viande et servait de moyen de transport.
-", "2025/01/01", 1, 1),
+", "2025/01/01 00:00:00", 1, 1),
 
 ("Les Minoens : L’Âge d’Or de la crète", 
 "Les Minoens, qui ont prospéré sur l’île de Crète entre 3000 et 1450 av. J.-C., sont l’une des premières grandes civilisations européennes. Leur culture doit son nom au légendaire roi Minos, connu pour le mythe du Minotaure.
-", "2025/01/01", 1, 9),
+", "2025/01/01 00:00:00", 1, 9),
 
 ("Les Vikings", 
 "En attente d'informations
-", "2025/01/01", 1, 4);
+", "2025/01/01 00:00:00", 1, 4);
