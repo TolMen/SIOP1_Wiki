@@ -37,21 +37,23 @@ class UpdateArticleModel
         return $updateArticle->execute([$title, $content, $userId, $articleId]);
     }
 
-    // - Fonction pour mettre à jour ou insérer l'image de l'article
+    /* 
+    - Fonction pour mettre à jour ou insérer l'image de l'article
+    */
     public function updateImage(PDO $bdd, $articleId, $newImageUrl)
     {
-        // Vérifier s'il existe déjà une image pour cet article
+        // Vérifie s'il existe déjà une image pour cet article
         $checkImage = $bdd->prepare('SELECT id FROM image WHERE article_id = ?');
         $checkImage->execute([$articleId]);
 
-        // Si une image existe, mettez à jour l'URL de l'image
+        // Si une image existe, mise à jour de l'URL de l'image
         if ($checkImage->rowCount() > 0) {
             $updateImage = 'UPDATE image SET url = ?, created_at = NOW() WHERE article_id = ?';
             $stmt = $bdd->prepare($updateImage);
             return $stmt->execute([$newImageUrl, $articleId]);
         }
 
-        // Si aucune image n'existe, insérer une nouvelle entrée dans la table images
+        // Si aucune image n'existe, insére une nouvelle entrée dans la table images
         $insertImage = 'INSERT INTO image (url, created_at, article_id) VALUES (?, NOW(), ?)';
         $stmt = $bdd->prepare($insertImage);
         return $stmt->execute([$newImageUrl, $articleId]);
