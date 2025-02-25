@@ -110,7 +110,7 @@ if (empty($articles)) {
                                         Continuer la lecture
                                     </a>
                                     <?php if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] === "admin") { ?>
-                                        <a href="src/control/UserControl/delete_article.php?articleID=<?php echo $article['id']; ?>">
+                                        <a href="src/control/ArtControl/deleteArt.php?articleID=<?php echo $article['id']; ?>">
                                             <img src="assets/svg/trash.svg" alt="Supprimer l'article">
                                         </a>
                                     <?php   } ?>
