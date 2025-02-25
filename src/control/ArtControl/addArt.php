@@ -38,7 +38,7 @@ if (isset($_POST['publishArticle'])) {
             $fileSize = $_FILES['images']['size'];
             $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
-            $allowedTypes = ['jpg', 'jpeg', 'png', 'gif']; // Vérifications des types autorisés
+            $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
 
             if (!in_array($fileExt, $allowedTypes)) {
                 echo "Format non supporté.";

@@ -13,3 +13,10 @@
     list-style: none;
     font-family: "Poppins", sans-serif;
 }
+
+/* Navbar */
+
+.navbar-nav .nav-link.active {
+    font-weight: bold;
+    color: red !important;
+}

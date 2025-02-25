@@ -26,8 +26,8 @@ $imageUrl = $imageData['url'] ?? 'assets/img/civilisation.jpg'; // Image par dé
 
 
 if (!empty($articles)) {
-    $postArtUser = $articles[0]['user_id']; // On récupère l'ID des modificateurs depuis l'article
-    $postArtFirstUser = $articles[0]['firstAuthor']; // On récupère l'ID de l'auteur depuis l'article
+    $postArtUser = $articles[0]['user_id'];
+    $postArtFirstUser = $articles[0]['firstAuthor'];
     $userArticles = $artPostModel->getPostArtUser($bdd, $postArtUser);
     $userFirstArticles = $artPostModel->getFirstPostArtUser($bdd, $postArtFirstUser);
 } else {
@@ -59,7 +59,7 @@ foreach ($articles as $article) {
 
                 <div class="text-muted border-top pt-1">
                     <p class="mb-0 mt-2">✏️ Dernière modification par : <?= htmlspecialchars($userArticles['username'] ?? 'Aucune modification'); ?></p>
-                    <p class="mb-0">📅 En date du : <?= date("d/m/Y", strtotime($dateToShow)); ?></p>
+                    <p class="mb-0">📅 En date du : <?= date("d/m/Y à h:m:s", strtotime($dateToShow)); ?></p>
                     <p class="mb-0 mt-0">📝 Auteur d'origine : <?= htmlspecialchars($userFirstArticles['username']); ?></p>
                 </div>
 
