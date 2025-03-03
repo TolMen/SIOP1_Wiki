@@ -34,6 +34,7 @@ $articlesversion = $state->fetchAll();
                         <th>Titre</th>
                         <th>Contenu</th>
                         <th>Date de création</th>
+                        <th>Créateur</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,6 +44,7 @@ $articlesversion = $state->fetchAll();
                             <td><?php echo htmlspecialchars($article['title']); ?></td>
                             <td><?php echo substr(htmlspecialchars($article['content']), 0, 100) . '...'; ?></td>
                             <td><?php echo htmlspecialchars($article['created_at']); ?></td>
+                            <td><?php echo htmlspecialchars($article['user_id']); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
