@@ -5,7 +5,10 @@ require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
 
 $article_id = htmlspecialchars($_GET["articleID"], ENT_QUOTES);
 
-$state = $bdd->prepare("SELECT * FROM article_version WHERE article_id = ?");
+$state = $bdd->prepare("SELECT article_version.*, user.username AS creator_name 
+                        FROM article_version  
+                        INNER JOIN user ON user.id = article_version.user_id 
+                        WHERE article_version.article_id = ?");
 $state->execute(array($article_id));
 $articlesversion = $state->fetchAll();
 
@@ -30,21 +33,30 @@ $articlesversion = $state->fetchAll();
             <table class="table table-striped table-bordered table-responsive">
                 <thead>
                     <tr>
-                        <th>Version_ID</th>
+                        <th>Numero de version</th>
                         <th>Titre</th>
                         <th>Contenu</th>
                         <th>Date de création</th>
                         <th>Créateur</th>
+
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($articlesversion as $article): ?>
+                    
+                    <?php 
+                    $version_number = 1;
+                    foreach ($articlesversion as $article): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($article['article_id']); ?></td>
+                            <td><?php echo "Version " . $version_number++; ?></td>
                             <td><?php echo htmlspecialchars($article['title']); ?></td>
-                            <td><?php echo substr(htmlspecialchars($article['content']), 0, 100) . '...'; ?></td>
-                            <td><?php echo htmlspecialchars($article['created_at']); ?></td>
-                            <td><?php echo htmlspecialchars($article['user_id']); ?></td>
+                            <td><?php echo substr(htmlspecialchars($article['content']), 0, 100) . '...'; ?>
+                                <a href="templateArt.php?articleID=<?php echo $article['article_id']; ?>" class="read-more">
+                                    voir plus
+                                </a>
+                            </td>
+                            <td><?php echo "Le " . date("d/m/Y", strtotime($article['created_at'])) . " à " . date("H:i", strtotime($article['created_at'])); ?></td>
+                            <td><?php echo htmlspecialchars($article['creator_name']); ?></td>
+
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
