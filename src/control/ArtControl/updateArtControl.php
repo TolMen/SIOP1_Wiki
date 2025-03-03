@@ -6,6 +6,7 @@
 require_once '../../model/ArtModel/updateArtModel.php';
 require_once '../../control/BDDControl/connectBDD.php';
 require_once '../../model/Services/ImageService.php';
+require_once '../../control/BDDControl/checkBanned.php';
 
 /*
 Initialise la classe
@@ -23,7 +24,9 @@ if (isset($_GET['articleID'])) {
         die("Erreur : Article introuvable.");
     }
 
-    // Récupérer l'ancienne URL de l'image
+    /* 
+    - Récupérer l'ancienne URL de l'image
+    */
     $oldImageUrl = null;
     $query = $bdd->prepare('SELECT url FROM image WHERE article_id = ? ORDER BY created_at DESC LIMIT 1');
     $query->execute([$articleId]);
@@ -32,7 +35,9 @@ if (isset($_GET['articleID'])) {
         $oldImageUrl = $query->fetch(PDO::FETCH_ASSOC)['url'];
     }
 
-    // Sauvegarder l'ancienne version de l'article dans la table article_versions
+    /* 
+    - Sauvegarder l'ancienne version de l'article dans la table article_versions
+    */
     $updateArticleModel->saveArticleVersion(
         $bdd,
         $articleId,
@@ -40,7 +45,7 @@ if (isset($_GET['articleID'])) {
         $article['content'],
         $article['created_at'],
         $article['user_id'],
-        $oldImageUrl // Ajouter l'ancienne URL de l'image
+        $oldImageUrl // Ajoute l'ancienne URL de l'image
     );
 }
 

@@ -3,7 +3,7 @@
 
 session_name("main");
 session_start();
-
+include_once 'src/control/BDDControl/checkBanned.php';
 ?>
 
 <!DOCTYPE html>
@@ -40,10 +40,10 @@ session_start();
                 <?php } ?>
 
             </div>
-            <input class=buttonSubmit type="submit" value="Connexion" />
+            <input class=buttonSubmit type="submit" value="Inscription" />
         </form>
     </main><br>
-    <div>Déjà un compte ?&nbsp;<a href="login.php">Se connecter</a></div>
+    <div class="switchAuth">Déjà un compte ?&nbsp;<a href="login.php">Se connecter</a></div>
 
     <!-- Inclusion du pied de page -->
     <?php include 'src/component/footer.php' ?>

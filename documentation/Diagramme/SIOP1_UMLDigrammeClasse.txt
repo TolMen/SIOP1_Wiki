@@ -11,8 +11,8 @@ class article {
 #id: int
 +title: varchar
 +content: text
-+created_at: date
-+updated_at: date
++created_at: datetime
++updated_at: datetime
 -firstAuthor: int
 -user_id: int
 }
@@ -21,7 +21,7 @@ class article_version {
 #id: int
 +title: varchar
 +content: text
-+created_at: date
++created_at: datetime
 -article_id: int
 -user_id: int
 }

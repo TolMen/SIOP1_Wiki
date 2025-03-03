@@ -2,12 +2,15 @@
 <?php
 
 if (!empty($_SESSION["userID"])) {
-    $query = $bdd->prepare("SELECT id FROM ban WHERE user_id = ?");
-    $query->execute(array($_SESSION["userID"]));
-    $user = $query->fetch();
+    $querybanned = $bdd->prepare("SELECT id FROM ban WHERE user_id = ?");
+    $querybanned->execute(array($_SESSION["userID"]));
+    $isuserbanned = $querybanned->fetch();
 
-    if (!empty($user["id"])) {
-        header("Location: ../UserControl/logout.php");
-        exit;
+    if (!empty($isuserbanned["id"])) {
+        if (file_exists("./src/control/UserControl/logout.php")) {
+            header("Location: ./src/control/UserControl/logout.php");
+        } elseif (file_exists("../src/control/UserControl/logout.php")) {
+            header("Location: ../src/control/UserControl/logout.php");
+        }
     }
 }

@@ -1,0 +1,77 @@
+
+body > * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+body {
+    background: rgba(220, 220, 220, 0.60);
+}
+
+.userList > * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.queryUsers {
+    background: white;
+    min-height: 50px;
+    border: rgba(0, 0, 0);
+    border-style: ridge;
+    border-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.userCase {
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0.75)
+    );
+    min-height: 50px;
+    border: rgba(0, 0, 0);
+    border-style: ridge;
+    border-radius: 10px;
+}
+
+.active {
+    background: white;
+    min-height: 50px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: rgba(0, 0, 0);
+    border-style: ridge;
+    border-radius: 10px;
+}
+
+.inputID {
+    width: 60px;
+}
+
+.inputUsername {
+    width: 100px;
+}
+
+.inputReason {
+    width: 100px;
+}
+
+.buttonSubmit {
+    background: #ffffff;
+    height: 30px;
+    width: 150px;
+    border: rgb(0, 0, 0);
+    border-radius: 25px;
+    border-style: ridge;
+}
+
+.buttonSubmit:hover {
+    background: rgba(255, 255, 255, 0.5);
+}

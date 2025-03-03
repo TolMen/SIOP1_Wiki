@@ -8,6 +8,7 @@ session_start();
 */
 require_once '../../model/ArtModel/addArtModel.php';
 require_once '../../model/Services/ImageService.php'; // Compression de la taille des images
+include_once '../BDDControl/checkBanned.php';
 
 if (isset($_POST['publishArticle'])) {
     /*
@@ -37,7 +38,7 @@ if (isset($_POST['publishArticle'])) {
             $fileSize = $_FILES['images']['size'];
             $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
-            $allowedTypes = ['jpg', 'jpeg', 'png', 'gif']; // Vérifications des types autorisés
+            $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
 
             if (!in_array($fileExt, $allowedTypes)) {
                 echo "Format non supporté.";

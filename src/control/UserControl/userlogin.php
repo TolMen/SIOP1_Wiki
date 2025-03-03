@@ -22,7 +22,7 @@ if ($user["id"]) {
         exit;
     }
 
-    header("Location: ../../../homed.php");
+    header("Location: ../../../home.php");
     exit;
 }
 
