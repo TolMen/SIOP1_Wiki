@@ -83,8 +83,12 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                             </div>
                             <div class="modal-body">
                                 <!-- Intérieur -->
-                                Créer le : <?php echo $article["created_at"] ?><br>
-                                Mis à jour le : <?php echo $article["updated_at"] ? !empty($article["updated_at"]) : $article["created_at"] ?><br>
+                                Créer le : <?php echo date("d/m/Y", strtotime($article["created_at"])) ?><br>
+                                Mis à jour le :
+                                <?php 
+                                echo !empty($article["updated_at"]) ? date("d/m/Y", strtotime($article["updated_at"])) : date("d/m/Y", strtotime($article["created_at"])); 
+                                ?>
+<br>
                                 <a href="templateArt.php?articleID=<?php echo $article["id"] ?>">Lien de l'article</a><br>
                             </div>
                             <div class="modal-footer"></div>
@@ -109,7 +113,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                             <div class="modal-body">
                                 <!-- Intérieur -->
                                 <h5>Voulez-vous supprimer l'article<br>"<?php echo $article["title"] ?>" ?</h5><br>
-                                <a href="src/control/ArtControl/deleteArt.php?id=<?php echo $article["id"] ?>"><button class="buttonSubmit">Supprimer</button></a>
+                                <a href="src/control/ArtControl/deleteArt.php?articleID=<?php echo $article["id"] ?>"><button class="buttonSubmit">Supprimer</button></a>
                             </div>
                             <div class="modal-footer"></div>
                         </div>

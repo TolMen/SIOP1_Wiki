@@ -142,7 +142,7 @@ else {
                                 <!-- Intérieur -->
                                 <form method="POST" action="src/control/UserControl/sanction.php?user_id=<?php echo $user["userid"] ?>&method=ban">
                                     <label><h5>Voulez-vous bannir <?php echo $user["username"] ?> ?</h5></label><br><br>
-                                    <label for="ReasonID">Raison :</label>
+                                    <label for="ReasonID">Raison :</label><br>
                                     <input class="inputReason" type="text" id="ReasonID" name="reason"/><br>
 
                                     <input class="buttonSubmit" type="submit" value="Bannir"/>
@@ -160,7 +160,7 @@ else {
                                 <!-- Intérieur -->
                                 <form method="POST" action="src/control/UserControl/sanction.php?user_id=<?php echo $user["userid"] ?>&method=ban">
                                     <label><h5>Voulez-vous bannir temporairement <?php echo $user["username"] ?> ?</h5></label><br><br>
-                                    <label for="ReasonID">Raison :</label>
+                                    <label for="ReasonID">Raison :</label><br>
                                     <input class="inputReason" type="text" id="ReasonID" name="reason"/><br>
 
                                     <label for="end_dateID">Fin :</label>
@@ -177,7 +177,7 @@ else {
                         <?php if ($user["user_id"] != null && $user["role"] != "admin") { ?>
                             <div class="col-3"><img src="assets/img/unban.png" alt="+" data-bs-toggle="modal" data-bs-target="#unban<?php echo $user["userid"]; ?>" style="cursor: pointer; width: 40px;"></div><div class="modal fade" id="unban<?php echo $user["userid"]; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header">
                                 <!-- Titre -->
-                                <h5 class="modal-title" id="exampleModalLabel">Débanissement</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">
+                                <h5 class="modal-title" id="exampleModalLabel">Débannissement</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">
                                 <!-- Intérieur -->
                                 <form method="POST" action="src/control/UserControl/sanction.php?user_id=<?php echo $user["userid"] ?>&method=unban">
                                     <label><h5>Voulez-vous débannir <?php echo $user["username"] ?> ?</h5></label><br><br>
