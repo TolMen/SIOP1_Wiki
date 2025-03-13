@@ -36,21 +36,25 @@ main.container {
     backdrop-filter: blur(2px);
 }
 
-.invalid {
+.invalidCase {
     color: red;
 }
 
-.buttonSubmit {
-    background: #ffffff;
-    height: 50px;
-    width: 150px;
-    border: rgb(0, 0, 0);
-    border-radius: 25px;
-    border-style: ridge;
+input[type="submit"], button {
+    min-height: 50px;
+    min-width: 150px;
+    border: solid 2px black;
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out;
 }
 
-.buttonSubmit:hover {
-    background: rgba(255, 255, 255, 0.5);
+input[type="submit"]:hover, button:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.75);
+    height: 50px;
+    width: 150px;
+    border: solid 2px black;
+    border-radius: 50px;
 }
 
 .switchAuth {
@@ -65,11 +69,11 @@ main.container {
 }
 
 a {
-    color:rgb(10, 100, 200);
+    color:rgb(10, 100, 235);
     text-decoration: none;
 }
 
 a:hover {
-    color:rgb(10, 100, 235);
+    color:rgb(10, 100, 200);
     text-decoration: none;
 }

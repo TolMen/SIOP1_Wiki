@@ -55,23 +55,23 @@ body {
     width: 60px;
 }
 
-.inputUsername {
-    width: 100px;
-}
-
-.inputReason {
+.inputUsername, .inputReason {
     width: 100px;
 }
 
 .buttonSubmit {
-    background: #ffffff;
-    height: 30px;
-    width: 150px;
-    border: rgb(0, 0, 0);
-    border-radius: 25px;
-    border-style: ridge;
+    min-height: 40px;
+    min-width: 150px;
+    border: solid 2px black;
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out;
 }
 
 .buttonSubmit:hover {
-    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.75);
+    min-height: 40px;
+    min-width: 150px;
+    border: solid 2px black;
+    border-radius: 50px;
 }

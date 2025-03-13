@@ -79,7 +79,7 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                 </a>
             </div>
             <div class="col-md-4">
-                <a href="src/control/UserControl/" class="card-link">
+                <a href="src/control/UserControl/logout.php" class="card-link">
                     <div class="card dashboard-card logout-card">
                         <div class="card-body text-center">
                             <i class="fas fa-sign-out-alt fa-3x"></i>

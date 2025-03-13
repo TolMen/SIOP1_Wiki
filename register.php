@@ -4,6 +4,7 @@
 session_name("main");
 session_start();
 include_once 'src/control/BDDControl/checkBanned.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -25,22 +26,18 @@ include_once 'src/control/BDDControl/checkBanned.php';
     </div>
     <main class="container">
         <form method="POST" action="src/control/UserControl/userregister.php">
-            <div class="form-group">
+            <label>Pseudonyme :</label><br>
+            <input type="text" name="username" minlength="2" maxlength="15" pattern="[a-z0-9._]{2,15}" title="Seules les lettres minuscules, chiffres, '.' et '_' sont autorisés" required/><br>
 
-                <label>Pseudonyme :</label><br>
-                <input type="text" name="username" minlength="2" maxlength="15" pattern="[a-z0-9._]{2,15}" title="Seules les lettres minuscules, chiffres, '.' et '_' sont autorisés" required/><br>
+            <label>Mot de passe :</label><br>
+            <input type="password" name="password" required/><br><br>
 
-                <label>Mot de passe :</label><br>
-                <input type="password" name="password" required/><br><br>
-
-                <?php if (!empty(htmlspecialchars(!empty($_GET["invalid"]), ENT_QUOTES))) { ?>
-                    <label class="invalid">Identifiant déjà existant</label><br><br>
-                <?php } else { ?>
-                    <label></label><br>
-                <?php } ?>
-
-            </div>
-            <input class=buttonSubmit type="submit" value="Inscription" />
+            <?php if (!empty(htmlspecialchars(!empty($_GET["invalid"]), ENT_QUOTES))) { ?>
+                <label class="invalidCase">Identifiant déjà existant</label><br><br>
+            <?php } else { ?>
+                <label></label><br>
+            <?php } ?>
+            <input type="submit" value="Inscription" />
         </form>
     </main><br>
     <div class="switchAuth">Déjà un compte ?&nbsp;<a href="login.php">Se connecter</a></div>

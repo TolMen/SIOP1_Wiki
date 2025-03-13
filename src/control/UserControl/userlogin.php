@@ -7,8 +7,9 @@ require_once '../BDDControl/connectBDD.php'; // $bdd
 $username = htmlspecialchars($_POST["username"], ENT_QUOTES);
 $password = htmlspecialchars($_POST["password"], ENT_QUOTES);
 
-$state = $bdd->prepare("SELECT id, username, password, role FROM user WHERE username = ? AND password = ?");
-$state->execute(array($username, hash("sha256", $password)));
+// Vérification du login si existant
+$state = $bdd->prepare("SELECT id, username, password, role FROM user WHERE username = ? AND password = SHA2(?, 256)");
+$state->execute(array($username, $password));
 $user = $state->fetch();
 
 if ($user["id"]) {
@@ -25,7 +26,6 @@ if ($user["id"]) {
     header("Location: ../../../home.php");
     exit;
 }
-
 else {
     header("Location: ../../../login.php?invalid=True");
 }

@@ -3,6 +3,7 @@
 
 session_name("main");
 session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -33,13 +34,15 @@ session_start();
                 <input type="password" name="password" required/><br><br>
 
                 <?php if (!empty(htmlspecialchars(!empty($_GET["invalid"]), ENT_QUOTES))) { ?>
-                    <label class="invalid">Identifiant ou mot de passe invalide</label><br><br>
+                    <label class="invalidCase">Identifiant ou mot de passe invalide</label><br><br>
+                <?php } elseif (htmlspecialchars(!empty($_GET["banned"]), ENT_QUOTES)) {?>
+                    <label class="invalidCase">Utilisateur banni du site</label><br><br>
                 <?php } else { ?>
                     <label></label><br>
                 <?php } ?>
 
             </div>
-            <input class=buttonSubmit type="submit" value="Connexion" />
+            <input type="submit" value="Connexion" />
         </form>
     </main><br>
     <div class="switchAuth">Besoin d'un compte ?&nbsp;<a href="register.php">S'inscrire</a></div>
