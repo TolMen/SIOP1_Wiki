@@ -64,7 +64,7 @@ foreach ($articles as $article) {
                 </div>
 
                 <div class="mt-2">
-                    <a href="templateArtV.php?articleVID=<?php echo $postArtId; ?>" class="btn btn-outline-primary btn-sm">Historique</a>
+                    <a href="historique.php?articleID=<?php echo $article['id']; ?>" class="btn btn-outline-primary btn-sm">Historique</a>
                     <a href="updateArt.php?articleID=<?php echo $postArtId; ?>" class="btn btn-outline-secondary btn-sm">Modification</a>
                 </div>
             </div>
