@@ -3,9 +3,11 @@ session_name("main");
 session_start();
 require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
 include_once 'src/control/BDDControl/checkBanned.php'; // Vérification si l'utilisateur est banni
+include_once 'src/model/ArtModel/postArtModel.php'; // Recupération de l'image de l'article
 
 // Préparation la requête pour récupérer tous les articles
-$state = $bdd->prepare("SELECT id, title, content, created_at FROM article ORDER BY id DESC");
+$state = $bdd->prepare("SELECT article.id, article.title, article.created_at, article_version.image_url FROM article
+LEFT JOIN article_version ON article_version.article_id = article.id ORDER BY created_at DESC");
 $state->execute();
 $articles = $state->fetchAll();
 
@@ -14,6 +16,7 @@ if (empty($articles)) {
     echo "Aucun article trouvé.";
     exit;
 }
+
 ?>
 
 
@@ -34,7 +37,7 @@ if (empty($articles)) {
     <?php include 'src/component/navbar.php' ?>
 
     <div class="body-content">
-       
+
         <section id="presentation_section">
             <div class="container phrase_accroche ">
                 <div class="row justify-content-center">
@@ -47,7 +50,7 @@ if (empty($articles)) {
                 <p class="lead text-center">Votre source d'informations sur les civilisations du monde.</p>
             </div>
         </section>
-        
+
         <section class="description ">
             <div class="description-content">
                 <div class="container">
@@ -99,13 +102,17 @@ if (empty($articles)) {
                 <div class="articles-grid">
                     <?php
                     foreach ($articles as $article) {
+                        $artPostModel = new ArtPostModel();
+                        $imageData = $artPostModel->getArticleImage($bdd, $article['id']);
+                        $imageUrl = $imageData['url'] ?? 'assets/img/section1background.jpg'; //  Image par défaut
                     ?>
                         <div class="article-card">
-                            <img src="assets/img/section1background.jpg" alt="Image de l'article">
+                            <img src="<?= htmlspecialchars($imageUrl) ?>" alt="Image de l'article">
+                            <!-- <img src="<?php echo !empty($article['image_url']) ? htmlspecialchars($article['image_url']) : 'assets/img/section1background.jpg'; ?>" alt="Image de l'article"> -->
                             <div class="content">
-                                <h3><?php echo htmlspecialchars($article['title']); ?></h3> 
+                                <h3><?php echo htmlspecialchars($article['title']); ?></h3>
                                 <span class="date">Publiée le <?php echo date("d/m/Y à h:m:s", strtotime($article['created_at'])); ?></span>
-                                  <div class="article_choix">
+                                <div class="article_choix">
                                     <a href="templateArt.php?articleID=<?php echo $article['id']; ?>" class="read-more">
                                         Continuer la lecture
                                     </a>
