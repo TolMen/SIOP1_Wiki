@@ -16,6 +16,9 @@ $user = $state->fetch();
 if (empty($user["username"])) {
     $state = $bdd->prepare("INSERT INTO user (username, password, role) VALUES (?, SHA2(?, 256), 'user')");
     $state->execute(array($username, $password));
+    $state = $bdd->prepare("SELECT id, username, password, role FROM user WHERE username = ? AND password = SHA2(?, 256)");
+    $state->execute(array($username, $password));
+    $user = $state->fetch();
     $_SESSION["userID"] = $user["id"];
     $_SESSION["userRole"] = $user["role"];
     header("Location: ../../../home.php");
