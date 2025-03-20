@@ -82,8 +82,11 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
             <div class="col-1"></div>
             <div class="UserCase active col-3">Option de modération</div>
             <?php
-            foreach ($users as $user) { ?>
-                <div class="userCase col-6">
+            foreach ($users as $user) { 
+                // Vérifier si l'utilisateur est banni
+                $isBannedClass = $user["user_id"] ? "banned" : "";
+            ?>
+                <div class="userCase col-6 <?php echo $isBannedClass; ?>">
                     <!-- ID -->
                     <div class="col-3"><?php echo $user["userid"] ?></div>
                     <!-- Username -->
@@ -95,8 +98,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                         <div class="col-3">Administrateur</div>
                     <?php } ?>
                     <!-- IsBanned -->
-                    <?php
-                    if ($user["user_id"]) { ?>
+                    <?php if ($user["user_id"]) { ?>
                         <div class="col-3">&nbsp;&nbsp;Oui<img src="assets/img/eye_popup.png" alt="+" data-bs-toggle="modal"
                                 data-bs-target="#imagePopup<?php echo $user["userid"]; ?>"
                                 style="cursor: pointer; width: 15px;"></div>
