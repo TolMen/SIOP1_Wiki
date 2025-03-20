@@ -18,5 +18,5 @@
 
 .navbar-nav .nav-link.active {
     font-weight: bold;
-    color: red !important;
+    color: black !important;
 }

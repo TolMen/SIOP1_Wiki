@@ -104,7 +104,7 @@ if (empty($articles)) {
                             <img src="assets/img/section1background.jpg" alt="Image de l'article">
                             <div class="content">
                                 <h3><?php echo htmlspecialchars($article['title']); ?></h3> 
-                                <span class="date">Publiée le <?php echo date("d/m/Y à h:m:s", strtotime($article['created_at'])); ?></span>
+                                <span class="date">Publiée le <?php echo date("d/m/Y à h:i:s", strtotime($article['created_at'])); ?></span>
                                   <div class="article_choix">
                                     <a href="templateArt.php?articleID=<?php echo $article['id']; ?>" class="read-more">
                                         Continuer la lecture
