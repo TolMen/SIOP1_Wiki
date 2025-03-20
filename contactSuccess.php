@@ -3,6 +3,8 @@ session_name("main");
 session_start();
 require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
 include_once 'src/control/BDDControl/checkBanned.php'; // Vérification si l'utilisateur est banni
+require_once 'src/model/ContactModel/getContactSuccess.php';
+
 
 if (!empty($_POST["name"]) && !empty($_POST["email"]) && !empty($_POST["subject"]) && !empty($_POST["message"])) {
     $name = htmlspecialchars($_POST["name"], ENT_QUOTES);
@@ -10,12 +12,13 @@ if (!empty($_POST["name"]) && !empty($_POST["email"]) && !empty($_POST["subject"
     $subject = htmlspecialchars($_POST["subject"], ENT_QUOTES);
     $message = htmlspecialchars($_POST["message"], ENT_QUOTES);
 
-    $state = $bdd->prepare("INSERT INTO contact(name,email,subject,message) VALUES (?,?,?,?)");
-    $state->execute([$name, $email, $subject, $message]);
+    
+    $getInsertinto = new getContactSuccess() ;
+    $success= $getInsertinto->getInsert($bdd, $name, $email, $subject, $message) ;
 
-    $recup = $bdd->prepare("SELECT name, email, subject, message FROM contact WHERE name = ? AND email = ? AND subject = ? AND message = ?");
-    $recup->execute([$name, $email, $subject, $message]);
-    $resultatsforms = $recup->fetch();
+    $getInformation = new getContactSuccess();
+    $resultatsforms = $getInformation->getInfo($bdd, $name, $email, $subject, $message);
+
 } else {
     echo "Aucun résultat";
     exit;
@@ -42,13 +45,12 @@ if (!empty($_POST["name"]) && !empty($_POST["email"]) && !empty($_POST["subject"
 
             <div class="affichage">
                 <img src="assets/svg/check-circle.svg" alt="">
-                <h1>Merci
-                    <?php echo $resultatsforms["name"]; ?> <br>
+                <h1>Merci <?php echo $resultatsforms["name"]; ?> <br>
                     Votre <?php echo $resultatsforms["subject"]; ?> a bien été envoyé!
                 </h1>
                 <a href="home.php">Retour à l'accueil </a>
             </div>
-
+           
         </div>
     </div>
 
