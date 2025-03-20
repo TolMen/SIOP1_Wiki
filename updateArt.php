@@ -68,8 +68,9 @@ if (isset($_GET['articleID'])) {
                         <input type="file" id="images" name="images" class="form-control">
                     </div>
                     <!-- Bouton de validation -->
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary w-100" name="updateArticle">Valider les modifications</button>
+                    <div class="text-left">
+                        <button type="submit" class="btn btn-primary w-30" name="updateArticle">Valider les modifications</button>
+                        <button class="btn btn-danger w-15" onclick="history.back()">Annuler</button>
                     </div>
                 </form>
             </div>

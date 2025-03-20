@@ -40,7 +40,6 @@ ob_end_clean();
 
     <!-- Inclusion de la barre de navigation -->
     <?php include 'src/component/navbar.php' ?>
-
     <!-- Milieu de page -->
     <section class="infoArticle">
         <?php include 'src/control/ArtControl/postArt.php'; ?>

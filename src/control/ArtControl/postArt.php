@@ -45,6 +45,7 @@ foreach ($articles as $article) {
     $dateToShow = !empty($article['updated_at']) ? $article['updated_at'] : $article['created_at'];
 ?>
     <div class="container mt-4">
+        <button class="btn btn-secondary w-15" onclick="history.back()">Retour</button>
         <div class="row">
             <div class="col-md-8 article-container">
                 <h2 class="title font-weight-bold border-bottom pb-4 text-center"> <?= htmlspecialchars($article['title']); ?> </h2>

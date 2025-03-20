@@ -27,6 +27,7 @@ $articlesversion = $state->fetchAll();
     <?php include 'src/component/navbar.php'; ?>
 
     <div class="container mt-4">
+        <button class="btn btn-secondary w-15" onclick="history.back()">Retour</button>
         <h2>Historique des versions </h2>
 
         <?php if ($articlesversion): ?>
@@ -42,15 +43,15 @@ $articlesversion = $state->fetchAll();
                     </tr>
                 </thead>
                 <tbody>
-                    
-                    <?php 
+
+                    <?php
                     $version_number = 1;
                     foreach ($articlesversion as $article): ?>
                         <tr>
                             <td><?php echo "Version " . $version_number++; ?></td>
                             <td><?php echo htmlspecialchars($article['title']); ?></td>
-                            <td><?php echo substr(nl2br ($article['content']), 0, 100) . '...'; ?>
-                            <a href="templateArtV.php?articleVID=<?php echo $article['id']; ?>" class="read-more">Voir plus</a>
+                            <td><?php echo substr(nl2br($article['content']), 0, 100) . '...'; ?>
+                                <a href="templateArtV.php?articleVID=<?php echo $article['id']; ?>" class="read-more">Voir plus</a>
                             </td>
                             <td><?php echo "Le " . date("d/m/Y", strtotime($article['created_at'])) . " à " . date("H:i", strtotime($article['created_at'])); ?></td>
                             <td><?php echo htmlspecialchars($article['creator_name']); ?></td>
