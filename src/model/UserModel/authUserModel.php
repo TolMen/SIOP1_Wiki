@@ -3,7 +3,7 @@
 /* 
 - Inclusion des fichiers nécessaire
 */
-require_once '../../control/BDDControl/connectBDD.php';
+include_once '../../control/BDDControl/connectBDD.php';
 
 class AuthUserModel {
 

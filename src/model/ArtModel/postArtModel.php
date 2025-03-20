@@ -3,7 +3,7 @@
 /* 
 - Inclusion des fichiers nécessaire
 */
-require_once 'src/control/BDDControl/connectBDD.php';
+include_once 'src/control/BDDControl/connectBDD.php';
 
 class ArtPostModel
 {
@@ -50,5 +50,26 @@ class ArtPostModel
         $query = $bdd->prepare('SELECT url FROM image WHERE article_id = :article_id LIMIT 1');
         $query->execute(['article_id' => $articleID]);
         return $query->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getArtVersionSpec(PDO $bdd, $articleVID)
+    {
+        $state = $bdd->prepare("SELECT article_version.*, user.username AS creator_name, 
+                        (SELECT username FROM user
+                        INNER JOIN article ON article.user_id = user.id 
+                        WHERE user.id = article.firstAuthor 
+                        AND article.id = article_version.article_id) AS first_author_name 
+                        FROM article_version 
+                        INNER JOIN user ON user.id = article_version.user_id 
+                        WHERE article_version.id = ?");
+        $state->execute(array($articleVID));
+        return $state->fetch();
+    }
+
+    public function getAllArt(PDO $bdd) {
+        $state = $bdd->prepare("SELECT article.id, article.title, article.created_at, article.updated_at, article_version.image_url FROM article
+LEFT JOIN article_version ON article_version.article_id = article.id ORDER BY created_at DESC");
+        $state->execute();
+        return $state->fetchAll();
     }
 }

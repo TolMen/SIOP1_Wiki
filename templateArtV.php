@@ -3,6 +3,7 @@ session_name("main");
 session_start();
 include_once 'src/control/BDDControl/connectBDD.php';
 include_once 'src/control/BDDControl/checkBanned.php';
+include_once 'src/model/ArtModel/postArtModel.php';
 
 // Récupérer l'ID de la version depuis l'URL
 $articleVID = intval($_GET['articleVID']);
@@ -15,16 +16,8 @@ if ($articleVID <= 0) {
 
 
 // Requête pour récupérer la version spécifique de l'article
-$state = $bdd->prepare("SELECT article_version.*, user.username AS creator_name, 
-                        (SELECT username FROM user
-                        INNER JOIN article ON article.user_id = user.id 
-                        WHERE user.id = article.firstAuthor 
-                        AND article.id = article_version.article_id) AS first_author_name 
-                        FROM article_version 
-                        INNER JOIN user ON user.id = article_version.user_id 
-                        WHERE article_version.id = ?");
-$state->execute(array($articleVID));
-$articleversion = $state->fetch();
+$infoVersionArtSpec = new ArtPostModel();
+$articleversion = $infoVersionArtSpec->getArtVersionSpec($bdd, $articleVID);
 
 // Vérifier si la version existe
 if (!$articleversion) {

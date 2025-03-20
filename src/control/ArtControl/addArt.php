@@ -6,9 +6,8 @@ session_start();
 /*
 - Inclusion des fichiers nécessaires
 */
-require_once '../../model/ArtModel/addArtModel.php';
-require_once '../../model/Services/ImageService.php'; // Compression de la taille des images
-include_once '../BDDControl/checkBanned.php';
+include_once '../../model/ArtModel/addArtModel.php';
+include_once '../../model/Services/ImageService.php'; // Compression de la taille des images
 
 if (isset($_POST['publishArticle'])) {
     /*
