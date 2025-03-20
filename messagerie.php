@@ -32,12 +32,15 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
         <div class="container">
             <?php foreach ($messages as $message) { ?>
                 <div class="row">
-                    <h5>De : <?php echo $message["name"]; ?></h5>
-                    <h6>Sujet : <?php echo $message["subject"]; ?></h6><br>
-                    <p><?php echo $message["message"]; ?></p>
+                    <h5>De : <?php echo htmlspecialchars($message["name"]); ?></h5>
+                    <h6><?php echo htmlspecialchars($message["email"]); ?></h6>
+                    <h6>Sujet : <?php echo htmlspecialchars($message["subject"]); ?></h6><br>
+                    <p><?php echo htmlspecialchars($message["message"]); ?></p>
                 </div>
             <?php } ?>
         </div>
+
+        
 
         <?php include 'src/component/footer.php'; ?>
     </body>
