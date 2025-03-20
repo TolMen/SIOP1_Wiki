@@ -5,7 +5,6 @@
 */
 require_once 'src/model/ArtModel/postArtModel.php';
 include_once 'src/control/BDDControl/connectBDD.php';
-include_once 'src/control/BDDControl/checkBanned.php';
 
 /*
 - Vérifie si l'id est passé dans l'URL

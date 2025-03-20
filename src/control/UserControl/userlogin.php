@@ -16,8 +16,6 @@ if ($user["id"]) {
     $_SESSION["userID"] = $user["id"];
     $_SESSION["userRole"] = $user["role"];
 
-    include("../BDDControl/checkBanned.php");
-
     if ($_SESSION["userRole"] == "admin") {
         header("Location: ../../../dashboard.php");
         exit;

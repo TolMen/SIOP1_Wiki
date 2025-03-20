@@ -3,7 +3,6 @@
 session_name("main");
 session_start();
 include_once '../BDDControl/connectBDD.php'; // $bdd
-include_once '../BDDControl/checkBanned.php'; // Vérification si l'utilisateur est banni
 include_once '../../model/UserModel/authUserModel.php';
 
 $username = htmlspecialchars($_POST["username"], ENT_QUOTES);

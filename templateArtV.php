@@ -2,7 +2,7 @@
 session_name("main");
 session_start();
 include_once 'src/control/BDDControl/connectBDD.php';
-include_once 'src/control/BDDControl/checkBanned.php';
+include_once 'checkBanned.php';
 include_once 'src/model/ArtModel/postArtModel.php';
 
 // Récupérer l'ID de la version depuis l'URL

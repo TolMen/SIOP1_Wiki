@@ -6,7 +6,6 @@
 require_once '../../model/ArtModel/updateArtModel.php';
 require_once '../../control/BDDControl/connectBDD.php';
 require_once '../../model/Services/ImageService.php';
-require_once '../../control/BDDControl/checkBanned.php';
 
 /*
 Initialise la classe
