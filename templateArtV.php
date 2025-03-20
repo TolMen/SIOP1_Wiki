@@ -2,7 +2,8 @@
 session_name("main");
 session_start();
 include_once 'src/control/BDDControl/connectBDD.php';
-include_once 'src/control/BDDControl/checkBanned.php';
+include_once 'checkBanned.php';
+include_once 'src/model/ArtModel/postArtModel.php';
 
 // Récupérer l'ID de la version depuis l'URL
 $articleVID = intval($_GET['articleVID']);
@@ -15,16 +16,8 @@ if ($articleVID <= 0) {
 
 
 // Requête pour récupérer la version spécifique de l'article
-$state = $bdd->prepare("SELECT article_version.*, user.username AS creator_name, 
-                        (SELECT username FROM user
-                        INNER JOIN article ON article.user_id = user.id 
-                        WHERE user.id = article.firstAuthor 
-                        AND article.id = article_version.article_id) AS first_author_name 
-                        FROM article_version 
-                        INNER JOIN user ON user.id = article_version.user_id 
-                        WHERE article_version.id = ?");
-$state->execute(array($articleVID));
-$articleversion = $state->fetch();
+$infoVersionArtSpec = new ArtPostModel();
+$articleversion = $infoVersionArtSpec->getArtVersionSpec($bdd, $articleVID);
 
 // Vérifier si la version existe
 if (!$articleversion) {
@@ -55,14 +48,14 @@ if (!$articleversion) {
 
     <!-- Section principale -->
     <div class="container mt-5">
-
+        <button class="btn btn-secondary w-15" onclick="history.back()">Retour</button>
         <h2 class="text-center mb-4 affichage">Version complète de l'article</h2>
 
         <div class="card shadow-sm p-4 version_content">
             <h3 class="card-title titre"><?php echo htmlspecialchars($articleversion['title']); ?></h3>
 
             <div class=" justify-content-between align-items-center">
-                <p><strong> 📝 Créé par  </strong> <?= htmlspecialchars($articleversion['first_author_name']); ?> <strong> le: 📅 </strong> <?php echo date("d/m/Y H:i", strtotime($articleversion['created_at'])); ?></p>
+                <p><strong> 📝 Créé par </strong> <?= htmlspecialchars($articleversion['first_author_name']); ?> <strong> le: 📅 </strong> <?php echo date("d/m/Y H:i", strtotime($articleversion['created_at'])); ?></p>
                 <p><strong>✏️ Modifié par:</strong> <?php echo htmlspecialchars($articleversion['creator_name']); ?></p>
             </div>
 

@@ -8,7 +8,7 @@ session_start();
 ob_start();
 include_once 'src/control/ArtControl/postArt.php';
 include_once 'src/control/BDDControl/connectBDD.php';
-include_once 'src/control/BDDControl/checkBanned.php';
+include_once 'checkBanned.php';
 ob_end_clean();
 ?>
 
@@ -40,7 +40,6 @@ ob_end_clean();
 
     <!-- Inclusion de la barre de navigation -->
     <?php include 'src/component/navbar.php' ?>
-
     <!-- Milieu de page -->
     <section class="infoArticle">
         <?php include 'src/control/ArtControl/postArt.php'; ?>

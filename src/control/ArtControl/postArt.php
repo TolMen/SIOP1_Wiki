@@ -5,7 +5,6 @@
 */
 require_once 'src/model/ArtModel/postArtModel.php';
 include_once 'src/control/BDDControl/connectBDD.php';
-include_once 'src/control/BDDControl/checkBanned.php';
 
 /*
 - Vérifie si l'id est passé dans l'URL
@@ -46,6 +45,7 @@ foreach ($articles as $article) {
     $dateToShow = !empty($article['updated_at']) ? $article['updated_at'] : $article['created_at'];
 ?>
     <div class="container mt-4">
+        <button class="btn btn-secondary w-15" onclick="history.back()">Retour</button>
         <div class="row">
             <div class="col-md-8 article-container">
                 <h2 class="title font-weight-bold border-bottom pb-4 text-center"> <?= htmlspecialchars($article['title']); ?> </h2>
@@ -59,7 +59,7 @@ foreach ($articles as $article) {
 
                 <div class="text-muted border-top pt-1">
                     <p class="mb-0 mt-2">✏️ Dernière modification par : <?= htmlspecialchars($userArticles['username'] ?? 'Aucune modification'); ?></p>
-                    <p class="mb-0">📅 En date du : <?= date("d/m/Y à h:i:s", strtotime($dateToShow)); ?></p>
+                    <p class="mb-0">📅 En date du : <?= date("d/m/Y à H:i:s", strtotime($dateToShow)); ?></p>
                     <p class="mb-0 mt-0">📝 Auteur d'origine : <?= htmlspecialchars($userFirstArticles['username']); ?></p>
                 </div>
 

@@ -2,14 +2,12 @@
 session_name("main");
 session_start();
 require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
-include_once 'src/control/BDDControl/checkBanned.php'; // Vérification si l'utilisateur est banni
-include_once 'src/model/ArtModel/postArtModel.php'; // Recupération de l'image de l'article
+include_once 'checkBanned.php'; // Vérification si l'utilisateur est banni
+include_once 'src/model/ArtModel/postArtModel.php';
 
 // Préparation la requête pour récupérer tous les articles
-$state = $bdd->prepare("SELECT article.id, article.title, article.created_at, article.updated_at, article_version.image_url FROM article
-LEFT JOIN article_version ON article_version.article_id = article.id ORDER BY created_at DESC");
-$state->execute();
-$articles = $state->fetchAll();
+$artPostModel = new ArtPostModel();
+$articles = $artPostModel->getAllArt($bdd);
 
 // Vérification que des articles sont récupérés
 if (empty($articles)) {
@@ -113,9 +111,9 @@ if (empty($articles)) {
                                 <h3><?php echo htmlspecialchars($article['title']); ?></h3>
                                 <span class="date">En date : 
                                     <?php if(empty($article['updated_at'])) {
-                                        echo date("d/m/Y à h:i:s", strtotime($article['created_at']));
+                                        echo date("d/m/Y à H:i:s", strtotime($article['created_at']));
                                     } else {
-                                        echo date("d/m/Y à h:i:s", strtotime($article['updated_at']));
+                                        echo date("d/m/Y à H:i:s", strtotime($article['updated_at']));
                                     } ?></span>
                                 <div class="article_choix">
                                     <a href="templateArt.php?articleID=<?php echo $article['id']; ?>" class="read-more">

@@ -2,32 +2,25 @@
 
 session_name("main");
 session_start();
-require_once 'src/control/BDDControl/connectBDD.php'; // $bdd
+include_once 'src/control/BDDControl/connectBDD.php'; // $bdd
+include_once 'src/model/UserModel/recupUserModel.php';
+include_once 'src/model/UserModel/banCheckUserModel.php';
 
 $id = !empty($_POST["id"]) ? htmlspecialchars($_POST["id"], ENT_QUOTES) : "%";
+
 $username = !empty($_POST["username"]) ? "%" . htmlspecialchars($_POST["username"] . "%", ENT_QUOTES) : "%";
+
 $role = !empty($_POST["role"]) ? htmlspecialchars($_POST["role"], ENT_QUOTES) : "%";
+
 $isBanned = !empty($_POST["isBanned"]) ? htmlspecialchars($_POST["isBanned"], ENT_QUOTES) : null;
 
 if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
-    $query = "SELECT user.id as userid, username, role, ban.id, ban.user_id FROM user LEFT JOIN ban ON ban.user_id = user.id WHERE user.id LIKE ? AND username LIKE ? AND role LIKE ?";
-
-    if ($isBanned == "True") {
-        $query = $query . " AND ban.id IS NOT NULL";
-    } elseif ($isBanned == "False") {
-        $query = $query . " AND ban.id IS NULL";
-    }
-
-    $query = $query . " ORDER BY userid LIMIT 50;";
-
-    $state = $bdd->prepare($query);
-    $state->execute(array($id, $username, $role));
-    $users = $state->fetchAll();
+    $recupUser = new RecupUserModel();
+    $users = $recupUser->getUserInfo($bdd, $isBanned, $id, $username, $role);
 } else {
     header("Location: javascript://history.go(-1)");
     exit;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -112,9 +105,8 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                                     <div class="modal-body">
                                         <!-- Intérieur -->
                                         <?php
-                                        $state = $bdd->prepare("SELECT * FROM ban WHERE user_id = ? ORDER BY start_date LIMIT 1");
-                                        $state->execute(array($user["user_id"]));
-                                        $ban = $state->fetch();
+                                        $infoUserBan = new banCheckUserModel();
+                                        $ban = $infoUserBan->getInfoUserBan($bdd, $user["userid"]);
 
                                         // Si ban def
                                         if (empty($ban["end_date"])) { ?>
