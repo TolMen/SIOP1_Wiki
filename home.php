@@ -111,7 +111,12 @@ if (empty($articles)) {
                             <!-- <img src="<?php echo !empty($article['image_url']) ? htmlspecialchars($article['image_url']) : 'assets/img/section1background.jpg'; ?>" alt="Image de l'article"> -->
                             <div class="content">
                                 <h3><?php echo htmlspecialchars($article['title']); ?></h3>
-                                <span class="date">Publiée le <?php echo date("d/m/Y à h:i:s", strtotime($article['created_at'])); ?></span>
+                                <span class="date">En date : 
+                                    <?php if(empty($article['updated_at'])) {
+                                        echo date("d/m/Y à h:i:s", strtotime($article['created_at']));
+                                    } else {
+                                        echo date("d/m/Y à h:i:s", strtotime($article['updated_at']));
+                                    } ?></span>
                                 <div class="article_choix">
                                     <a href="templateArt.php?articleID=<?php echo $article['id']; ?>" class="read-more">
                                         Continuer la lecture
