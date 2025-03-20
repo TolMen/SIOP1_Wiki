@@ -13,7 +13,6 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
     exit;
 }
 
-
 ?>
 
 <!DOCTYPE html>
@@ -45,17 +44,19 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                         <div class="modal-content">
                             <div class="modal-header">
                                 <div class="modal-title fs-5">
-                                    <h5>De : <?php echo htmlspecialchars($message["name"]); ?> (<?php echo htmlspecialchars($message["email"]); ?>)</h5>
+                                    <h5>De : <?php echo htmlspecialchars($message["name"]); ?>
+                                        (<?php echo htmlspecialchars($message["email"]); ?>)</h5>
                                     <h6>Sujet : <?php echo htmlspecialchars($message["subject"]); ?></h6>
                                 </div>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Fermer"></button>
                             </div>
                             <div class="modal-body">
                                 <p><?php echo htmlspecialchars($message["message"]); ?></p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                <button type="button" class="btn btn-danger" onclick="">Supprimer</button>
+                                <button type="button" class="btn btn-danger" onclick="window.location.href = './src/control/BDDControl/deleteMessage.php?id=<?php echo $message['id']?>';">Supprimer</button>
                             </div>
                         </div>
                     </div>
@@ -64,5 +65,5 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
         </div>
         <?php include 'src/component/footer.php'; ?>
     </body>
-
 </html>
+
