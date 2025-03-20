@@ -2,7 +2,7 @@
 $current_page = basename($_SERVER['PHP_SELF']); // Récupère uniquement le nom du fichier actuel
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top mb-3">
     <div class="container-fluid">
         <span class="navbar-brand"></i> Civilipédia</span>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

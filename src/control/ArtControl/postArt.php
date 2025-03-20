@@ -59,13 +59,15 @@ foreach ($articles as $article) {
 
                 <div class="text-muted border-top pt-1">
                     <p class="mb-0 mt-2">✏️ Dernière modification par : <?= htmlspecialchars($userArticles['username'] ?? 'Aucune modification'); ?></p>
-                    <p class="mb-0">📅 En date du : <?= date("d/m/Y à h:m:s", strtotime($dateToShow)); ?></p>
+                    <p class="mb-0">📅 En date du : <?= date("d/m/Y à h:i:s", strtotime($dateToShow)); ?></p>
                     <p class="mb-0 mt-0">📝 Auteur d'origine : <?= htmlspecialchars($userFirstArticles['username']); ?></p>
                 </div>
 
                 <div class="mt-2">
                     <a href="historique.php?articleID=<?php echo $article['id']; ?>" class="btn btn-outline-primary btn-sm">Historique</a>
-                    <a href="updateArt.php?articleID=<?php echo $postArtId; ?>" class="btn btn-outline-secondary btn-sm">Modification</a>
+                    <?php if(isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'admin') { ?>
+                        <a href="updateArt.php?articleID=<?php echo $postArtId; ?>" class="btn btn-outline-secondary btn-sm">Modification</a>
+                    <?php } ?>
                 </div>
             </div>
 

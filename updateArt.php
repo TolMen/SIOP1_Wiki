@@ -35,6 +35,7 @@ if (isset($_GET['articleID'])) {
 <head>
     <!-- Inclusion des balise meta -->
     <?php include 'src/component/head.php'; ?>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
 
     <title>Modification d'article</title>
 </head>
@@ -58,8 +59,9 @@ if (isset($_GET['articleID'])) {
                     </div>
                     <!-- Contenu -->
                     <div class="mb-3">
-                        <label class="form-label">Contenu</label>
-                        <textarea class="form-control" id="content" name="content" rows="5" autocomplete="off" required><?php echo $articleAncien['content']; ?></textarea>
+                        <label for="editor" class="form-label">Contenu *</label>
+                        <div id="editor" style="height: 100px;" required><?php echo $articleAncien['content']; ?></div>
+                        <input type="hidden" id="hidden-content" name="content">
                     </div>
                     <div class="mb-3">
                         <label for="images" class="form-label">Nouvelle image (Non obligatoire)</label>
@@ -82,40 +84,19 @@ if (isset($_GET['articleID'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+
+    <!-- Initialize Quill editor -->
     <script>
-        tinymce.init({
-            selector: 'textarea',
-            plugins: [
-                // Core editing features
-                'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
-                // Your account includes a free trial of TinyMCE premium features
-                // Try the most popular premium features until Feb 14, 2025:
-                'checklist', 'mediaembed', 'casechange', 'export', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown', 'importword', 'exportword', 'exportpdf'
-            ],
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
-            mergetags_list: [{
-                    value: 'First.Name',
-                    title: 'First Name'
-                },
-                {
-                    value: 'Email',
-                    title: 'Email'
-                },
-            ],
-            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
-            setup: function(editor) {
-                editor.on('change', function() {
-                    tinymce.triggerSave();
-                });
-            }
+        const quill = new Quill('#editor', {
+            theme: 'snow'
         });
 
-        // Ajout d'un event listener pour le formulaire
-        document.querySelector("form").addEventListener("submit", function() {
-            tinymce.triggerSave();
-        });
+        var form = document.querySelector('form');
+        form.onsubmit = function() {
+            var hiddenContent = document.querySelector('input[name=content]');
+            hiddenContent.value = quill.root.innerHTML; // Récupère le contenu en HTML
+        };
     </script>
 </body>
 
