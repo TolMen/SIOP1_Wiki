@@ -87,8 +87,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                                 Mis à jour le :
                                 <?php 
                                 echo !empty($article["updated_at"]) ? date("d/m/Y", strtotime($article["updated_at"])) : date("d/m/Y", strtotime($article["created_at"])); 
-                                ?>
-<br>
+                                ?><br>
                                 <a href="templateArt.php?articleID=<?php echo $article["id"] ?>">Lien de l'article</a><br>
                             </div>
                             <div class="modal-footer"></div>
@@ -102,7 +101,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
 
             <!-- Code pour supprimer un article -->
             <div class="userCase col-1">
-                <div><img src="assets/img/delete.png" alt="+" data-bs-toggle="modal" data-bs-target="#delete<?php echo $article["id"]; ?>" style="cursor: pointer; width: 40px;"></div>
+                <div><img src="assets/svg/trash.svg" alt="+" data-bs-toggle="modal" data-bs-target="#delete<?php echo $article["id"]; ?>" style="cursor: pointer; width: 40px;"></div>
                 <div class="modal fade" id="delete<?php echo $article["id"]; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
