@@ -107,8 +107,9 @@ if (empty($articles)) {
                         $imageUrl = $imageData['url'] ?? 'assets/img/section1background.jpg'; //  Image par défaut
                     ?>
                         <div class="article-card">
-                            <img src="<?= htmlspecialchars($imageUrl) ?>" alt="Image de l'article">
-                            <!-- <img src="<?php echo !empty($article['image_url']) ? htmlspecialchars($article['image_url']) : 'assets/img/section1background.jpg'; ?>" alt="Image de l'article"> -->
+                            <div class="image_contenu">
+                                <img src="<?= htmlspecialchars($imageUrl) ?>" alt="Image de l'article">
+                            </div>
                             <div class="content">
                                 <h3><?php echo htmlspecialchars($article['title']); ?></h3>
                                 <span class="date">Publiée le <?php echo date("d/m/Y à h:m:s", strtotime($article['created_at'])); ?></span>
@@ -132,6 +133,16 @@ if (empty($articles)) {
             </div>
 
 
+        </section>
+
+        <section class="civilization-section">
+            <div class="container">
+                <h2>🌍 Découvrez les Civilisations du Monde 🏛️</h2>
+                <p class="quote">
+                    "Une civilisation se mesure à ce qu'elle laisse à ses descendants."
+                </p>
+                <a href="contact.php" class="explore-btn">Contactez nous</a>
+            </div>
         </section>
 
 
