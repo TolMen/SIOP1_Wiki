@@ -206,7 +206,8 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                                                             action="src/control/UserControl/sanction.php?user_id=<?php echo $user["userid"] ?>&method=ban">
                                                             <label>
                                                                 <h5>Voulez-vous bannir temporairement
-                                                                    <?php echo $user["username"] ?> ?</h5>
+                                                                    <?php echo $user["username"] ?> ?
+                                                                </h5>
                                                             </label><br><br>
                                                             <label for="ReasonID">Raison :</label><br>
                                                             <input class="inputReason" type="text" id="ReasonID"
@@ -255,7 +256,8 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                                                                             action="src/control/UserControl/sanction.php?user_id=<?php echo $user["userid"] ?>&method=unban">
                                                                             <label>
                                                                                 <h5>Voulez-vous débannir
-                                                                                    <?php echo $user["username"] ?> ?</h5>
+                                                                                    <?php echo $user["username"] ?> ?
+                                                                                </h5>
                                                                             </label><br><br>
                                                                             <input class="buttonSubmit" type="submit"
                                                                                 value="Débannir" />

@@ -23,8 +23,7 @@ if (empty($user["username"])) {
     $_SESSION["userRole"] = $user["role"];
     header("Location: ../../../home.php");
     exit;
-}
-else {
+} else {
     // Sinon invalid
     header("Location: ../../../register.php?invalid=True");
 }
