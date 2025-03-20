@@ -147,7 +147,7 @@ else {
 
                                     <input class="buttonSubmit" type="submit" value="Bannir"/>
                                 </form>
-                        <?php } else {?>
+                        <?php } else { ?>
                             <div class="col-3"><img src="assets/img/nobandef.png" style="width: 40px;"></div><div><div class="modal-dialog"><div class="modal-content"><div class="modal-header">
                         <?php } ?>
                             </div><div class="modal-footer"></div></div></div></div>
@@ -168,7 +168,7 @@ else {
 
                                     <input class="buttonSubmit" type="submit" value="Bannir"/>
                                 </form>
-                        <?php } else {?>
+                        <?php } else { ?>
                             <div class="col-3"><img src="assets/img/nobantemp.png" style="width: 40px;"></div><div><div class="modal-dialog"><div class="modal-content"><div class="modal-header">
                         <?php } ?>
                             </div><div class="modal-footer"></div></div></div></div>
@@ -183,7 +183,7 @@ else {
                                     <label><h5>Voulez-vous débannir <?php echo $user["username"] ?> ?</h5></label><br><br>
                                     <input class="buttonSubmit" type="submit" value="Débannir"/>
                                 </form>
-                        <?php } else {?>
+                        <?php } else { ?>
                             <div class="col-3"><img src="assets/img/nounban.png" style="width: 40px;"></div><div><div class="modal-dialog"><div class="modal-content"><div class="modal-header">
                         <?php } ?>
                             </div><div class="modal-footer"></div></div></div></div>
