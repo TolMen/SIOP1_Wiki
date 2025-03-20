@@ -58,5 +58,4 @@ class UpdateArticleModel
         $stmt = $bdd->prepare($insertImage);
         return $stmt->execute([$newImageUrl, $articleId]);
     }
-
 }

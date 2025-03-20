@@ -3,6 +3,8 @@
 session_name("main");
 session_start();
 require_once 'src/control/BDDControl/connectBDD.php'; // $bdd
+require_once 'src/model/ArtModel/getArtModel.php'; 
+
 
 $id = !empty($_POST["id"]) ? htmlspecialchars($_POST["id"], ENT_QUOTES) : "%";
 $title = !empty($_POST["title"]) ? "%" . htmlspecialchars($_POST["title"] . "%", ENT_QUOTES) : "%";
@@ -10,9 +12,8 @@ $content = !empty($_POST["content"]) ? "%" . htmlspecialchars($_POST["content"] 
 $user_id = !empty($_POST["user_id"]) ? htmlspecialchars($_POST["user_id"], ENT_QUOTES) : "%";
 
 if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
-    $query = $bdd->prepare("SELECT id, title, user_id, created_at, updated_at FROM article WHERE id LIKE ? AND title LIKE ? AND content LIKE ? AND user_id LIKE ? ORDER BY id LIMIT 50");
-    $query->execute(array($id, $title, $content, $user_id));
-    $articles = $query->fetchAll();
+    $getArcticleModel = new GetArtModel();
+    $articles = $getArticleModel->getFiltredArticles($bdd, $id, $title, $content, $user_id);
 } else {
     header("Location: javascript://history.go(-1)");
     exit;

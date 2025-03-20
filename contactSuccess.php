@@ -3,19 +3,27 @@
 session_name("main");
 session_start();
 require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
-include_once 'checkBanned.php'; // Vérification si l'utilisateur est banni
+include_once 'src/control/BDDControl/checkBanned.php'; // Vérification si l'utilisateur est banni
+require_once 'src/model/ContactModel/getContactSuccess.php';
 
 $name = htmlspecialchars($_POST["name"], ENT_QUOTES);
 $email = htmlspecialchars($_POST["email"], ENT_QUOTES);
 $subject = htmlspecialchars($_POST["subject"], ENT_QUOTES);
 $message = htmlspecialchars($_POST["message"], ENT_QUOTES);
 
-$state = $bdd->prepare("INSERT INTO contact(name, email, subject, message) VALUES (?, ?, ?, ?)");
-$state->execute([$name, $email, $subject, $message]);
 
-$recup = $bdd->prepare("SELECT name, email, subject, message FROM contact WHERE name = ? AND email = ? AND subject = ? AND message = ?");
-$recup->execute([$name, $email, $subject, $message]);
-$resultatsforms = $recup->fetch();
+    
+    $getInsertinto = new getContactSuccess() ;
+    $success= $getInsertinto->getInsert($bdd, $name, $email, $subject, $message) ;
+
+    $getInformation = new getContactSuccess();
+    $resultatsforms = $getInformation->getInfo($bdd, $name, $email, $subject, $message);
+
+} else {
+    echo "Aucun résultat";
+    exit;
+}
+
 
 
 
@@ -23,7 +31,6 @@ $resultatsforms = $recup->fetch();
 
 <!DOCTYPE html>
 <html lang="fr">
-
     <head>
         <?php include 'src/component/head.php'; ?>
         <link rel="stylesheet" href="css/contactSuccessStyle.css" />

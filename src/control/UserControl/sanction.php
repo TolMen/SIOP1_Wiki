@@ -3,6 +3,9 @@
 session_name("main");
 session_start();
 require_once '../BDDControl/connectBDD.php'; // $bdd
+require_once '../../model/SanctionModel/getSanctionModel.php';
+// require_once 'src/model/SanctionModel/getSanctionModel.php';
+
 
 if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
     header("Location: javascript://history.go(-1)");
@@ -25,13 +28,19 @@ else {
 }
 
 if ($method == "ban") {
-    $state = $bdd->prepare("INSERT INTO ban (reason, start_date, end_date, user_id) VALUES (?, NOW(), ?, ?)");
-    $state->execute(array($reason, $end_date, $user_id));
+    // $state = $bdd->prepare("INSERT INTO ban (reason, start_date, end_date, user_id) VALUES (?, NOW(), ?, ?)");
+    // $state->execute(array($reason, $end_date, $user_id));
+    $getAreBan = new getSanctionModel() ;
+    $ban= $getAreBan->getBan($bdd, $reason, $end_date, $user_id) ;
 }
 
 if ($method == "unban") {
-    $state = $bdd->prepare("DELETE FROM ban WHERE user_id = ?");
-    $state->execute(array($user_id));
+    // $state = $bdd->prepare("DELETE FROM ban WHERE user_id = ?");
+    // $state->execute(array($user_id));
+   
+
+    $getIsUnban = new getSanctionModel();
+    $unban = $getIsUnban->getUnban($bdd, $user_id);
 }
 
 header("Location: ../../../user_list.php");
