@@ -2,15 +2,15 @@
 
 session_name("main");
 session_start();
-require_once '../BDDControl/connectBDD.php'; // $bdd
+include_once '../BDDControl/connectBDD.php'; // $bdd
+include_once '../../model/UserModel/authUserModel.php';
 
 $username = htmlspecialchars($_POST["username"], ENT_QUOTES);
 $password = htmlspecialchars($_POST["password"], ENT_QUOTES);
 
-// Vérification du login si existant
-$state = $bdd->prepare("SELECT id, username, password, role FROM user WHERE username = ? AND password = SHA2(?, 256)");
-$state->execute(array($username, $password));
-$user = $state->fetch();
+$authUser = new authUserModel();
+// Récupération des informations de l'utilisateur
+$user = $authUser->getUserInfo($bdd, $username, $password);
 
 if ($user["id"]) {
     $_SESSION["userID"] = $user["id"];

@@ -2,23 +2,26 @@
 
 session_name("main");
 session_start();
-require_once '../BDDControl/connectBDD.php'; // $bdd
-include '../BDDControl/checkBanned.php'; // Vérification si l'utilisateur est banni
+include_once '../BDDControl/connectBDD.php'; // $bdd
+include_once '../BDDControl/checkBanned.php'; // Vérification si l'utilisateur est banni
+include_once '../../model/UserModel/authUserModel.php';
+
 $username = htmlspecialchars($_POST["username"], ENT_QUOTES);
 $password = htmlspecialchars($_POST["password"], ENT_QUOTES);
 
 // Vérification du login si existant
-$state = $bdd->prepare("SELECT username FROM user WHERE username = ?");
-$state->execute(array($username));
-$user = $state->fetch();
+$authUser = new authUserModel();
+$verifLogin = $authUser->getLoginExist($bdd, $username);
 
 // Si l'utilisateur n'existe pas
 if (empty($user["username"])) {
-    $state = $bdd->prepare("INSERT INTO user (username, password, role) VALUES (?, SHA2(?, 256), 'user')");
-    $state->execute(array($username, $password));
-    $state = $bdd->prepare("SELECT id, username, password, role FROM user WHERE username = ? AND password = SHA2(?, 256)");
-    $state->execute(array($username, $password));
-    $user = $state->fetch();
+    // Insertion de l'utilisateur
+    $authUser->insertUser($bdd, $username, $password);
+
+    // Récupération des informations de l'utilisateur
+    $user = $authUser->getUserInfo($bdd, $username, $password);
+
+    
     $_SESSION["userID"] = $user["id"];
     $_SESSION["userRole"] = $user["role"];
     header("Location: ../../../home.php");
