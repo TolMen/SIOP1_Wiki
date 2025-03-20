@@ -19,7 +19,6 @@ h1 {
     padding-top: 20px;
     border-radius: 5px;
     width: 250px;
-    overflow: hidden
 }
 
 .row:hover {
@@ -35,3 +34,20 @@ h1 {
 .row:active {
     background-color: rgb(150, 150, 150);
 }
+
+.modal-title {
+    display: flex;
+    flex-direction: column;
+}
+
+.message-overflow {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.modal-body p {
+    overflow-wrap: break-word;
+}
+
+
