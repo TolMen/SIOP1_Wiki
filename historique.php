@@ -49,7 +49,7 @@ $articlesversion = $state->fetchAll();
                         <tr>
                             <td><?php echo "Version " . $version_number++; ?></td>
                             <td><?php echo htmlspecialchars($article['title']); ?></td>
-                            <td><?php echo substr(htmlspecialchars($article['content']), 0, 100) . '...'; ?>
+                            <td><?php echo substr(nl2br ($article['content']), 0, 100) . '...'; ?>
                             <a href="templateArtV.php?articleVID=<?php echo $article['id']; ?>" class="read-more">Voir plus</a>
                             </td>
                             <td><?php echo "Le " . date("d/m/Y", strtotime($article['created_at'])) . " à " . date("H:i", strtotime($article['created_at'])); ?></td>
