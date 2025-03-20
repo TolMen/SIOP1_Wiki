@@ -35,7 +35,7 @@ include_once 'src/control/BDDControl/checkBanned.php'; // Vérification si l'uti
                     <div>
                         <form action="contactSuccess.php" method="post">
                             <label for="name">Nom :</label>
-                            <input type="text" id="name" name="name" placeholder="Votre nom" minlength="2" maxlength="15" pattern="[a-z0-9._]{2,15}" required />
+                            <input type="text" id="name" name="name" placeholder="Votre nom" minlength="2" maxlength="15" pattern="[A-Za-z0-9._]{2,15}" required />
 
                             <label for="email">Email :</label>
                             <input type="email" id="email" name="email" placeholder="Votre email" required />

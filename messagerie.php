@@ -28,15 +28,13 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
 
     <body>
         <!-- <?php include 'src/component/navbar.php'; ?> -->
+        <h1>Messagerie</h1>
         <div class="container">
             <?php foreach ($messages as $message) { ?>
                 <div class="row">
-                    <div class="message">
-                        <h4>De : <?php echo $message["name"]; ?></h4>
-                        <h6>Email : <?php echo $message["email"]; ?></h6>
-                        <h6>Sujet : <?php echo $message["subject"]; ?></h6><br>
-                        <p><?php echo $message["message"]; ?></p>
-                    </div>
+                    <h5>De : <?php echo $message["name"]; ?></h5>
+                    <h6>Sujet : <?php echo $message["subject"]; ?></h6><br>
+                    <p><?php echo $message["message"]; ?></p>
                 </div>
             <?php } ?>
         </div>
