@@ -2,7 +2,7 @@
 
 session_name("main");
 session_start();
-include_once 'src/control/BDDControl/checkBanned.php';
+include_once 'checkBanned.php';
 
 ?>
 

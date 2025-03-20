@@ -2,32 +2,25 @@
 
 session_name("main");
 session_start();
-require_once 'src/control/BDDControl/connectBDD.php'; // $bdd
+include_once 'src/control/BDDControl/connectBDD.php'; // $bdd
+include_once 'src/model/UserModel/recupUserModel.php';
+include_once 'src/model/UserModel/banCheckUserModel.php';
 
 $id = !empty($_POST["id"]) ? htmlspecialchars($_POST["id"], ENT_QUOTES) : "%";
+
 $username = !empty($_POST["username"]) ? "%" . htmlspecialchars($_POST["username"] . "%", ENT_QUOTES) : "%";
+
 $role = !empty($_POST["role"]) ? htmlspecialchars($_POST["role"], ENT_QUOTES) : "%";
+
 $isBanned = !empty($_POST["isBanned"]) ? htmlspecialchars($_POST["isBanned"], ENT_QUOTES) : null;
 
 if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
-    $query = "SELECT user.id as userid, username, role, ban.id, ban.user_id FROM user LEFT JOIN ban ON ban.user_id = user.id WHERE user.id LIKE ? AND username LIKE ? AND role LIKE ?";
-
-    if ($isBanned == "True") {
-        $query = $query . " AND ban.id IS NOT NULL";
-    } elseif ($isBanned == "False") {
-        $query = $query . " AND ban.id IS NULL";
-    }
-
-    $query = $query . " ORDER BY userid LIMIT 50;";
-
-    $state = $bdd->prepare($query);
-    $state->execute(array($id, $username, $role));
-    $users = $state->fetchAll();
+    $recupUser = new RecupUserModel();
+    $users = $recupUser->getUserInfo($bdd, $isBanned, $id, $username, $role);
 } else {
     header("Location: javascript://history.go(-1)");
     exit;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -82,8 +75,11 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
             <div class="col-1"></div>
             <div class="UserCase active col-3">Option de modération</div>
             <?php
-            foreach ($users as $user) { ?>
-                <div class="userCase col-6">
+            foreach ($users as $user) { 
+                // Vérifier si l'utilisateur est banni
+                $isBannedClass = $user["user_id"] ? "banned" : "";
+            ?>
+                <div class="userCase col-6 <?php echo $isBannedClass; ?>">
                     <!-- ID -->
                     <div class="col-3"><?php echo $user["userid"] ?></div>
                     <!-- Username -->
@@ -95,8 +91,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                         <div class="col-3">Administrateur</div>
                     <?php } ?>
                     <!-- IsBanned -->
-                    <?php
-                    if ($user["user_id"]) { ?>
+                    <?php if ($user["user_id"]) { ?>
                         <div class="col-3">&nbsp;&nbsp;Oui<img src="assets/img/eye_popup.png" alt="+" data-bs-toggle="modal"
                                 data-bs-target="#imagePopup<?php echo $user["userid"]; ?>"
                                 style="cursor: pointer; width: 15px;"></div>
@@ -112,9 +107,8 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                                     <div class="modal-body">
                                         <!-- Intérieur -->
                                         <?php
-                                        $state = $bdd->prepare("SELECT * FROM ban WHERE user_id = ? ORDER BY start_date LIMIT 1");
-                                        $state->execute(array($user["user_id"]));
-                                        $ban = $state->fetch();
+                                        $infoUserBan = new banCheckUserModel();
+                                        $ban = $infoUserBan->getInfoUserBan($bdd, $user["userid"]);
 
                                         // Si ban def
                                         if (empty($ban["end_date"])) { ?>
@@ -206,7 +200,8 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                                                             action="src/control/UserControl/sanction.php?user_id=<?php echo $user["userid"] ?>&method=ban">
                                                             <label>
                                                                 <h5>Voulez-vous bannir temporairement
-                                                                    <?php echo $user["username"] ?> ?</h5>
+                                                                    <?php echo $user["username"] ?> ?
+                                                                </h5>
                                                             </label><br><br>
                                                             <label for="ReasonID">Raison :</label><br>
                                                             <input class="inputReason" type="text" id="ReasonID"
@@ -255,7 +250,8 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                                                                             action="src/control/UserControl/sanction.php?user_id=<?php echo $user["userid"] ?>&method=unban">
                                                                             <label>
                                                                                 <h5>Voulez-vous débannir
-                                                                                    <?php echo $user["username"] ?> ?</h5>
+                                                                                    <?php echo $user["username"] ?> ?
+                                                                                </h5>
                                                                             </label><br><br>
                                                                             <input class="buttonSubmit" type="submit"
                                                                                 value="Débannir" />

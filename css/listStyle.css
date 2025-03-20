@@ -79,3 +79,7 @@ img {
     border: solid 2px black;
     border-radius: 50px;
 }
+
+.userCase.banned {
+    background: rgba(255, 50, 50, 0.5);
+}

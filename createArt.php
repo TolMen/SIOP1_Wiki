@@ -6,7 +6,7 @@ if (empty($_SESSION['userID'])) {
     exit;
 }
 include_once 'src/control/BDDControl/connectBDD.php';
-include_once 'src/control/BDDControl/checkBanned.php';
+include_once 'checkBanned.php';
 
 ?>
 
@@ -49,10 +49,11 @@ include_once 'src/control/BDDControl/checkBanned.php';
                         <label for="datePublication" class="form-label">Date de publication *</label>
                         <input type="date" id="createdAt" name="createdAt" value="<?php echo date('Y-m-d'); ?>" class=" form-control" required>
                     </div>
-                    <div class="text-center">
-                        <button type="submit" name="publishArticle" class="btn btn-primary">
+                    <div class="text-left">
+                        <button type="submit" name="publishArticle" class="btn btn-primary w-30">
                             <i class="fas fa-paper-plane me-2"></i>Publier l'article
                         </button>
+                        <a href="home.php" class="btn btn-danger w-15">Annuler</a>
                     </div>
                 </form>
             </div>
