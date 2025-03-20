@@ -43,7 +43,7 @@ include_once 'src/control/BDDControl/checkBanned.php';
                     </div>
                     <div class="mb-3">
                         <label for="images" class="form-label">Images *</label>
-                        <input type="file" id="images" name="images" class="form-control">
+                        <input type="file" id="images" name="images" class="form-control" required>
                     </div>
                     <div class="mb-3">
                         <label for="datePublication" class="form-label">Date de publication *</label>
