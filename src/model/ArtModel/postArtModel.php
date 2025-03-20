@@ -67,8 +67,7 @@ class ArtPostModel
     }
 
     public function getAllArt(PDO $bdd) {
-        $state = $bdd->prepare("SELECT article.id, article.title, article.created_at, article.updated_at, article_version.image_url FROM article
-LEFT JOIN article_version ON article_version.article_id = article.id ORDER BY created_at DESC");
+        $state = $bdd->prepare("SELECT * FROM article ORDER BY id DESC");
         $state->execute();
         return $state->fetchAll();
     }
