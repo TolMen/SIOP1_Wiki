@@ -59,11 +59,11 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                     </a>
                 </div>
                 <div class="col-md-4">
-                    <a href="contact.php" class="card-link">
+                    <a href="messagerie.php" class="card-link">
                         <div class="card dashboard-card logout-card">
                             <div class="card-body text-center">
                                 <i class="fas fa-address-book fa-3x"></i>
-                                <h5 class="card-title mt-3">Contact</h5>
+                                <h5 class="card-title mt-3">Messagerie</h5>
                             </div>
                         </div>
                     </a>
