@@ -41,6 +41,10 @@ body {
     border-radius: 10px;
 }
 
+img {
+    border-radius: 25%;
+}
+
 .active {
     background: white;
     min-height: 50px;

@@ -14,9 +14,13 @@
     font-family: "Poppins", sans-serif;
 }
 
+body {
+    padding-top: 40px;
+}
+
 /* Navbar */
 
 .navbar-nav .nav-link.active {
     font-weight: bold;
-    color: red !important;
+    color: black !important;
 }
