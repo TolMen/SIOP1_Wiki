@@ -29,7 +29,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
     </head>
 
     <body>
-        <!-- <?php include 'src/component/navbar.php'; ?> -->
+        <?php require_once 'src/component/navbar.php' ?>
         <h1>Messagerie</h1>
         <div class="container">
             <?php foreach ($messages as $message) { ?>
