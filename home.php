@@ -95,44 +95,51 @@ if (empty($articles)) {
                 </form>
             </div>
 
-            <div id="list_art">
-                <div class="articles-grid">
+            <div class="container">
+                <div class="row">
+
                     <?php
                     foreach ($articles as $article) {
                         $artPostModel = new ArtPostModel();
                         $imageData = $artPostModel->getArticleImage($bdd, $article['id']);
                         $imageUrl = $imageData['url'] ?? 'assets/img/civilisation.png'; //  Image par défaut
                     ?>
-                        <div class="article-card">
-                            <div class="image_contenu">
-                                <img src="<?= htmlspecialchars($imageUrl) ?>" alt="Image de l'article">
-                            </div>
-                            <div class="content">
-                                <h3><?php echo htmlspecialchars($article['title']); ?></h3>
-                                <span class="date">En date :
-                                    <?php if (empty($article['updated_at'])) {
-                                        echo date("d/m/Y à H:i", strtotime($article['created_at']));
-                                    } else {
-                                        echo date("d/m/Y à H:i", strtotime($article['updated_at']));
-                                    } ?></span>
-                                <div class="article_choix">
-                                    <a href="templateArt.php?articleID=<?php echo $article['id']; ?>" class="read-more">
-                                        Continuer la lecture
-                                    </a>
-                                    <?php if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] === "admin") { ?>
-                                        <a href="src/control/ArtControl/deleteArt.php?articleID=<?php echo $article['id']; ?>">
-                                            <i class="fa-solid fa-trash" title="Supprimer l'article" style="color: red;"></i>
-                                        </a>
-                                    <?php   } ?>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="article-card">
+                                <div class="image_contenu">
+                                    <img src="<?= htmlspecialchars($imageUrl) ?>" alt="Image de l'article">
                                 </div>
-                                <a href="historique.php?articleID=<?php echo $article['id']; ?>" class="read-morehistorique">Voir l'historique</a>
+                                <div class="content ">
+                                    <h3><?php echo htmlspecialchars($article['title']); ?></h3>
+                                    <span class="date">En date :
+                                        <?php if (empty($article['updated_at'])) {
+                                            echo date("d/m/Y à H:i", strtotime($article['created_at']));
+                                        } else {
+                                            echo date("d/m/Y à H:i", strtotime($article['updated_at']));
+                                        } ?></span>
+                                    <div class="article_choix">
+                                        <a href="templateArt.php?articleID=<?php echo $article['id']; ?>" class="read-more">
+                                            Continuer la lecture
+                                        </a>
+                                        <?php if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] === "admin") { ?>
+                                            <a href="src/control/ArtControl/deleteArt.php?articleID=<?php echo $article['id']; ?>">
+                                                <i class="fa-solid fa-trash" title="Supprimer l'article" style="color: red;"></i>
+                                            </a>
+                                        <?php   } ?>
+                                    </div>
+                                    <a href="historique.php?articleID=<?php echo $article['id']; ?>" class="read-morehistorique">Voir l'historique</a>
+                                </div>
                             </div>
                         </div>
                     <?php
+
                     }
                     ?>
+
                 </div>
             </div>
+
+
 
 
         </section>
