@@ -165,7 +165,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                                                 <h5>Voulez-vous bannir <?php echo $user["username"] ?> ?</h5>
                                             </label><br><br>
                                             <label for="ReasonID">Raison :</label><br>
-                                            <input class="inputReason" type="text" id="ReasonID" name="reason" /><br>
+                                            <input class="inputReason" type="text" id="ReasonID" name="reason" required /><br>
 
                                             <input class="buttonSubmit" type="submit" value="Bannir" />
                                         </form>
@@ -208,11 +208,12 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                                                                 </h5>
                                                             </label><br><br>
                                                             <label for="ReasonID">Raison :</label><br>
-                                                            <input class="inputReason" type="text" id="ReasonID"
-                                                                name="reason" /><br>
+                                                            <input class="inputReason" type="text" id="ReasonID" name="reason"
+                                                                required /><br>
 
                                                             <label for="end_dateID">Fin :</label>
-                                                            <input type="date" id="end_dateID" name="end_date" /><br><br>
+                                                            <input type="date" id="end_dateID" name="end_date"
+                                                                required /><br><br>
 
                                                             <input class="buttonSubmit" type="submit" value="Bannir" />
                                                         </form>
