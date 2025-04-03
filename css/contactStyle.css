@@ -38,7 +38,7 @@ label {
 #presentation_section {
     flex: 1;
     place-content: center;
-    background-image: url("../assets/img/bg_contact2.jpg");
+    background-image: url("../assets/img/bg-contact3.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
