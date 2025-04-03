@@ -7,7 +7,11 @@ body > * {
 }
 
 body {
-    background: rgba(220, 220, 220, 0.60);
+    background-image: url(../assets/img/background-liste.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
 }
 
 .userList > * {
@@ -20,6 +24,7 @@ body {
 }
 
 .queryUsers {
+    margin-top: 15px;
     background: white;
     min-height: 50px;
     border: rgba(0, 0, 0);

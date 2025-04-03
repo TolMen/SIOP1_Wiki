@@ -12,7 +12,7 @@ $content = !empty($_POST["content"]) ? "%" . htmlspecialchars($_POST["content"] 
 $user_id = !empty($_POST["user_id"]) ? htmlspecialchars($_POST["user_id"], ENT_QUOTES) : "%";
 
 if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
-    $getArcticleModel = new GetArtModel();
+    $getArticleModel = new GetArtModel();
     $articles = $getArticleModel->getFiltredArticles($bdd, $id, $title, $content, $user_id);
 } else {
     header("Location: javascript://history.go(-1)");
