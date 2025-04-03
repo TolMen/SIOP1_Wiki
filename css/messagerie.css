@@ -1,6 +1,12 @@
+body {
+    background-image: url(../assets/img/background_messagerie.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
 h1 {
     text-align: center;
-    margin-top: 30px;
 }
 
 .container {
