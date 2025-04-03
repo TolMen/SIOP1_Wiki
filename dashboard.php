@@ -54,7 +54,7 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                         <div class="card dashboard-card">
                             <div class="card-body text-center">
                                 <i class="fas fa-plus fa-3x"></i>
-                                <h5 class="card-title mt-3">Créer un article</h5>
+                                <h5 class="card-title mt-3">Publier un article</h5>
                             </div>
                         </div>
                     </a>
