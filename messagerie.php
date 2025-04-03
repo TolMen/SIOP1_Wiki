@@ -2,7 +2,8 @@
 
 session_name("main");
 session_start();
-require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
+
+include_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
 
 if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
     $query = $bdd->prepare("SELECT id, name, email, subject, message FROM contact");
@@ -29,7 +30,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
     </head>
 
     <body>
-        <?php require_once 'src/component/navbar.php' ?>
+        <?php include_once 'src/component/navbar.php' ?>
         <div class="global">
             <h1>Messagerie</h1>
             <div class="container cases">
@@ -37,36 +38,34 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                     <?php foreach ($messages as $message) { ?>
                         <div class="col-12 col-md-3">
                             <div class="case">
-                                <a class="trash"
-                                    href="./src/control/BDDControl/deleteMessage.php?id=<?php echo $message['id'] ?>"><img
-                                        src="./assets/svg/trash.svg" alt="Supprimer" /></a>
+                                <a class="trash" href="./src/control/BDDControl/deleteMessage.php?id=<?php echo $message['id'] ?>">
+                                    <img src="./assets/svg/trash.svg" alt="Supprimer" />
+                                </a>
                                 <h5>De : <?php echo htmlspecialchars($message["name"]); ?></h5>
-                                <h6>Sujet : <?php echo htmlspecialchars($message["subject"]); ?></h6><br>
+                                <h6>Sujet : <?php echo htmlspecialchars($message["subject"]); ?></h6>
+                                <br>
                                 <p class="message-overflow"><?php echo htmlspecialchars($message["message"]); ?></p>
-                                <button class="col-2 bouton" tabindex="0" data-bs-toggle="modal"
-                                    data-bs-target="#<?php echo $message['id'] ?>">Voir</button>
+                                <button class="col-2 bouton" tabindex="0" data-bs-toggle="modal" data-bs-target="#<?php echo $message['id'] ?>">Voir
+                                </button>
                             </div>
                         </div>
+
                         <div class="modal fade" id="<?php echo $message['id'] ?>" tabindex="-1">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <div class="modal-title fs-5">
-                                            <h5>De : <?php echo htmlspecialchars($message["name"]); ?>
-                                                (<?php echo htmlspecialchars($message["email"]); ?>)</h5>
+                                            <h5>De : <?php echo htmlspecialchars($message["name"]); ?> (<?php echo htmlspecialchars($message["email"]); ?>)</h5>
                                             <h6>Sujet : <?php echo htmlspecialchars($message["subject"]); ?></h6>
                                         </div>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Fermer"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
                                     </div>
                                     <div class="modal-body">
                                         <p><?php echo htmlspecialchars($message["message"]); ?></p>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Fermer</button>
-                                        <button type="button" class="btn btn-danger"
-                                            onclick="window.location.href = './src/control/BDDControl/deleteMessage.php?id=<?php echo $message['id'] ?>';">Supprimer</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                        <button type="button" class="btn btn-danger" onclick="window.location.href = './src/control/BDDControl/deleteMessage.php?id=<?php echo $message['id'] ?>';">Supprimer</button>
                                     </div>
                                 </div>
                             </div>
@@ -74,9 +73,9 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                     <?php } ?>
                 </div>
             </div>
+            
             <!-- Inclusion du pied de page -->
             <?php include 'src/component/footer.php' ?>
         </div>
     </body>
-
 </html>

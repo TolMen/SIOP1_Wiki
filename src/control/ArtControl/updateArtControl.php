@@ -3,9 +3,9 @@
 /* 
 - Inclusion des fichiers nécessaires
 */
-require_once '../../model/ArtModel/updateArtModel.php';
-require_once '../../control/BDDControl/connectBDD.php';
-require_once '../../model/Services/ImageService.php';
+include_once '../../model/ArtModel/updateArtModel.php';
+include_once '../../control/BDDControl/connectBDD.php';
+include_once '../../model/Services/ImageService.php';
 
 /*
 Initialise la classe

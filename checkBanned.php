@@ -3,7 +3,7 @@
 include_once 'src/model/UserModel/banCheckUserModel.php';
 
 if (!empty($_SESSION["userID"])) {
-
+    
     $banCheckUser = new banCheckUserModel();
     $isuserbanned = $banCheckUser->checkUserBan($bdd, $_SESSION["userID"]);
     
