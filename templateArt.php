@@ -1,4 +1,5 @@
 <?php
+
 session_name("main");
 session_start();
 
@@ -10,6 +11,7 @@ include_once 'src/control/ArtControl/postArt.php';
 include_once 'src/control/BDDControl/connectBDD.php';
 include_once 'checkBanned.php';
 ob_end_clean();
+
 ?>
 
 <!DOCTYPE html>
@@ -44,5 +46,4 @@ ob_end_clean();
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 </body>
-
 </html>

@@ -1,6 +1,8 @@
 <?php
+
 session_name("main");
 session_start();
+
 if (empty($_SESSION['userID'])) {
     header('Location: home.php');
     exit;
@@ -26,8 +28,8 @@ if (isset($_GET['articleID'])) {
 } else {
     die("Erreur : Aucun ID d'article spécifié.");
 }
-?>
 
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -54,8 +56,7 @@ if (isset($_GET['articleID'])) {
                     <!-- Titre -->
                     <div class="mb-3">
                         <label class="form-label">Titre</label>
-                        <input type="text" class="form-control" id="title" name="title"
-                            value="<?php echo $articleAncien['title']; ?>" autocomplete="off" required>
+                        <input type="text" class="form-control" id="title" name="title" value="<?php echo $articleAncien['title']; ?>" autocomplete="off" required>
                     </div>
                     <!-- Contenu -->
                     <div class="mb-3">
@@ -100,5 +101,4 @@ if (isset($_GET['articleID'])) {
         };
     </script>
 </body>
-
 </html>

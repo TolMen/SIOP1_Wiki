@@ -12,6 +12,7 @@ session_start();
     <!-- Inclusion des balise meta -->
     <?php include 'src/component/head.php'; ?>
     <link rel="stylesheet" href="css/authStyle.css" />
+
     <title>Wiki - Connexion</title>
 </head>
 
@@ -23,13 +24,12 @@ session_start();
         <div class=" container">
         <h1>Se connecter</h1>
     </div>
+
     <main class="container">
         <form method="POST" action="src/control/UserControl/userlogin.php">
             <div class="form-group">
-
                 <label>Pseudonyme :</label><br>
-                <input type="text" name="username" minlength="2" maxlength="15" pattern="[a-z0-9._]{2,15}"
-                    title="Seules les lettres minuscules, chiffres, '.' et '_' sont autorisés" required /><br>
+                <input type="text" name="username" minlength="2" maxlength="15" pattern="[a-z0-9._]{2,15}" title="Seules les lettres minuscules, chiffres, '.' et '_' sont autorisés" required /><br>
 
                 <label>Mot de passe :</label><br>
                 <input type="password" name="password" required /><br><br>
@@ -41,12 +41,15 @@ session_start();
                 <?php } else { ?>
                     <label></label><br>
                 <?php } ?>
-
             </div>
             <input type="submit" value="Connexion" />
         </form>
-    </main><br>
-    <div class="switchAuth">Besoin d'un compte ?&nbsp;<a href="register.php">S'inscrire</a></div>
+    </main>
+    
+    <br>
+
+    <div class="switchAuth">Besoin d'un compte ?&nbsp;
+        <a href="register.php">S'inscrire</a>
     </div>
 
     <!-- Inclusion du pied de page -->
@@ -57,5 +60,4 @@ session_start();
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 </body>
-
 </html>

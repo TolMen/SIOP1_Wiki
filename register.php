@@ -2,6 +2,7 @@
 
 session_name("main");
 session_start();
+
 include_once 'checkBanned.php';
 
 ?>
@@ -13,6 +14,7 @@ include_once 'checkBanned.php';
     <!-- Inclusion des balise meta -->
     <?php include 'src/component/head.php'; ?>
     <link rel="stylesheet" href="css/authStyle.css" />
+
     <title>Wiki - Inscription</title>
 </head>
 
@@ -26,8 +28,7 @@ include_once 'checkBanned.php';
         <main class="container">
             <form method="POST" action="src/control/UserControl/userregister.php">
                 <label>Pseudonyme :</label><br>
-                <input type="text" name="username" minlength="2" maxlength="15" pattern="[a-z0-9._]{2,15}"
-                    title="Seules les lettres minuscules, chiffres, '.' et '_' sont autorisés" required /><br>
+                <input type="text" name="username" minlength="2" maxlength="15" pattern="[a-z0-9._]{2,15}" title="Seules les lettres minuscules, chiffres, '.' et '_' sont autorisés" required /><br>
 
                 <label>Mot de passe :</label><br>
                 <input type="password" name="password" required /><br><br>
@@ -39,8 +40,11 @@ include_once 'checkBanned.php';
                 <?php } ?>
                 <input type="submit" value="Inscription" />
             </form>
-        </main><br>
-        <div class="switchAuth">Déjà un compte ?&nbsp;<a href="login.php">Se connecter</a></div>
+        </main>
+        <br>
+        <div class="switchAuth">Déjà un compte ?&nbsp;
+            <a href="login.php">Se connecter</a>
+        </div>
     </div>
 
     <!-- Inclusion du pied de page -->
@@ -51,5 +55,4 @@ include_once 'checkBanned.php';
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 </body>
-
 </html>
