@@ -12,7 +12,7 @@ $content = !empty($_POST["content"]) ? "%" . htmlspecialchars($_POST["content"] 
 $user_id = !empty($_POST["user_id"]) ? htmlspecialchars($_POST["user_id"], ENT_QUOTES) : "%";
 
 if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
-    $getArcticleModel = new GetArtModel();
+    $getArticleModel = new GetArtModel();
     $articles = $getArticleModel->getFiltredArticles($bdd, $id, $title, $content, $user_id);
 } else {
     header("Location: javascript://history.go(-1)");
@@ -78,7 +78,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                 <!-- user_id -->
                 <div class="col-2"><?php echo $article["user_id"] ?></div>
                 <!-- Informations -->
-                <div class="col-2">&nbsp;&nbsp;Voir plus<img src="assets/img/eye_popup.png" alt="+" data-bs-toggle="modal" data-bs-target="#article<?php echo $article["id"]; ?>" style="cursor: pointer; width: 15px;"></div>
+                <div class="col-2" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#article<?php echo $article["id"]; ?>">&nbsp;&nbsp;Voir plus<img src="assets/img/eye_popup.png" alt="+" style="cursor: pointer; width: 15px;"></div>
                 <div class="modal fade" id="article<?php echo $article["id"]; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
