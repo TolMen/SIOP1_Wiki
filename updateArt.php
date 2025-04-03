@@ -16,7 +16,7 @@ include_once 'checkBanned.php'; // Vérification si l'utilisateur est banni
 // Vérifiez si un ID est passé en paramètre
 if (isset($_GET['articleID'])) {
     $articleID = $_GET['articleID'];
-    $updateArticleModel = new UpdateArticleModel();
+    $updateArticleModel = new GetArtModel();
 
     // Récupérer l'article
     $articleAncien = $updateArticleModel->getArticleId($bdd, $articleID);

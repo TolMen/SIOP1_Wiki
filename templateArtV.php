@@ -57,7 +57,7 @@ if (!$articleversion) {
         <div class="card shadow-sm p-4 version_content">
             <h3 class="card-title titre"><?php echo htmlspecialchars($articleversion['title']); ?></h3>
             <div class=" justify-content-between align-items-center">
-                <p><strong> 📝 Créé par </strong> <?= htmlspecialchars($articleversion['first_author_name']); ?> <strong> le : 📅 </strong> <?php echo date("d/m/Y H:i", strtotime($articleversion['created_at'])); ?></p>
+                <p><strong> 📝 Créé par </strong> <?= $articleversion['first_author_name']; ?> <strong> le : 📅 </strong> <?php echo date("d/m/Y H:i", strtotime($articleversion['created_at'])); ?></p>
                 <p><strong>✏️ Modifié par :</strong> <?php echo htmlspecialchars($articleversion['creator_name']); ?></p>
             </div>
 
