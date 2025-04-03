@@ -14,17 +14,18 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
 <!DOCTYPE html>
 <html lang="fr">
 
-    <head>
-        <!-- Inclusion des balise meta -->
-        <?php include 'src/component/head.php'; ?>
-        <link rel="stylesheet" href="css/dashboardStyle.css" />
+<head>
+    <!-- Inclusion des balise meta -->
+    <?php include 'src/component/head.php'; ?>
+    <link rel="stylesheet" href="css/dashboardStyle.css" />
 
-        <title>Wiki - Dashboard</title>
-    </head>
+    <title>Wiki - Dashboard</title>
+</head>
 
-    <body>
-        <?php include 'src/component/navbar.php' ?>
+<body>
+    <?php include 'src/component/navbar.php' ?>
 
+    <div style="margin: 0; padding: 0; min-height: 82vh; display: flex; flex-direction: column;">
         <div class="container mt-5">
             <h1 class="text-center mb-4">Tableau de Bord</h1>
             <div class="row">
@@ -90,12 +91,13 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                 </div>
             </div>
         </div>
+    </div>
 
-        <?php include 'src/component/footer.php' ?>
+    <?php include 'src/component/footer.php' ?>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-            </script>
-    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+</body>
 
 </html>

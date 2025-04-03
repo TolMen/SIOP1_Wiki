@@ -6,7 +6,7 @@ body > * {
 }
 
 body {
-    background-image: url("../assets/img/background_auth.jpg");
+    background-image: url("../assets/img/background_auth.png");
     background-size: cover;
     height: 100%;
 }

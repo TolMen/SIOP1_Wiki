@@ -18,17 +18,7 @@ ob_end_clean();
 <head>
     <!-- Inclusion des balise meta -->
     <?php include 'src/component/head.php'; ?>
-    <style>
-        @media screen and (min-width: 768px) {
-            .article-container {
-                padding-right: 100px;
-            }
-
-            .img-mobile {
-                height: 225px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/articleStyle.css" />
 
     <title>
         Article :
@@ -41,7 +31,7 @@ ob_end_clean();
     <!-- Inclusion de la barre de navigation -->
     <?php include 'src/component/navbar.php' ?>
     <!-- Milieu de page -->
-    <section class="infoArticle">
+    <section class="infoArticle" style="margin: 0; padding: 0; min-height: 82vh; display: flex; flex-direction: column;">
         <?php include 'src/control/ArtControl/postArt.php'; ?>
     </section>
     <!-- Fin du milieu de la page -->

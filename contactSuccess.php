@@ -12,12 +12,11 @@ $subject = htmlspecialchars($_POST["subject"], ENT_QUOTES);
 $message = htmlspecialchars($_POST["message"], ENT_QUOTES);
 
 
-    
-$getInsertinto = new getContactSuccess() ;
-$getInsertinto->getInsert($bdd, $name, $email, $subject, $message) ;
+    $getInsertinto = new getContactSuccess();
+    $success= $getInsertinto->getInsert($bdd, $name, $email, $subject, $message) ;
 
-$getInformation = new getContactSuccess();
-$resultatsforms = $getInformation->getInfo($bdd, $name, $email, $subject, $message);
+    $getInformation = new getContactSuccess();
+    $resultatsforms = $getInformation->getInfo($bdd, $name, $email, $subject, $message);
 
 ?>
 
