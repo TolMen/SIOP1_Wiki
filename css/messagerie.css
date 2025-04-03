@@ -5,8 +5,13 @@ body {
     background-size: cover;
 }
 
+html, body {
+    height: 100%;
+}
+
 .global {
-    min-height: 100vh;
+    height: 100%;
+    min-height: 82vh;
     display: flex;
     flex-direction: column;
     margin: 0;

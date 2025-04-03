@@ -34,6 +34,7 @@ main.container {
     border-radius: 5%;
     border-style: ridge;
     backdrop-filter: blur(2px);
+    justify-content: center;
 }
 
 .invalidCase {
@@ -79,6 +80,7 @@ label {
     color: #ffffff;
     backdrop-filter: blur(3px);
     border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 a {
