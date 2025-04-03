@@ -13,19 +13,11 @@ $message = htmlspecialchars($_POST["message"], ENT_QUOTES);
 
 
     
-    $getInsertinto = new getContactSuccess() ;
+    $getInsertinto = new getContactSuccess();
     $success= $getInsertinto->getInsert($bdd, $name, $email, $subject, $message) ;
 
     $getInformation = new getContactSuccess();
     $resultatsforms = $getInformation->getInfo($bdd, $name, $email, $subject, $message);
-
-} else {
-    echo "Aucun résultat";
-    exit;
-}
-
-
-
 
 ?>
 

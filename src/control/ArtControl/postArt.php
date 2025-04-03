@@ -21,7 +21,7 @@ if (!empty($_GET['articleID'])) {
 $artPostModel = new ArtPostModel();
 $articles = $artPostModel->getPostArt($bdd, $postArtId);
 $imageData = $artPostModel->getArticleImage($bdd, $postArtId);
-$imageUrl = $imageData['url'] ?? 'assets/img/civilisation.jpg'; // Image par défaut
+$imageUrl = $imageData['url'] ?? 'assets/img/civilisation.png'; // Image par défaut
 
 
 if (!empty($articles)) {
@@ -59,7 +59,7 @@ foreach ($articles as $article) {
 
                 <div class="text-muted border-top pt-1">
                     <p class="mb-0 mt-2">✏️ Dernière modification par : <?= htmlspecialchars($userArticles['username'] ?? 'Aucune modification'); ?></p>
-                    <p class="mb-0">📅 En date du : <?= date("d/m/Y à H:i:s", strtotime($dateToShow)); ?></p>
+                    <p class="mb-0">📅 En date du : <?= date("d/m/Y à H:i", strtotime($dateToShow)); ?></p>
                     <p class="mb-0 mt-0">📝 Auteur d'origine : <?= htmlspecialchars($userFirstArticles['username']); ?></p>
                 </div>
 

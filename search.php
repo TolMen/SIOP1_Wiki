@@ -56,7 +56,7 @@ if (!empty($_POST['mot_cle'])) {
             foreach ($articlesbymotcle as $articlebymotcle) { ?>
                 <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                     <div class="article-card">
-                        <img src="assets/img/section1background.jpg" class="img-fluid" alt="Image de l'article">
+                        <img src="assets/img/section1background.png" class="img-fluid" alt="Image de l'article">
                         <div class="content">
                             <h3><?php echo htmlspecialchars($articlebymotcle['title']); ?></h3>
                             <span class="date">Publiée le <?php echo htmlspecialchars($articlebymotcle['created_at']); ?></span>
