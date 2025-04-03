@@ -16,4 +16,6 @@ class banCheckUserModel {
         return $state->fetch();
     }
 
+    
+
 }
