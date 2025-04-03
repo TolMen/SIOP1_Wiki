@@ -2,7 +2,7 @@
 
 session_name("main");
 session_start();
-require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
+include_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
 
 if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
     $query = $bdd->prepare("SELECT id, name, email, subject, message FROM contact");
@@ -29,7 +29,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
     </head>
 
     <body>
-        <?php require_once 'src/component/navbar.php' ?>
+        <?php include_once 'src/component/navbar.php' ?>
         <div class="global">
             <h1>Messagerie</h1>
             <div class="container cases">

@@ -1,7 +1,7 @@
 <?php
 session_name("main");
 session_start();
-require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
+include_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
 include_once 'checkBanned.php'; // Vérification si l'utilisateur est banni
 include_once 'src/model/SearchModel/getSearchModel.php';
 include_once 'src/model/ArtModel/postArtModel.php';

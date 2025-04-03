@@ -37,7 +37,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
 
     <body>
         <!-- Inclusion de la barre de navigation -->
-        <?php require_once 'src/component/navbar.php' ?>
+        <?php include_once 'src/component/navbar.php' ?>
 
         <!-- Code -->
         <div class='userList row'>

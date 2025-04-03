@@ -2,9 +2,9 @@
 
 session_name("main");
 session_start();
-require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
+include_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
 include_once 'checkBanned.php'; // Vérification si l'utilisateur est banni
-require_once 'src/model/ContactModel/getContactSuccess.php';
+include_once 'src/model/ContactModel/getContactSuccess.php';
 
 $name = htmlspecialchars($_POST["name"], ENT_QUOTES);
 $email = htmlspecialchars($_POST["email"], ENT_QUOTES);

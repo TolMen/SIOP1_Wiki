@@ -7,8 +7,8 @@ if (empty($_SESSION['userID'])) {
 }
 
 /* Inclusion des fichiers nécessaires */
-require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
-require_once 'src/model/ArtModel/getArtModel.php'; // Le modèle pour récupérer les articles
+include_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
+include_once 'src/model/ArtModel/getArtModel.php'; // Le modèle pour récupérer les articles
 include_once 'checkBanned.php'; // Vérification si l'utilisateur est banni
 
 // Vérifiez si un ID est passé en paramètre

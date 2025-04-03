@@ -2,8 +2,8 @@
 
 session_name("main");
 session_start();
-require_once 'src/control/BDDControl/connectBDD.php'; // $bdd
-require_once 'src/model/ArtModel/getArtModel.php'; 
+include_once 'src/control/BDDControl/connectBDD.php'; // $bdd
+include_once 'src/model/ArtModel/getArtModel.php'; 
 
 
 $id = !empty($_POST["id"]) ? htmlspecialchars($_POST["id"], ENT_QUOTES) : "%";
@@ -35,7 +35,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
 
     <body>
         <!-- Inclusion de la barre de navigation -->
-        <?php require_once 'src/component/navbar.php' ?>
+        <?php include_once 'src/component/navbar.php' ?>
 
         <!-- Code -->
         <div class='userList row'>

@@ -1,8 +1,8 @@
 <?php
 session_name("main");
 session_start();
-require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
-require_once 'src/model/HistoriqueModel/getHistoriqueModel.php';
+include_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
+include_once 'src/model/HistoriqueModel/getHistoriqueModel.php';
 
 $article_id = htmlspecialchars($_GET["articleID"], ENT_QUOTES);
 
