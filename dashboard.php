@@ -34,7 +34,7 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                         <div class="card dashboard-card">
                             <div class="card-body text-center">
                                 <i class="fas fa-newspaper fa-3x"></i>
-                                <h5 class="card-title mt-3">Liste des articles</h5>
+                                <h5 class="card-title mt-3">Gestion des articles</h5>
                             </div>
                         </div>
                     </a>
@@ -44,7 +44,7 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                         <div class="card dashboard-card">
                             <div class="card-body text-center">
                                 <i class="fas fa-users fa-3x"></i>
-                                <h5 class="card-title mt-3">Liste des utilisateurs</h5>
+                                <h5 class="card-title mt-3">Gestion des utilisateurs</h5>
                             </div>
                         </div>
                     </a>

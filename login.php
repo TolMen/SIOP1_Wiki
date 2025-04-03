@@ -21,7 +21,7 @@ session_start();
 
         <div class="superContent"
             style="margin: 0; padding: 0; min-height: 82vh; display: flex; flex-direction: column;">
-            <div class=" container">
+            <div class="container">
                 <h1>Se connecter</h1>
             </div>
             <main class="container">
