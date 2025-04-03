@@ -1,14 +1,15 @@
 <?php
+
 session_name("main");
 session_start();
-require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
-require_once 'src/model/HistoriqueModel/getHistoriqueModel.php';
+
+include_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
+include_once 'src/model/HistoriqueModel/getHistoriqueModel.php';
 
 $article_id = htmlspecialchars($_GET["articleID"], ENT_QUOTES);
 
 $gethystory = new getHistoriqueModel();
 $articlesversion = $gethystory->getHistorique($bdd, $article_id);
-
 
 ?>
 
@@ -53,7 +54,6 @@ $articlesversion = $gethystory->getHistorique($bdd, $article_id);
                             </td>
                             <td><?php echo "Le " . date("d/m/Y", strtotime($article['created_at'])) . " à " . date("H:i", strtotime($article['created_at'])); ?></td>
                             <td><?php echo htmlspecialchars($article['creator_name']); ?></td>
-
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -66,5 +66,4 @@ $articlesversion = $gethystory->getHistorique($bdd, $article_id);
     </div>
     <?php include 'src/component/footer.php'; ?>
 </body>
-
 </html>

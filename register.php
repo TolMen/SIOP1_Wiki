@@ -2,6 +2,7 @@
 
 session_name("main");
 session_start();
+
 include_once 'checkBanned.php';
 
 ?>
@@ -52,5 +53,4 @@ include_once 'checkBanned.php';
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
             </script>
     </body>
-
 </html>

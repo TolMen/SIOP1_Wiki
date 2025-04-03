@@ -54,14 +54,8 @@ class ArtPostModel
 
     public function getArtVersionSpec(PDO $bdd, $articleVID)
     {
-        $state = $bdd->prepare("SELECT article_version.*, user.username AS creator_name, 
-                        (SELECT username FROM user
-                        INNER JOIN article ON article.user_id = user.id 
-                        WHERE user.id = article.firstAuthor 
-                        AND article.id = article_version.article_id) AS first_author_name 
-                        FROM article_version 
-                        INNER JOIN user ON user.id = article_version.user_id 
-                        WHERE article_version.id = ?");
+        $state = $bdd->prepare("SELECT article_version.*, u1.username AS first_author_name, u2.username AS creator_name FROM article_version JOIN article ON article_version.article_id = article.id JOIN user u1 ON article.firstAuthor = u1.id JOIN user u2 ON article_version.user_id = u2.id WHERE article_version.id = ?;
+");
         $state->execute(array($articleVID));
         return $state->fetch();
     }

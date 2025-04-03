@@ -2,9 +2,8 @@
 
 session_name("main");
 session_start();
-require_once '../BDDControl/connectBDD.php'; // $bdd
-require_once '../../model/SanctionModel/getSanctionModel.php';
-// require_once 'src/model/SanctionModel/getSanctionModel.php';
+include_once '../BDDControl/connectBDD.php'; // $bdd
+include_once '../../model/SanctionModel/getSanctionModel.php';
 
 
 if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
