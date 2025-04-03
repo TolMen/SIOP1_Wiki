@@ -53,7 +53,7 @@ if (empty($articles)) {
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-md-6 infos">
-                            <h2>Les CIVILISATIONS!</h2>
+                            <h2>Les CIVILISATIONS !</h2>
                             <p>
                                 Les civilisations, formées par des sociétés organisées,
                                 se distinguent par leurs avancées culturelles, politiques
@@ -65,7 +65,7 @@ if (empty($articles)) {
                         </div>
                         <div class="col-md-6 img-description-content ">
                             <img
-                                src="assets/img/civilisation.jpg"
+                                src="assets/img/civilisation.png"
                                 alt="Image"
                                 class="img-size" />
                         </div>
@@ -101,7 +101,7 @@ if (empty($articles)) {
                     foreach ($articles as $article) {
                         $artPostModel = new ArtPostModel();
                         $imageData = $artPostModel->getArticleImage($bdd, $article['id']);
-                        $imageUrl = $imageData['url'] ?? 'assets/img/section1background.jpg'; //  Image par défaut
+                        $imageUrl = $imageData['url'] ?? 'assets/img/civilisation.png'; //  Image par défaut
                     ?>
                         <div class="article-card">
                             <div class="image_contenu">
@@ -109,11 +109,11 @@ if (empty($articles)) {
                             </div>
                             <div class="content">
                                 <h3><?php echo htmlspecialchars($article['title']); ?></h3>
-                                <span class="date">En date : 
-                                    <?php if(empty($article['updated_at'])) {
-                                        echo date("d/m/Y à H:i:s", strtotime($article['created_at']));
+                                <span class="date">En date :
+                                    <?php if (empty($article['updated_at'])) {
+                                        echo date("d/m/Y à H:i", strtotime($article['created_at']));
                                     } else {
-                                        echo date("d/m/Y à H:i:s", strtotime($article['updated_at']));
+                                        echo date("d/m/Y à H:i", strtotime($article['updated_at']));
                                     } ?></span>
                                 <div class="article_choix">
                                     <a href="templateArt.php?articleID=<?php echo $article['id']; ?>" class="read-more">
@@ -121,7 +121,7 @@ if (empty($articles)) {
                                     </a>
                                     <?php if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] === "admin") { ?>
                                         <a href="src/control/ArtControl/deleteArt.php?articleID=<?php echo $article['id']; ?>">
-                                            <img src="assets/svg/trash.svg" alt="Supprimer l'article">
+                                            <i class="fa-solid fa-trash" title="Supprimer l'article" style="color: red;"></i>
                                         </a>
                                     <?php   } ?>
                                 </div>

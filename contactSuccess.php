@@ -3,7 +3,7 @@
 session_name("main");
 session_start();
 require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
-include_once 'src/control/BDDControl/checkBanned.php'; // Vérification si l'utilisateur est banni
+include_once 'checkBanned.php'; // Vérification si l'utilisateur est banni
 require_once 'src/model/ContactModel/getContactSuccess.php';
 
 $name = htmlspecialchars($_POST["name"], ENT_QUOTES);
@@ -12,20 +12,11 @@ $subject = htmlspecialchars($_POST["subject"], ENT_QUOTES);
 $message = htmlspecialchars($_POST["message"], ENT_QUOTES);
 
 
-    
-    $getInsertinto = new getContactSuccess() ;
+    $getInsertinto = new getContactSuccess();
     $success= $getInsertinto->getInsert($bdd, $name, $email, $subject, $message) ;
 
     $getInformation = new getContactSuccess();
     $resultatsforms = $getInformation->getInfo($bdd, $name, $email, $subject, $message);
-
-} else {
-    echo "Aucun résultat";
-    exit;
-}
-
-
-
 
 ?>
 

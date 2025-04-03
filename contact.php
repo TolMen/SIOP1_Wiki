@@ -17,7 +17,7 @@ include_once 'checkBanned.php'; // Vérification si l'utilisateur est banni
         <title>Wiki - Contact</title>
     </head>
 
-    <body>
+    <body style="padding-top: 55px;">
         <?php include 'src/component/navbar.php'; ?>
 
         <section id="presentation_section">

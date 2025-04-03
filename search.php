@@ -40,13 +40,6 @@ if (!empty($_POST['mot_cle'])) {
     <?php include 'src/component/navbar.php'; ?>
     <div class="container">
         <h2>Résultat (s) pour "<?php echo htmlspecialchars($motCle); ?>"</h2>
-
-        <!-- Recherche par mot-cle -->
-        <div id="search_content">
-            <form class="formulaire" method="POST" action="search.php">
-                <div class="content_recherche">
-                    <img src="assets/svg/search.svg" alt="">
-                    <input type="search" name="mot_cle" id="" placeholder="Entrez un mot-clé" required>
                 </div>
                 <input class="recherche" type="submit" value="Rechercher" />
             </form>

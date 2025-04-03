@@ -1,32 +1,57 @@
+body {
+    background-image: url(../assets/img/background_messagerie.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+.global {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
 h1 {
     text-align: center;
     margin-top: 30px;
+    margin-bottom: 30px;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-    flex-wrap: wrap;
-    gap: 30px;
+h5 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
-.row {
-    background: rgba(180, 180, 180, 0.5);
-    text-align: center;
-    padding: 10px;
-    padding-top: 20px;
-    border-radius: 5px;
-    width: 250px;
+.cases {
+    flex-grow: 1;
+}
+
+.case {
     position: relative;
+    background: rgba(180, 180, 180, 0.5);
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.trash {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
 }
 
 .bouton {
     background: rgb(255, 255, 255);
+    width: 95%;
     text-align: center;
     border-radius: 5px;
     height: 30px;
-    width: 250px;
     overflow: hidden
 }
 
@@ -53,13 +78,4 @@ img {
     align-self: right;
     width: 25px;
     height: 25px;
-}
-
-.row a {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
 }
