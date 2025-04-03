@@ -73,12 +73,15 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                 <div class="col-3">Banni ?</div>
             </div>
             <div class="col-1"></div>
-            <div class="UserCase active col-3">Option de modération</div>
+            <div class="col-1">Ban définitif</div>
+            <div class="col-1">Ban temporaire</div>
+            <div class="col-1">Débannir</div>
+
             <?php
-            foreach ($users as $user) { 
+            foreach ($users as $user) {
                 // Vérifier si l'utilisateur est banni
                 $isBannedClass = $user["user_id"] ? "banned" : "";
-            ?>
+                ?>
                 <div class="userCase col-6 <?php echo $isBannedClass; ?>">
                     <!-- ID -->
                     <div class="col-3"><?php echo $user["userid"] ?></div>
@@ -93,9 +96,8 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                     <!-- IsBanned -->
                     <?php if ($user["user_id"]) { ?>
                         <div class="col-3">&nbsp;&nbsp;Oui<img src="assets/img/eye_popup.png" alt="+" data-bs-toggle="modal"
-                                data-bs-target="#imagePopup<?php echo $user["userid"]; ?>"
-                                style="width: 15px;"
-                                class="eye" ></div>
+                                data-bs-target="#imagePopup<?php echo $user["userid"]; ?>" style="width: 15px;" class="eye">
+                        </div>
                         <div class="modal fade" id="imagePopup<?php echo $user["userid"]; ?>" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -168,7 +170,8 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                                             <input class="buttonSubmit" type="submit" value="Bannir" />
                                         </form>
                                     <?php } else { ?>
-                                        <div class="col-3"><img class="cantban" src="assets/img/nobandef.png" style="width: 40px;"></div>
+                                        <div class="col-3"><img class="cantban" src="assets/img/nobandef.png"
+                                                style="width: 40px;"></div>
                                         <div>
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
@@ -258,7 +261,8 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                                                                                 value="Débannir" />
                                                                         </form>
                                                                     <?php } else { ?>
-                                                                        <div class="col-3"><img class="cantban" src="assets/img/nounban.png"
+                                                                        <div class="col-3"><img class="cantban"
+                                                                                src="assets/img/nounban.png"
                                                                                 style="width: 40px;"></div>
                                                                         <div>
                                                                             <div class="modal-dialog">
