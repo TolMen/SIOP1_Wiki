@@ -39,11 +39,11 @@
 }
 #presentation_section {
   place-content: center;
-  background-image: url("../assets/img/background_section1.jpg");
+  background-image: url("../assets/img/background_section1.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  height: 100vh;
+  height: 50vh;
 }
 /* Section présentation */
 #presentation_section .phrase_accroche {
@@ -168,7 +168,7 @@
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
-  height: 70vh;
+  height: 35vh;
 }
 
 .article-card:hover {
@@ -177,12 +177,12 @@
 
 /* Image */
 .image_contenu{
-  height: 60%;
+  height: 50%;
 }
 .image_contenu img {
   width: 100%; 
   height: 100%; 
-  object-fit: cover; 
+  object-fit: scale-down; 
 }
 /* Contenu de l'article */
 .article-card .content {
@@ -200,6 +200,7 @@
   font-weight: 700;
   text-align: center;
   color: black;
+  padding-top: 30px;
 }
 
 .article-card p {

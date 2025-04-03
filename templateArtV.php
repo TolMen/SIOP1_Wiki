@@ -55,14 +55,14 @@ if (!$articleversion) {
             <h3 class="card-title titre"><?php echo htmlspecialchars($articleversion['title']); ?></h3>
 
             <div class=" justify-content-between align-items-center">
-                <p><strong> 📝 Créé par </strong> <?= htmlspecialchars($articleversion['first_author_name']); ?> <strong> le: 📅 </strong> <?php echo date("d/m/Y H:i", strtotime($articleversion['created_at'])); ?></p>
-                <p><strong>✏️ Modifié par:</strong> <?php echo htmlspecialchars($articleversion['creator_name']); ?></p>
+                <p><strong> 📝 Créé par </strong> <?= htmlspecialchars($articleversion['first_author_name']); ?> <strong> le : 📅 </strong> <?php echo date("d/m/Y H:i", strtotime($articleversion['created_at'])); ?></p>
+                <p><strong>✏️ Modifié par :</strong> <?php echo htmlspecialchars($articleversion['creator_name']); ?></p>
             </div>
 
             <div class="content mb-4">
                 <p><strong>Contenu de l'article</strong></p>
                 <div class="border p-3 rounded version_contenu">
-                    <?php echo nl2br(htmlspecialchars($articleversion['content'])); ?>
+                    <?php echo nl2br($articleversion['content']); ?>
                 </div>
             </div>
 
