@@ -91,8 +91,9 @@ if (empty($articles)) {
                 </form>
             </div>
 
-            <div id="list_art">
-                <div class="articles-grid">
+            <div class="container">
+                <div class="row">
+
                     <?php
                     foreach ($articles as $article) {
                         $artPostModel = new ArtPostModel();
@@ -119,14 +120,21 @@ if (empty($articles)) {
                                         <a href="src/control/ArtControl/deleteArt.php?articleID=<?php echo $article['id']; ?>">
                                             <i class="fa-solid fa-trash" title="Supprimer l'article" style="color: red;"></i>
                                         </a>
-                                    <?php   } ?>
+                                        <?php if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] === "admin") { ?>
+                                            <a href="src/control/ArtControl/deleteArt.php?articleID=<?php echo $article['id']; ?>">
+                                                <i class="fa-solid fa-trash" title="Supprimer l'article" style="color: red;"></i>
+                                            </a>
+                                        <?php   } ?>
+                                    </div>
+                                    <a href="historique.php?articleID=<?php echo $article['id']; ?>" class="read-morehistorique">Voir l'historique</a>
                                 </div>
-                                <a href="historique.php?articleID=<?php echo $article['id']; ?>" class="read-morehistorique">Voir l'historique</a>
                             </div>
                         </div>
                     <?php
+
                     }
                     ?>
+
                 </div>
             </div>
         </section>
