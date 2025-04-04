@@ -1,7 +1,9 @@
 <?php
+
 session_name("main");
 session_start();
-require_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
+
+include_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
 include_once 'checkBanned.php'; // Vérification si l'utilisateur est banni
 include_once 'src/model/ArtModel/postArtModel.php';
 
@@ -14,8 +16,8 @@ if (empty($articles)) {
     echo "Aucun article trouvé.";
     exit;
 }
-?>
 
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -34,9 +36,8 @@ if (empty($articles)) {
     <?php include 'src/component/navbar.php' ?>
 
     <div class="body-content">
-
         <section id="presentation_section">
-            <div class="container phrase_accroche ">
+            <div class="container phrase_accroche">
                 <div class="row justify-content-center">
                     <div class="col-12">
                         <h1 class="">BIENVENUE</h1>
@@ -48,7 +49,7 @@ if (empty($articles)) {
             </div>
         </section>
 
-        <section class="description ">
+        <section class="description">
             <div class="description-content">
                 <div class="container">
                     <div class="row align-items-center">
@@ -61,13 +62,9 @@ if (empty($articles)) {
                                 de monuments,de découvertes scientifiques ou de traditions,
                                 influençant ainsi les générations futures et contribuant à façonner notre monde moderne.
                             </p>
-
                         </div>
                         <div class="col-md-6 img-description-content ">
-                            <img
-                                src="assets/img/civilisation.png"
-                                alt="Image"
-                                class="img-size" />
+                            <img src="assets/img/civilisation.png" alt="Image" class="img-size" />
                         </div>
                     </div>
                 </div>
@@ -83,7 +80,6 @@ if (empty($articles)) {
         </section>
 
         <section id="search">
-
             <!-- Recherche par mot-cle -->
             <div id="search_content">
                 <form class="formulaire" method="POST" action="search.php">
@@ -102,24 +98,27 @@ if (empty($articles)) {
                     foreach ($articles as $article) {
                         $artPostModel = new ArtPostModel();
                         $imageData = $artPostModel->getArticleImage($bdd, $article['id']);
-                        $imageUrl = $imageData['url'] ?? 'assets/img/civilisation.png'; //  Image par défaut
-                    ?>
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                            <div class="article-card">
-                                <div class="image_contenu">
-                                    <img src="<?= htmlspecialchars($imageUrl) ?>" alt="Image de l'article">
-                                </div>
-                                <div class="content ">
-                                    <h3><?php echo htmlspecialchars($article['title']); ?></h3>
-                                    <span class="date">En date :
-                                        <?php if (empty($article['updated_at'])) {
-                                            echo date("d/m/Y à H:i", strtotime($article['created_at']));
-                                        } else {
-                                            echo date("d/m/Y à H:i", strtotime($article['updated_at']));
-                                        } ?></span>
-                                    <div class="article_choix">
-                                        <a href="templateArt.php?articleID=<?php echo $article['id']; ?>" class="read-more">
-                                            Continuer la lecture
+                        $imageUrl = $imageData['url'] ?? 'assets/img/civilisation.png'; //  Image par défaut 
+                        ?>
+                        <div class="article-card">
+                            <div class="image_contenu">
+                                <img src="<?= htmlspecialchars($imageUrl) ?>" alt="Image de l'article">
+                            </div>
+                            <div class="content">
+                                <h3><?php echo htmlspecialchars($article['title']); ?></h3>
+                                <span class="date">En date :
+                                    <?php if (empty($article['updated_at'])) {
+                                        echo date("d/m/Y à H:i", strtotime($article['created_at']));
+                                    } else {
+                                        echo date("d/m/Y à H:i", strtotime($article['updated_at']));
+                                    } ?></span>
+                                <div class="article_choix">
+                                    <a href="templateArt.php?articleID=<?php echo $article['id']; ?>" class="read-more">
+                                        Continuer la lecture
+                                    </a>
+                                    <?php if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] === "admin") { ?>
+                                        <a href="src/control/ArtControl/deleteArt.php?articleID=<?php echo $article['id']; ?>">
+                                            <i class="fa-solid fa-trash" title="Supprimer l'article" style="color: red;"></i>
                                         </a>
                                         <?php if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] === "admin") { ?>
                                             <a href="src/control/ArtControl/deleteArt.php?articleID=<?php echo $article['id']; ?>">
@@ -138,10 +137,6 @@ if (empty($articles)) {
 
                 </div>
             </div>
-
-
-
-
         </section>
 
         <section class="civilization-section">
@@ -154,7 +149,6 @@ if (empty($articles)) {
             </div>
         </section>
 
-
     </div>
     <!-- Inclusion du pied de page -->
     <?php include 'src/component/footer.php' ?>
@@ -163,5 +157,4 @@ if (empty($articles)) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>
-
 </html>

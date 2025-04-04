@@ -1,6 +1,8 @@
 <?php
+
 session_name("main");
 session_start();
+
 include_once 'src/control/BDDControl/connectBDD.php';
 include_once 'checkBanned.php';
 include_once 'src/model/ArtModel/postArtModel.php';
@@ -14,7 +16,6 @@ if ($articleVID <= 0) {
     exit;
 }
 
-
 // Requête pour récupérer la version spécifique de l'article
 $infoVersionArtSpec = new ArtPostModel();
 $articleversion = $infoVersionArtSpec->getArtVersionSpec($bdd, $articleVID);
@@ -24,6 +25,7 @@ if (!$articleversion) {
     echo "Version introuvable.";
     exit;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +34,7 @@ if (!$articleversion) {
 <head>
     <?php include 'src/component/head.php'; ?>
     <link rel="stylesheet" href="css/templateArtVStyle.css" />
+
     <title>
         Historique de l'article
         <?php
@@ -53,9 +56,8 @@ if (!$articleversion) {
 
         <div class="card shadow-sm p-4 version_content">
             <h3 class="card-title titre"><?php echo htmlspecialchars($articleversion['title']); ?></h3>
-
             <div class=" justify-content-between align-items-center">
-                <p><strong> 📝 Créé par </strong> <?= htmlspecialchars($articleversion['first_author_name']); ?> <strong> le : 📅 </strong> <?php echo date("d/m/Y H:i", strtotime($articleversion['created_at'])); ?></p>
+                <p><strong> 📝 Créé par </strong> <?= $articleversion['first_author_name']; ?> <strong> le : 📅 </strong> <?php echo date("d/m/Y H:i", strtotime($articleversion['created_at'])); ?></p>
                 <p><strong>✏️ Modifié par :</strong> <?php echo htmlspecialchars($articleversion['creator_name']); ?></p>
             </div>
 
@@ -65,9 +67,7 @@ if (!$articleversion) {
                     <?php echo nl2br($articleversion['content']); ?>
                 </div>
             </div>
-
         </div>
-
     </div>
 
     <!-- Inclusion du pied de page -->
@@ -78,5 +78,4 @@ if (!$articleversion) {
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 </body>
-
 </html>

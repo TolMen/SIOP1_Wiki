@@ -1,6 +1,6 @@
-<?php  
+<?php
 
-require_once 'src/control/BDDControl/connectBDD.php';
+include_once 'src/control/BDDControl/connectBDD.php';
 
 class banCheckUserModel {
 
@@ -15,5 +15,7 @@ class banCheckUserModel {
         $state->execute(array($userID));
         return $state->fetch();
     }
+
+    
 
 }

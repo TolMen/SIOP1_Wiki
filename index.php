@@ -11,7 +11,7 @@ session_start();
 */
 
 // $BDD <=> $connect
-require_once 'src/control/BDDControl/connectBDD.php';
+include_once 'src/control/BDDControl/connectBDD.php';
 
 /*
 - Vérifie les paramètres après ? dans l'URL, si vide redirection vers la page d'accueil

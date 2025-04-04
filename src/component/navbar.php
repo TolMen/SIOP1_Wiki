@@ -15,7 +15,7 @@ $current_page = basename($_SERVER['PHP_SELF']); // Récupère uniquement le nom 
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="home.php#list_art">Liste des articles</a>
+                    <a class="nav-link" href="home.php#list_art">Gestion des articles</a>
                 </li>
 
                 <li class="nav-item">
