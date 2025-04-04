@@ -30,8 +30,8 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
     <?php include 'src/component/head.php'; ?>
     <link rel="stylesheet" href="css/listStyle.css" />
 
-    <title>Wiki - Liste des utilisateurs</title>
-</head>
+        <title>Wiki - Gestion des utilisateurs</title>
+    </head>
 
 
 <body>
@@ -62,49 +62,55 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                     <option value="False">Non</option>
                 </select>
 
-                <input class="buttonSubmit" type="submit" value="Rechercher" />
-            </form>
-        </div>
-        <div class="UserCase active col-6">
-            <div class="col-3">ID</div>
-            <div class="col-3">Identifiant</div>
-            <div class="col-3">Rôle</div>
-            <div class="col-3">Banni ?</div>
-        </div>
-        <div class="col-1"></div>
-        <div class="UserCase active col-3">Option de modération</div>
-        <?php
-        foreach ($users as $user) {
-            // Vérifier si l'utilisateur est banni
-            $isBannedClass = $user["user_id"] ? "banned" : "";
-        ?>
-            <div class="userCase col-6 <?php echo $isBannedClass; ?>">
-                <!-- ID -->
-                <div class="col-3"><?php echo $user["userid"] ?></div>
-                <!-- Username -->
-                <div class="col-3"><?php echo $user["username"] ?></div>
-                <!-- Role -->
-                <?php if ($user["role"] == "user") { ?>
-                    <div class="col-3">Utilisateur</div>
-                <?php } elseif ($user["role"] == "admin") { ?>
-                    <div class="col-3">Administrateur</div>
-                <?php } ?>
-                <!-- IsBanned -->
-                <?php if ($user["user_id"]) { ?>
-                    <div class="col-3">&nbsp;&nbsp;Oui<img src="assets/img/eye_popup.png" alt="+" data-bs-toggle="modal" data-bs-target="#imagePopup<?php echo $user["userid"]; ?>" style="cursor: pointer; width: 15px;"></div>
-                    <div class="modal fade" id="imagePopup<?php echo $user["userid"]; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <!-- Titre -->
-                                    <h5 class="modal-title" id="exampleModalLabel">Sanction actuelle</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <!-- Intérieur -->
-                                    <?php
-                                    $infoUserBan = new banCheckUserModel();
-                                    $ban = $infoUserBan->getInfoUserBan($bdd, $user["userid"]);
+                    <input class="buttonSubmit" type="submit" value="Rechercher" />
+                </form>
+            </div>
+            <div class="UserCase active col-6">
+                <div class="col-3">ID</div>
+                <div class="col-3">Identifiant</div>
+                <div class="col-3">Rôle</div>
+                <div class="col-3">Banni ?</div>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-1">Ban définitif</div>
+            <div class="col-1">Ban temporaire</div>
+            <div class="col-1">Débannir</div>
+
+            <?php
+            foreach ($users as $user) {
+                // Vérifier si l'utilisateur est banni
+                $isBannedClass = $user["user_id"] ? "banned" : "";
+                ?>
+                <div class="userCase col-6 <?php echo $isBannedClass; ?>">
+                    <!-- ID -->
+                    <div class="col-3"><?php echo $user["userid"] ?></div>
+                    <!-- Username -->
+                    <div class="col-3"><?php echo $user["username"] ?></div>
+                    <!-- Role -->
+                    <?php if ($user["role"] == "user") { ?>
+                        <div class="col-3">Utilisateur</div>
+                    <?php } elseif ($user["role"] == "admin") { ?>
+                        <div class="col-3">Administrateur</div>
+                    <?php } ?>
+                    <!-- IsBanned -->
+                    <?php if ($user["user_id"]) { ?>
+                        <div class="col-3">&nbsp;&nbsp;Oui<img src="assets/img/eye_popup.png" alt="+" data-bs-toggle="modal"
+                                data-bs-target="#imagePopup<?php echo $user["userid"]; ?>" style="width: 15px;" class="eye">
+                        </div>
+                        <div class="modal fade" id="imagePopup<?php echo $user["userid"]; ?>" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <!-- Titre -->
+                                        <h5 class="modal-title" id="exampleModalLabel">Sanction actuelle</h5><button
+                                            type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Intérieur -->
+                                        <?php
+                                        $infoUserBan = new banCheckUserModel();
+                                        $ban = $infoUserBan->getInfoUserBan($bdd, $user["userid"]);
 
                                     // Si ban def
                                     if (empty($ban["end_date"])) { ?>
@@ -134,44 +140,42 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
             </div>
             <div class="col-1"></div>
 
-            <!-- Code pour bannir ou débannir -->
-            <div class="userCase col-3">
-                <!-- Bannissement définitif -->
-                <?php if ($user["user_id"] == null && $user["role"] != "admin") { ?>
-                    <div class="col-3"><img src="assets/img/bandef.png" alt="+" data-bs-toggle="modal" data-bs-target="#bandef<?php echo $user["userid"]; ?>" style="cursor: pointer; width: 40px;">
-                    </div>
-                    <div class="modal fade" id="bandef<?php echo $user["userid"]; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <!-- Titre -->
-                                    <h5 class="modal-title" id="exampleModalLabel">Bannissement définitif</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <!-- Intérieur -->
-                                    <form method="POST"
-                                        action="src/control/UserControl/sanction.php?user_id=<?php echo $user["userid"] ?>&method=ban">
-                                        <label>
-                                            <h5>Voulez-vous bannir <?php echo $user["username"] ?> ?</h5>
-                                        </label>
-                                        <br><br>
-                                        <label for="ReasonID">Raison :</label>
-                                        <br>
-                                        <input class="inputReason" type="text" id="ReasonID" name="reason" />
-                                        <br>
-
-                                        <input class="buttonSubmit" type="submit" value="Bannir" />
-                                    </form>
-                                <?php } else { ?>
-                                    <div class="col-3">
-                                        <img src="assets/img/nobandef.png" style="width: 40px;">
+                <!-- Code pour bannir ou débannir -->
+                <div class="userCase col-3">
+                    <!-- Bannissement définitif -->
+                    <?php if ($user["user_id"] == null && $user["role"] != "admin") { ?>
+                        <div class="col-3"><img src="assets/img/bandef.png" alt="+" data-bs-toggle="modal"
+                                data-bs-target="#bandef<?php echo $user["userid"]; ?>" style="cursor: pointer; width: 40px;">
+                        </div>
+                        <div class="modal fade" id="bandef<?php echo $user["userid"]; ?>" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <!-- Titre -->
+                                        <h5 class="modal-title" id="exampleModalLabel">Bannissement définitif</h5><button
+                                            type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <div>
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                <?php } ?>
+                                    <div class="modal-body">
+                                        <!-- Intérieur -->
+                                        <form method="POST"
+                                            action="src/control/UserControl/sanction.php?user_id=<?php echo $user["userid"] ?>&method=ban">
+                                            <label>
+                                                <h5>Voulez-vous bannir <?php echo $user["username"] ?> ?</h5>
+                                            </label><br><br>
+                                            <label for="ReasonID">Raison :</label><br>
+                                            <input class="inputReason" type="text" id="ReasonID" name="reason" required /><br>
+
+                                            <input class="buttonSubmit" type="submit" value="Bannir" />
+                                        </form>
+                                    <?php } else { ?>
+                                        <div class="col-3"><img class="cantban" src="assets/img/nobandef.png"
+                                                style="width: 40px;"></div>
+                                        <div>
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <?php } ?>
                                                 </div>
                                                 <div class="modal-footer"></div>
                                             </div>
@@ -198,21 +202,20 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                                                                 <h5>Voulez-vous bannir temporairement
                                                                     <?php echo $user["username"] ?> ?
                                                                 </h5>
-                                                            </label>
-                                                            <br><br>
-                                                            <label for="ReasonID">Raison :</label>
-                                                            <br>
-                                                            <input class="inputReason" type="text" id="ReasonID" name="reason" />
-                                                            <br>
+                                                            </label><br><br>
+                                                            <label for="ReasonID">Raison :</label><br>
+                                                            <input class="inputReason" type="text" id="ReasonID" name="reason"
+                                                                required /><br>
 
                                                             <label for="end_dateID">Fin :</label>
-                                                            <input type="date" id="end_dateID" name="end_date" />
-                                                            <br><br>
+                                                            <input type="date" id="end_dateID" name="end_date"
+                                                                required /><br><br>
 
                                                             <input class="buttonSubmit" type="submit" value="Bannir" />
                                                         </form>
                                                     <?php } else { ?>
-                                                        <div class="col-3"><img src="assets/img/nobantemp.png" style="width: 40px;"></div>
+                                                        <div class="col-3"><img class="cantban" src="assets/img/nobantemp.png"
+                                                                style="width: 40px;"></div>
                                                         <div>
                                                             <div class="modal-dialog">
                                                                 <div class="modal-content">
@@ -224,37 +227,45 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                                                             </div>
                                                         </div>
 
-                                                        <!-- Débanissement -->
-                                                        <?php if ($user["user_id"] != null && $user["role"] != "admin") { ?>
-                                                            <div class="col-3"><img src="assets/img/unban.png" alt="+" data-bs-toggle="modal" data-bs-target="#unban<?php echo $user["userid"]; ?>" style="cursor: pointer; width: 40px;"></div>
-                                                            <div class="modal fade" id="unban<?php echo $user["userid"]; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <!-- Titre -->
-                                                                            <h5 class="modal-title" id="exampleModalLabel">Débannissement</h5>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            <!-- Intérieur -->
-                                                                            <form method="POST" action="src/control/UserControl/sanction.php?user_id=<?php echo $user["userid"] ?>&method=unban">
-                                                                                <label>
-                                                                                    <h5>Voulez-vous débannir
-                                                                                        <?php echo $user["username"] ?> ?
-                                                                                    </h5>
-                                                                                </label><br><br>
-                                                                                <input class="buttonSubmit" type="submit" value="Débannir" />
-                                                                            </form>
-                                                                        <?php } else { ?>
-                                                                            <div class="col-3"><img src="assets/img/nounban.png" style="width: 40px;"></div>
-                                                                            <div>
-                                                                                <div class="modal-dialog">
-                                                                                    <div class="modal-content">
-                                                                                        <div class="modal-header">
-                                                                                        <?php } ?>
-                                                                                        </div>
-                                                                                        <div class="modal-footer"></div>
-                                                                                    </div>
+                                                    <!-- Débanissement -->
+                                                    <?php if ($user["user_id"] != null && $user["role"] != "admin") { ?>
+                                                        <div class="col-3"><img src="assets/img/unban.png" alt="+"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#unban<?php echo $user["userid"]; ?>"
+                                                                style="cursor: pointer; width: 40px;"></div>
+                                                        <div class="modal fade" id="unban<?php echo $user["userid"]; ?>"
+                                                            tabindex="-1" aria-labelledby="exampleModalLabel"
+                                                            aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <!-- Titre -->
+                                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                                            Débannissement</h5><button type="button"
+                                                                            class="btn-close" data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <!-- Intérieur -->
+                                                                        <form method="POST"
+                                                                            action="src/control/UserControl/sanction.php?user_id=<?php echo $user["userid"] ?>&method=unban">
+                                                                            <label>
+                                                                                <h5>Voulez-vous débannir
+                                                                                    <?php echo $user["username"] ?> ?
+                                                                                </h5>
+                                                                            </label><br><br>
+                                                                            <input class="buttonSubmit" type="submit"
+                                                                                value="Débannir" />
+                                                                        </form>
+                                                                    <?php } else { ?>
+                                                                        <div class="col-3"><img class="cantban"
+                                                                                src="assets/img/nounban.png"
+                                                                                style="width: 40px;"></div>
+                                                                        <div>
+                                                                            <div class="modal-dialog">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                    <?php } ?>
                                                                                 </div>
                                                                             </div>
                                                                         </div>

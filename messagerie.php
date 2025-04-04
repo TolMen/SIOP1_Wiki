@@ -6,9 +6,8 @@ session_start();
 include_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
 
 if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
-    $query = $bdd->prepare("SELECT id, name, email, subject, message FROM contact");
-    $query->execute(array());
-    $messages = $query->fetchAll();
+    require_once 'src/control/BDDControl/connectBDD.php'; // $bdd
+    require_once 'src/control/MessControl/getAllMess.php'; // $messages
 } else {
     header("Location: javascript://history.go(-1)");
     exit;
