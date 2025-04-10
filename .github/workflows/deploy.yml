@@ -1,0 +1,19 @@
+name: Deploy on push to main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Deploy to server
+      run: |
+        sshpass -p ${{ secrets.PASSWORD_SIO_WIKI }} 
+        scp -r . jfrachisse@sio.jbdelasalle.com:/home/SIO/jfrachisse/public_html

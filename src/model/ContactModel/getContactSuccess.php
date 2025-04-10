@@ -3,7 +3,7 @@
 /* 
 - Inclusion des fichiers nécessaire
 */
-include_once 'src/control/BDDControl/connectBDD.php';
+include_once '../../control/BDDControl/connectBDD.php';
 
 class getContactSuccess{
     public function getInsert(PDO $bdd, $name, $email, $subject, $message){
