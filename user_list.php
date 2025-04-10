@@ -152,7 +152,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                                         <h5>Voulez-vous bannir <?php echo $user["username"]; ?> ?</h5>
                                     </label><br><br>
                                     <label for="ReasonID">Raison :</label><br>
-                                    <input class="inputReason" type="text" id="ReasonID" name="reason" required /><br>
+                                    <input class="inputReason" type="text" id="ReasonID" name="reason" required /><br><br>
                                     <input class="buttonSubmit" type="submit" value="Bannir" />
                                 </form>
                             </div>
@@ -185,7 +185,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                                     <label for="ReasonID">Raison :</label><br>
                                     <input class="inputReason" type="text" id="ReasonID" name="reason" required /><br>
                                     <label for="EndDateID">Durée :</label><br>
-                                    <input type="date" id="EndDateID" name="endDate" required /><br>
+                                    <input type="date" id="EndDateID" name="endDate" required /><br><br>
                                     <input class="buttonSubmit" type="submit" value="Bannir temporairement" />
                                 </form>
                             </div>
@@ -215,7 +215,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                                     <label>
                                         <h5>Voulez-vous débannir <?php echo $user["username"]; ?> ?</h5>
                                     </label><br><br>
-                                    <input class="buttonSubmit" type="submit" value="Débannir" />
+                                    <input class="buttonSubmit" type="submit" value="Débannir" /><br><br>
                                 </form>
                             </div>
                         </div>
