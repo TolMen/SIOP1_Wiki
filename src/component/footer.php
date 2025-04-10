@@ -1,4 +1,4 @@
-<footer class="bg-dark text-light py-4">
+<footer class="bg-light text-dark py-4 custom-footer">
     <div class="container text-center">
         <p class="mb-0">
             &copy;
