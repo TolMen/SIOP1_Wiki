@@ -22,9 +22,9 @@ jobs:
       run: |
         sshpass -p ${{ secrets.PASSWORD_SIO_WIKI }} rsync -avz -e "ssh -p 1622" \
           --exclude-from='.deployignore' \
-          ./ jfrachisse@sio.jbdelasalle.com:/home/SIO/jfrachisse/public_html
+          ./ jfrachisse@sio.jbdelasalle.com:/home/SIO/jfrachisse/public_html/TP_WIKI
 
     - name: Set write permissions on assets/imgUpload
       run: |
         sshpass -p ${{ secrets.PASSWORD_SIO_WIKI }} ssh -p 1622 jfrachisse@sio.jbdelasalle.com \
-          'chmod 775 /home/SIO/jfrachisse/public_html/assets/imgUpload'
+          'chmod 775 /home/SIO/jfrachisse/public_html/TP_WIKI/assets/imgUpload'
