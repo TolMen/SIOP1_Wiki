@@ -99,7 +99,7 @@ if (empty($articles)) {
                         $artPostModel = new ArtPostModel();
                         $imageData = $artPostModel->getArticleImage($bdd, $article['id']);
                         $imageUrl = $imageData['url'] ?? 'assets/img/civilisation.png'; //  Image par défaut 
-                        ?>
+                    ?>
                         <div class="article-card">
                             <div class="image_contenu">
                                 <img src="<?= htmlspecialchars($imageUrl) ?>" alt="Image de l'article">
@@ -111,7 +111,8 @@ if (empty($articles)) {
                                         echo date("d/m/Y à H:i", strtotime($article['created_at']));
                                     } else {
                                         echo date("d/m/Y à H:i", strtotime($article['updated_at']));
-                                    } ?></span>
+                                    } ?>
+                                </span>
                                 <div class="article_choix">
                                     <a href="templateArt.php?articleID=<?php echo $article['id']; ?>" class="read-more">
                                         Continuer la lecture
@@ -120,34 +121,30 @@ if (empty($articles)) {
                                         <a href="src/control/ArtControl/deleteArt.php?articleID=<?php echo $article['id']; ?>">
                                             <i class="fa-solid fa-trash" title="Supprimer l'article" style="color: red;"></i>
                                         </a>
-                                        <?php if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] === "admin") { ?>
-                                            <a href="src/control/ArtControl/deleteArt.php?articleID=<?php echo $article['id']; ?>">
-                                                <i class="fa-solid fa-trash" title="Supprimer l'article" style="color: red;"></i>
-                                            </a>
-                                        <?php   } ?>
-                                    </div>
-                                    <a href="historique.php?articleID=<?php echo $article['id']; ?>" class="read-morehistorique">Voir l'historique</a>
+                                    <?php } ?>
                                 </div>
+                                <a href="historique.php?articleID=<?php echo $article['id']; ?>" class="read-morehistorique">Voir l'historique</a>
                             </div>
                         </div>
-                    <?php
-
-                    }
-                    ?>
 
                 </div>
-            </div>
-        </section>
+            <?php
+                    }
+            ?>
 
-        <section class="civilization-section">
-            <div class="container">
-                <h2>🌍 Découvrez les Civilisations du Monde 🏛️</h2>
-                <p class="quote">
-                    "Une civilisation se mesure à ce qu'elle laisse à ses descendants."
-                </p>
-                <a href="contact.php" class="explore-btn">Contactez nous</a>
             </div>
-        </section>
+    </div>
+    </section>
+
+    <section class="civilization-section">
+        <div class="container">
+            <h2>🌍 Découvrez les Civilisations du Monde 🏛️</h2>
+            <p class="quote">
+                "Une civilisation se mesure à ce qu'elle laisse à ses descendants."
+            </p>
+            <a href="contact.php" class="explore-btn">Contactez nous</a>
+        </div>
+    </section>
 
     </div>
     <!-- Inclusion du pied de page -->
@@ -157,4 +154,5 @@ if (empty($articles)) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>
+
 </html>
