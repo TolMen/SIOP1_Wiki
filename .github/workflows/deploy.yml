@@ -13,6 +13,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Add host to known_hosts
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan -p 1622 sio.jbdelasalle.com >> ~/.ssh/known_hosts
+
     - name: Deploy to server
       run: |
         sshpass -p ${{ secrets.PASSWORD_SIO_WIKI }} scp -P 1622 -r . jfrachisse@sio.jbdelasalle.com:/home/SIO/jfrachisse/public_html
