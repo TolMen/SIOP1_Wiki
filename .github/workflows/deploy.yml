@@ -15,5 +15,5 @@ jobs:
 
     - name: Deploy to server
       run: |
-        sshpass -p ${{ secrets.PASSWORD_SIO_WIKI }} 
-        scp -r . jfrachisse@sio.jbdelasalle.com:/home/SIO/jfrachisse/public_html
+        echo ${{ secrets.PASSWORD_SIO_WIKI }};
+        sshpass -p ${{ secrets.PASSWORD_SIO_WIKI }} scp -r . jfrachisse@sio.jbdelasalle.com:/home/SIO/jfrachisse/public_html
