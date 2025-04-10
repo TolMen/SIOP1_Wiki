@@ -24,12 +24,10 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
 
 <body>
     <?php include 'src/component/navbar.php' ?>
-
-    <div style="margin: 0; padding: 0; min-height: 82vh; display: flex; flex-direction: column;">
         <div class="container mt-5">
             <h1 class="text-center mb-4">Tableau de Bord</h1>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <a href="article_list.php" class="card-link">
                         <div class="card dashboard-card">
                             <div class="card-body text-center">
@@ -39,7 +37,7 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                         </div>
                     </a>
                 </div>
-                <div class="col-md-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <a href="user_list.php" class="card-link">
                         <div class="card dashboard-card">
                             <div class="card-body text-center">
@@ -49,7 +47,7 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                         </div>
                     </a>
                 </div>
-                <div class="col-md-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <a href="createArt.php" class="card-link">
                         <div class="card dashboard-card">
                             <div class="card-body text-center">
@@ -59,7 +57,7 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                         </div>
                     </a>
                 </div>
-                <div class="col-md-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <a href="messagerie.php" class="card-link">
                         <div class="card dashboard-card logout-card">
                             <div class="card-body text-center">
@@ -69,7 +67,7 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                         </div>
                     </a>
                 </div>
-                <div class="col-md-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <a href="home.php" class="card-link">
                         <div class="card dashboard-card logout-card">
                             <div class="card-body text-center">
@@ -79,7 +77,7 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                         </div>
                     </a>
                 </div>
-                <div class="col-md-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <a href="src/control/UserControl/logout.php" class="card-link">
                         <div class="card dashboard-card logout-card">
                             <div class="card-body text-center">
@@ -91,7 +89,6 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                 </div>
             </div>
         </div>
-    </div>
 
     <?php include 'src/component/footer.php' ?>
 
