@@ -18,7 +18,3 @@ class getContactSuccess{
         return $resultatsforms;
     }
 }
-
-
-?>
-

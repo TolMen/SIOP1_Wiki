@@ -27,7 +27,7 @@ if (empty($articles)) {
     <?php include 'src/component/head.php'; ?>
     <link rel="stylesheet" href="css/homeStyle.css" />
 
-    <title>Civilipédia</title>
+    <title>Civilipédia - Accueil</title>
 </head>
 
 <body>
@@ -59,7 +59,7 @@ if (empty($articles)) {
                                 Les civilisations, formées par des sociétés organisées,
                                 se distinguent par leurs avancées culturelles, politiques
                                 et économiques. Chaque civilisation laisse un héritage unique, qu’il s’agisse
-                                de monuments,de découvertes scientifiques ou de traditions,
+                                de monuments, de découvertes scientifiques ou de traditions,
                                 influençant ainsi les générations futures et contribuant à façonner notre monde moderne.
                             </p>
                         </div>
@@ -80,7 +80,7 @@ if (empty($articles)) {
         </section>
 
         <section id="search">
-            <!-- Recherche par mot-cle -->
+            <!-- Recherche par mot clé -->
             <div id="search_content">
                 <form class="formulaire" method="POST" action="search.php">
                     <div class="content_recherche">

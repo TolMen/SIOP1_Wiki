@@ -33,7 +33,7 @@ $articlesversion = $gethystory->getHistorique($bdd, $article_id);
             <table class="table table-striped table-bordered table-responsive">
                 <thead>
                     <tr>
-                        <th>Numero de version</th>
+                        <th>Numéro de version</th>
                         <th>Titre</th>
                         <th>Contenu</th>
                         <th>Date de création</th>

@@ -9,7 +9,7 @@ class AddArticleModel
 {
 
     /*
-    - Cette fonction insére les informations des articles
+    - Cette fonction insère les informations des articles
     */
     public function insertArticle(PDO $bdd, $title, $content, $createdAt, $userID, $firstAuthor)
     {

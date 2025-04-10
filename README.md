@@ -9,7 +9,7 @@ Il permettra à différents types d'utilisateurs d'interagir avec le contenu, de
 
 Notre application sera organisée autour des utilisateurs suivants :
 - **Utilisateurs non connectés** : Peuvent consulter les articles et effectuer des recherches
-- **Utilisateurs authentifiés** : Peuvent créer et modifier des articles, puis supprimer leur articles
+- **Utilisateurs authentifiés** : Peuvent créer et modifier des articles, puis supprimer leurs articles
 - **Administrateurs** : Disposent de droits supplémentaires, comme la gestion des utilisateurs et des articles
 
 ## Fonctionnalités principales

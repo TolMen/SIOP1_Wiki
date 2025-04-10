@@ -88,8 +88,6 @@ if (!empty($_POST['mot_cle'])) {
         </div>
 
     </div>
-    
-    </div>
 
     <?php include 'src/component/footer.php'; ?>
 </body>

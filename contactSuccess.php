@@ -35,7 +35,7 @@ $resultatsforms = $getInformation->getInfo($bdd, $name, $email, $subject, $messa
             <div class="row">
                 <div class="affichage">
                     <img src="assets/svg/check-circle.svg" alt="">
-                    <h1>Merci <?php echo $resultatsforms["name"]; ?> <br> Votre message a bien été envoyé!</h1>
+                    <h1>Merci <?php echo $resultatsforms["name"]; ?> <br> Votre message a bien été envoyé !</h1>
                     <a href="home.php">Retour à l'accueil </a>
                 </div>
             </div>
