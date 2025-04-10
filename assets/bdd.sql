@@ -17,11 +17,12 @@ USE siop1_wiki;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- Suppression des tables dans le bon ordre
-DROP TABLE IF EXISTS article_versions;
-DROP TABLE IF EXISTS articles;
-DROP TABLE IF EXISTS bans;
+DROP TABLE IF EXISTS image;
+DROP TABLE IF EXISTS article_version;
+DROP TABLE IF EXISTS article;
+DROP TABLE IF EXISTS ban;
 DROP TABLE IF EXISTS contact;
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS user;
 
 -- Réactive les contraintes de clé étrangère
 SET FOREIGN_KEY_CHECKS = 1;
