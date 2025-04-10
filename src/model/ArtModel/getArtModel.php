@@ -9,7 +9,7 @@ class GetArtModel
 {
 
     /*
-    - Cette fonction récupére les informations des articles
+    - Cette fonction récupère les informations des articles
     */
     public function getArticleId(PDO $bdd, $articleId)
     {

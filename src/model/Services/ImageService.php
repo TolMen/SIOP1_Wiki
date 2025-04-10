@@ -1,6 +1,6 @@
 <?php
 
-// Bibliothéque GD trouver sur internet
+// Bibliothèque GD trouver sur internet
 
 class ImageService
 {

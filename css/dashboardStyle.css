@@ -3,6 +3,10 @@ body {
     background: rgba(220, 220, 220, 0.50);
 }
 
+html, body, .container {
+    height: 100%;
+}
+
 .container {
     max-width: 900px;
 }
@@ -13,6 +17,7 @@ body {
     border-radius: 10px;
     color: rgb(0, 0, 0);
     margin-bottom: 10px;
+    height: 140px;
 }
 
 .dashboard-card:hover {
@@ -26,4 +31,14 @@ i {
 
 .card-link {
     text-decoration: none;
+}
+
+.reset {
+    background: rgba(255, 0, 0, 0.25);
+    color: rgba(255, 0, 0, 0.75);
+}
+
+.reset:hover {
+    background: rgba(255, 0, 0, 0.25);
+    color: rgba(255, 0, 0, 0.75);
 }

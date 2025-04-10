@@ -24,12 +24,10 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
 
 <body>
     <?php include 'src/component/navbar.php' ?>
-
-    <div style="margin: 0; padding: 0; min-height: 82vh; display: flex; flex-direction: column;">
         <div class="container mt-5">
             <h1 class="text-center mb-4">Tableau de Bord</h1>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-12 col-sm-4 col-lg-4">
                     <a href="article_list.php" class="card-link">
                         <div class="card dashboard-card">
                             <div class="card-body text-center">
@@ -39,7 +37,7 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                         </div>
                     </a>
                 </div>
-                <div class="col-md-4">
+                <div class="col-12 col-sm-4 col-lg-4">
                     <a href="user_list.php" class="card-link">
                         <div class="card dashboard-card">
                             <div class="card-body text-center">
@@ -49,17 +47,7 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                         </div>
                     </a>
                 </div>
-                <div class="col-md-4">
-                    <a href="createArt.php" class="card-link">
-                        <div class="card dashboard-card">
-                            <div class="card-body text-center">
-                                <i class="fas fa-plus fa-3x"></i>
-                                <h5 class="card-title mt-3">Publier un article</h5>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4">
+                <div class="col-12 col-sm-4 col-lg-4">
                     <a href="messagerie.php" class="card-link">
                         <div class="card dashboard-card logout-card">
                             <div class="card-body text-center">
@@ -69,7 +57,7 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                         </div>
                     </a>
                 </div>
-                <div class="col-md-4">
+                <div class="col-12 col-sm-4 col-lg-4">
                     <a href="home.php" class="card-link">
                         <div class="card dashboard-card logout-card">
                             <div class="card-body text-center">
@@ -79,19 +67,30 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                         </div>
                     </a>
                 </div>
-                <div class="col-md-4">
-                    <a href="src/control/UserControl/logout.php" class="card-link">
-                        <div class="card dashboard-card logout-card">
+                <div class="col-12 col-sm-4 col-lg-4">
+                    <a href="src/control/ArtControl/resetAllArt.php" class="card-link">
+                        <div class="card dashboard-card reset">
                             <div class="card-body text-center">
-                                <i class="fas fa-sign-out-alt fa-3x"></i>
-                                <h5 class="card-title mt-3">Déconnexion</h5>
+                                <i class="fas fa-database fa-3x" style="color: rgba(255,0,0,0.7)"></i>
+                                <i class="fas fa-newspaper fa-3x" style="color: rgba(255,0,0,0.7)"></i>
+                                <h5 class="card-title mt-3">Réinitialiser les articles</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-sm-4 col-lg-4">
+                    <a href="src/control/ArtControl/resetAllArt.php" class="card-link">
+                        <div class="card dashboard-card reset">
+                            <div class="card-body text-center">
+                                <i class="fas fa-database fa-3x" style="color: rgba(255,0,0,0.7)"></i>
+                                <i class="fas fa-users fa-3x" style="color: rgba(255,0,0,0.7)"></i>
+                                <h5 class="card-title mt-3">Réinitialiser les utilisateurs</h5>
                             </div>
                         </div>
                     </a>
                 </div>
             </div>
         </div>
-    </div>
 
     <?php include 'src/component/footer.php' ?>
 

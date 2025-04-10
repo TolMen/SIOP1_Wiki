@@ -53,7 +53,7 @@ class UpdateArticleModel
             return $stmt->execute([$newImageUrl, $articleId]);
         }
 
-        // Si aucune image n'existe, insére une nouvelle entrée dans la table images
+        // Si aucune image n'existe, insérer une nouvelle entrée dans la table images
         $insertImage = 'INSERT INTO image (url, created_at, article_id) VALUES (?, NOW(), ?)';
         $stmt = $bdd->prepare($insertImage);
         return $stmt->execute([$newImageUrl, $articleId]);
