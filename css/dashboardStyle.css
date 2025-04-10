@@ -31,3 +31,13 @@ i {
 .card-link {
     text-decoration: none;
 }
+
+.reset {
+    background: rgba(255, 0, 0, 0.25);
+    color: rgba(255, 0, 0, 0.75);
+}
+
+.reset:hover {
+    background: rgba(255, 0, 0, 0.25);
+    color: rgba(255, 0, 0, 0.75);
+}

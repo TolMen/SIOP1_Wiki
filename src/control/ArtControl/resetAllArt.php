@@ -14,16 +14,14 @@ $deleteArtProcess = new DeleteArtModel();
 
 if (!empty($_SESSION["userID"])) {
     $articleID = htmlspecialchars($_GET["articleID"], ENT_QUOTES);
-
-    $firstAuthorId = $deleteArtProcess->firstAuthorArt($bdd, $articleID);
-}
-
-if ($_SESSION["userRole"] == "admin"  ||  $_SESSION["userID"] == $firstAuthorId) {
-    $deleteArtProcess->deleteArt($bdd, $articleID);
 }
 
 if ($_SESSION["userRole"] == "admin") {
-    header("Location: ../../../article_list.php");
+    $bdd->exec(file_get_contents("article.sql"));
+}
+
+if ($_SESSION["userRole"] == "admin") {
+    header("Location: ../../../dashboard.php");
 } else {
     header("Location: ../../../home.php");
 }

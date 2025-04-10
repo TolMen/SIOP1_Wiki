@@ -48,11 +48,11 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                     </a>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
-                    <a href="createArt.php" class="card-link">
-                        <div class="card dashboard-card">
+                    <a href="src/control/ArtControl/resetAllArt.php" class="card-link">
+                        <div class="card dashboard-card reset">
                             <div class="card-body text-center">
-                                <i class="fas fa-plus fa-3x"></i>
-                                <h5 class="card-title mt-3">Publier un article</h5>
+                                <i class="fas fa-database fa-3x" style="color: rgba(255,0,0,0.7)"></i>
+                                <h5 class="card-title mt-3">Réinitialiser les articles</h5>
                             </div>
                         </div>
                     </a>
@@ -78,11 +78,11 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                     </a>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
-                    <a href="src/control/UserControl/logout.php" class="card-link">
-                        <div class="card dashboard-card logout-card">
+                    <a href="src/control/ArtControl/resetAllArt.php" class="card-link">
+                        <div class="card dashboard-card reset">
                             <div class="card-body text-center">
-                                <i class="fas fa-sign-out-alt fa-3x"></i>
-                                <h5 class="card-title mt-3">Déconnexion</h5>
+                                <i class="fas fa-database fa-3x" style="color: rgba(255,0,0,0.7)"></i>
+                                <h5 class="card-title mt-3">Réinitialiser les utilisateurs</h5>
                             </div>
                         </div>
                     </a>
