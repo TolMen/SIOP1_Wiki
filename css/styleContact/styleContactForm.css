@@ -11,6 +11,7 @@ body {
     align-items: center;
     flex-direction: column;
     flex-grow: 1;
+    padding: 50px 0;
 }
 
 /* ---------------------------------------------------------------------- */
