@@ -9,16 +9,6 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
     exit;
 }
 
-if (!empty($_SESSION["userID"])) {
-    $articleID = htmlspecialchars($_GET["articleID"], ENT_QUOTES);
-}
+$bdd->exec(file_get_contents("article.sql"));
+header("Location: ../../../dashboard.php");
 
-if ($_SESSION["userRole"] == "admin") {
-    $bdd->exec(file_get_contents("article.sql"));
-}
-
-if ($_SESSION["userRole"] == "admin") {
-    header("Location: ../../../dashboard.php");
-} else {
-    header("Location: ../../../home.php");
-}
