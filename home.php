@@ -91,9 +91,8 @@ if (empty($articles)) {
                 </form>
             </div>
 
-            <div class="container">
-                <div class="row">
-
+            <div id="list_art">
+                <div class="articles-grid">
                     <?php
                     foreach ($articles as $article) {
                         $artPostModel = new ArtPostModel();
@@ -111,8 +110,7 @@ if (empty($articles)) {
                                         echo date("d/m/Y à H:i", strtotime($article['created_at']));
                                     } else {
                                         echo date("d/m/Y à H:i", strtotime($article['updated_at']));
-                                    } ?>
-                                </span>
+                                    } ?></span>
                                 <div class="article_choix">
                                     <a href="templateArt.php?articleID=<?php echo $article['id']; ?>" class="read-more">
                                         Continuer la lecture
@@ -121,30 +119,27 @@ if (empty($articles)) {
                                         <a href="src/control/ArtControl/deleteArt.php?articleID=<?php echo $article['id']; ?>">
                                             <i class="fa-solid fa-trash" title="Supprimer l'article" style="color: red;"></i>
                                         </a>
-                                    <?php } ?>
+                                    <?php   } ?>
                                 </div>
                                 <a href="historique.php?articleID=<?php echo $article['id']; ?>" class="read-morehistorique">Voir l'historique</a>
                             </div>
                         </div>
-
-                </div>
-            <?php
+                    <?php
                     }
-            ?>
-
+                    ?>
+                </div>
             </div>
-    </div>
-    </section>
+        </section>
 
-    <section class="civilization-section">
-        <div class="container">
-            <h2>🌍 Découvrez les Civilisations du Monde 🏛️</h2>
-            <p class="quote">
-                "Une civilisation se mesure à ce qu'elle laisse à ses descendants."
-            </p>
-            <a href="contact.php" class="explore-btn">Contactez nous</a>
-        </div>
-    </section>
+        <section class="civilization-section">
+            <div class="container">
+                <h2>🌍 Découvrez les Civilisations du Monde 🏛️</h2>
+                <p class="quote">
+                    "Une civilisation se mesure à ce qu'elle laisse à ses descendants."
+                </p>
+                <a href="contact.php" class="explore-btn">Contactez nous</a>
+            </div>
+        </section>
 
     </div>
     <!-- Inclusion du pied de page -->
