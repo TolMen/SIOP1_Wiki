@@ -52,6 +52,7 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                         <div class="card dashboard-card reset">
                             <div class="card-body text-center">
                                 <i class="fas fa-database fa-3x" style="color: rgba(255,0,0,0.7)"></i>
+                                <i class="fas fa-newspaper fa-3x" style="color: rgba(255,0,0,0.7)"></i>
                                 <h5 class="card-title mt-3">Réinitialiser les articles</h5>
                             </div>
                         </div>
@@ -82,6 +83,7 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                         <div class="card dashboard-card reset">
                             <div class="card-body text-center">
                                 <i class="fas fa-database fa-3x" style="color: rgba(255,0,0,0.7)"></i>
+                                <i class="fas fa-users fa-3x" style="color: rgba(255,0,0,0.7)"></i>
                                 <h5 class="card-title mt-3">Réinitialiser les utilisateurs</h5>
                             </div>
                         </div>
