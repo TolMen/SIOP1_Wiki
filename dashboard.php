@@ -27,7 +27,7 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
         <div class="container mt-5">
             <h1 class="text-center mb-4">Tableau de Bord</h1>
             <div class="row">
-                <div class="col-12 col-md-6 col-lg-4">
+                <div class="col-12 col-sm-4 col-lg-4">
                     <a href="article_list.php" class="card-link">
                         <div class="card dashboard-card">
                             <div class="card-body text-center">
@@ -37,7 +37,7 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                         </div>
                     </a>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4">
+                <div class="col-12 col-sm-4 col-lg-4">
                     <a href="user_list.php" class="card-link">
                         <div class="card dashboard-card">
                             <div class="card-body text-center">
@@ -47,7 +47,27 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                         </div>
                     </a>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4">
+                <div class="col-12 col-sm-4 col-lg-4">
+                    <a href="messagerie.php" class="card-link">
+                        <div class="card dashboard-card logout-card">
+                            <div class="card-body text-center">
+                                <i class="fas fa-address-book fa-3x"></i>
+                                <h5 class="card-title mt-3">Messagerie</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-sm-4 col-lg-4">
+                    <a href="home.php" class="card-link">
+                        <div class="card dashboard-card logout-card">
+                            <div class="card-body text-center">
+                                <i class="fas fa-home fa-3x"></i>
+                                <h5 class="card-title mt-3">Accueil</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-sm-4 col-lg-4">
                     <a href="src/control/ArtControl/resetAllArt.php" class="card-link">
                         <div class="card dashboard-card reset">
                             <div class="card-body text-center">
@@ -58,27 +78,7 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                         </div>
                     </a>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <a href="messagerie.php" class="card-link">
-                        <div class="card dashboard-card logout-card">
-                            <div class="card-body text-center">
-                                <i class="fas fa-address-book fa-3x"></i>
-                                <h5 class="card-title mt-3">Messagerie</h5>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <a href="home.php" class="card-link">
-                        <div class="card dashboard-card logout-card">
-                            <div class="card-body text-center">
-                                <i class="fas fa-home fa-3x"></i>
-                                <h5 class="card-title mt-3">Accueil</h5>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
+                <div class="col-12 col-sm-4 col-lg-4">
                     <a href="src/control/ArtControl/resetAllArt.php" class="card-link">
                         <div class="card dashboard-card reset">
                             <div class="card-body text-center">

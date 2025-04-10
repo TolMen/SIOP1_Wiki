@@ -3,8 +3,8 @@ body {
     background: rgba(220, 220, 220, 0.50);
 }
 
-body div {
-    margin-bottom: 16px;
+html, body, .container {
+    height: 100%;
 }
 
 .container {
