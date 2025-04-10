@@ -1,0 +1,27 @@
+.main-container {
+    background: #F8F8FF;
+}
+
+.box form {
+    background: #F8F8FF;
+}
+
+/* ---------------------------------------------------------------------- */
+
+.box::before {
+    top: -50%;
+}
+
+.box::after {
+    top: -50%;
+}
+
+.borderLine::before {
+    top: -50%;
+}
+
+.borderLine::after {
+    top: -50%;
+}
+
+/* ---------------------------------------------------------------------- */

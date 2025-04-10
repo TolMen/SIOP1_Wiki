@@ -1,0 +1,63 @@
+.main-container {
+    background: #FCF9F6;
+}
+
+.box {
+    height: 500px;
+}
+
+.box form {
+    background: #FCF9F6;
+}
+
+/* ---------------------------------------------------------------------- */
+
+.box::before {
+    top: -35%;
+    background: linear-gradient(
+        0deg,
+        transparent,
+        transparent,
+        #000000,
+        #000000,
+        #000000
+    );
+}
+
+.box::after {
+    top: -35%;
+    background: linear-gradient(
+        0deg,
+        transparent,
+        transparent,
+        #000000,
+        #000000,
+        #000000
+    );
+}
+
+.borderLine::before {
+    top: -35%;
+    background: linear-gradient(
+        0deg,
+        transparent,
+        transparent,
+        #CEA37E,
+        #CEA37E,
+        #CEA37E
+    );
+}
+
+.borderLine::after {
+    top: -35%;
+    background: linear-gradient(
+        0deg,
+        transparent,
+        transparent,
+        #CEA37E,
+        #CEA37E,
+        #CEA37E
+    );
+}
+
+/* ---------------------------------------------------------------------- */
