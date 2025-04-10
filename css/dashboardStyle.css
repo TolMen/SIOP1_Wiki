@@ -17,6 +17,7 @@ body div {
     border-radius: 10px;
     color: rgb(0, 0, 0);
     margin-bottom: 10px;
+    height: 140px;
 }
 
 .dashboard-card:hover {
