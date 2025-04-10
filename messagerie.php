@@ -35,7 +35,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
             <div class="container cases">
                 <div class="row g-3">
                     <?php foreach ($messages as $message) { ?>
-                        <div class="col-12 col-md-3">
+                        <div class="abc col-12 col-sm-6 col-md-4 col-lg-3">
                             <div class="case">
                                 <a class="trash" href="./src/control/BDDControl/deleteMessage.php?id=<?php echo $message['id'] ?>">
                                     <img src="./assets/svg/trash.svg" alt="Supprimer" />
