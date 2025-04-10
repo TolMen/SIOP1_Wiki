@@ -1,0 +1,235 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-container {
+    background: #FDF7F5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* ---------------------------------------------------------------------- */
+
+/* Form box */
+
+.box {
+    position: relative;
+    width: 800px;
+    height: 550px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 4px solid #DFCDC5;
+}
+
+/* ---------------------------------------------------------------------- */
+
+/* Form */
+
+.box form {
+    background: #FDF7F5;
+    position: absolute;
+    inset: 4px;
+    padding: 50px 40px;
+    border-radius: 8px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.box form h2 {
+    color: black;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+
+.box .boxIdentity {
+    display: flex;
+    gap: 20px;
+}
+
+/* Input fields */
+.box form .inputBoxIdentity,
+.box form .inputBoxOther {
+    position: relative;
+}
+
+.box form .inputBoxOther {
+    margin-top: 35px;
+}
+
+.box .boxIdentity .inputBoxIdentity {
+    flex: 1;
+}
+
+.box form .inputBoxOther {
+    width: 300px;
+}
+
+.box form .inputBox textarea {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    padding: 10px 10px 10px;
+    background: transparent;
+    outline: none;
+    border: 2px solid black;
+    border-radius: 4px;
+    box-shadow: none;
+    color: black;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    resize: none;
+    z-index: 10;
+}
+
+.box form .inputBox .spanTextarea {
+    position: absolute;
+    top: -45px;
+    left: 0px;
+    padding: 20px 0px 10px;
+    pointer-events: none;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    color: black;
+    font-size: 0.75em;
+}
+
+.box form .inputBoxOther.full-width {
+    width: 100%;
+}
+
+.box form .inputBoxOther.margeBottom {
+    margin-bottom: 35px;
+}
+
+
+.box form .inputBox input {
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    color: black;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    z-index: 10;
+}
+
+.box form .inputBox span {
+    position: absolute;
+    left: 0;
+    padding: 20px 0px 10px;
+    pointer-events: none;
+    color: black;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+}
+
+.box form .inputBox input:valid ~ span,
+.box form .inputBox input:focus ~ span {
+    color: black;
+    font-size: 0.75em;
+    transform: translateY(-34px);
+}
+
+.box form .inputBox i {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    border-bottom: 2px solid black;
+    overflow: hidden;
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.box form .inputBox input:valid ~ i,
+.box form .inputBox input:focus ~ i {
+    height: 44px;
+    background: transparent;
+}
+
+/* Form link */
+
+.box form .links {
+    display: flex;
+    justify-content: end;
+}
+
+.box form .links a {
+    margin: 10px 10px;
+    font-size: 0.75em;
+    color: black;
+    text-decoration: none;
+}
+
+/* Form button final */
+
+.box form input[type="submit"] {
+    border: none;
+    outline: none;
+    padding: 9px 5px;
+    background: #957468;
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 4px;
+    font-weight: 600;
+    width: 125px;
+    margin-top: 10px;
+    color: white;
+}
+
+.box form input[type="submit"]:hover {
+    background: hsla(16, 18%, 50%, 0.75);
+}
+
+.box form input[type="submit"]:active {
+    opacity: 0.8;
+}
+
+/* ---------------------------------------------------------------------- */
+
+/* CSS Responsive */
+
+@media screen and (max-width: 991px) {
+    .box {
+        width: 600px;
+        height: 585px;
+    }
+
+        .box h2 {
+        margin-bottom: 25px;
+    }
+}
+
+@media screen and (max-width: 675px) {
+    .box {
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .box {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .box {
+        width: 350px;
+    }
+}
+
+
+/* ---------------------------------------------------------------------- */
