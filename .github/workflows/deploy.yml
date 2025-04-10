@@ -18,7 +18,13 @@ jobs:
         mkdir -p ~/.ssh
         ssh-keyscan -p 1622 sio.jbdelasalle.com >> ~/.ssh/known_hosts
 
-    - name: Deploy to server
+    - name: Deploy to server with exclusions
       run: |
-        sshpass -p ${{ secrets.PASSWORD_SIO_WIKI }} scp -P 1622 -r . jfrachisse@sio.jbdelasalle.com:/home/SIO/jfrachisse/public_html
+        sshpass -p ${{ secrets.PASSWORD_SIO_WIKI }} rsync -avz -e "ssh -p 1622" \
+          --exclude-from='.deployignore' \
+          ./ jfrachisse@sio.jbdelasalle.com:/home/SIO/jfrachisse/public_html
 
+    - name: Set write permissions on assets/imgUpload
+      run: |
+        sshpass -p ${{ secrets.PASSWORD_SIO_WIKI }} ssh -p 1622 jfrachisse@sio.jbdelasalle.com \
+          'chmod 775 /home/SIO/jfrachisse/public_html/assets/imgUpload'
