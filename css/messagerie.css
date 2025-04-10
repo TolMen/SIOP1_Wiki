@@ -53,7 +53,7 @@ h5 {
 }
 
 @media screen and (max-width: 576px) {
-    .abc {
+    .divcol {
         display: flex;
         justify-content: center;
     }
