@@ -12,7 +12,7 @@ body {
     flex-direction: column;
     flex-grow: 1;
     padding: 50px 0;
-    background: url(../../assets/img/f0aa45ecd218158b9d72efaa158ba843dfa95d24dd3a8c27.jpg) no-repeat center center fixed;
+    background: url(../../assets/img/imgPrincipal.jpg) no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -181,7 +181,6 @@ body {
 /* Form button final */
 
 .box form input[type="submit"] {
-    border: none;
     outline: none;
     padding: 9px 5px;
     background: white;
@@ -210,7 +209,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.55);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -221,11 +220,12 @@ body {
 }
 
 .popup-content {
-    background-color: #fff;
+    background: white;
     padding: 20px;
     border-radius: 8px;
     text-align: center;
     animation: fadeIn 0.5s ease-out;
+    border: 2px solid black;
 }
 
 .popup.show {
@@ -243,19 +243,16 @@ body {
 }
 
 #closePopup {
-    background-color: #AB4ABA;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
+    background: white;
+    color: black;
+    border: 2px solid black;
+    padding: 5px 15px;
     border-radius: 4px;
-    margin-top: 10px;
 }
 
 #closePopup:hover {
-    background-color: rgba(171, 74, 186, 0.75);
+    background: whitesmoke;
 }
-
 
 /* ---------------------------------------------------------------------- */
 
