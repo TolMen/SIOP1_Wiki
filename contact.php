@@ -60,8 +60,8 @@ include_once 'checkBanned.php'; // Vérification si l'utilisateur est banni
     <?php include 'src/component/footer.php'; ?>
 
     <!-- Popup de confirmation -->
-    <?php if (isset($_SESSION['contact_success']) && $_SESSION['contact_success'] === true): ?>
-        <div id="popupSuccess" class="popup show">
+    <?php if (isset($_SESSION['contact_success']) && $_SESSION['contact_success'] === true) { ?>
+        <div id="popup" class="popup show">
             <div class="popup-content">
                 <p>Merci <?php echo $_SESSION['contact_name']; ?> !<br> Votre message a bien été envoyé.</p>
                 <button id="closePopup">Fermer</button>
@@ -72,18 +72,13 @@ include_once 'checkBanned.php'; // Vérification si l'utilisateur est banni
         unset($_SESSION['contact_success']);
         unset($_SESSION['contact_name']);
         ?>
-    <?php endif; ?>
+    <?php } ?>
 
     <!-- Liens vers les scripts JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-
-    <script>
-        document.getElementById('closePopup').addEventListener('click', function() {
-            document.getElementById('popupSuccess').classList.remove('show');
-        });
-    </script>
+    <script src="js/popupScript.js"></script>
 
 </body>
 
