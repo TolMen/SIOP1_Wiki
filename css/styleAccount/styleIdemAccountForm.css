@@ -220,8 +220,10 @@ body {
 .box form .links a {
     margin: 10px 10px;
     font-size: 0.75em;
-    color: black;
+    color: #CEA37E;
+    font-weight: bold;
     text-decoration: none;
+    font-style: italic;
 }
 
 /* Form button final */
