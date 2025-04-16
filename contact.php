@@ -29,8 +29,8 @@ include_once 'checkBanned.php'; // Vérification si l'utilisateur est banni
 
                 <div class="boxIdentity">
                     <div class="inputBox inputBoxIdentity">
-                        <input type="text" id="name" name="name" minlength="2" maxlength="15" pattern="[A-Za-z0-9._]{2,15}" required />
-                        <span>Nom</span>
+                        <input type="text" id="name" name="name" minlength="2" maxlength="15" pattern="[A-Za-z-]{2,15}" required />
+                        <span>Nom complet</span>
                         <i></i>
                     </div>
 
