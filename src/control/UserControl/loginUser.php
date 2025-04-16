@@ -12,7 +12,7 @@ $authUser = new authUserModel();
 // Récupération des informations de l'utilisateur
 $user = $authUser->getUserInfo($bdd, $username, $password);
 
-if ($user["id"]) {
+if (!empty($user)) {
     $_SESSION["userID"] = $user["id"];
     $_SESSION["userRole"] = $user["role"];
 
@@ -23,7 +23,7 @@ if ($user["id"]) {
 
     header("Location: ../../../home.php");
     exit;
-}
-else {
-    header("Location: ../../../login.php?invalid=True");
+} else {
+    header("Location: ../../../login.php?infoFalse=true");
+    exit;
 }
