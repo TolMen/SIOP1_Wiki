@@ -5,13 +5,15 @@ body {
 }
 
 .main-container {
-    background: #FDF7FD;
+    background: white;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     flex-grow: 1;
     padding: 50px 0;
+    background: url(../../assets/img/f0aa45ecd218158b9d72efaa158ba843dfa95d24dd3a8c27.jpg) no-repeat center center fixed;
+    background-size: cover;
 }
 
 /* ---------------------------------------------------------------------- */
@@ -21,10 +23,9 @@ body {
 .box {
     position: relative;
     width: 800px;
-    height: 560px;
+    height: 585px;
     border-radius: 8px;
     overflow: hidden;
-    border: 2px solid black;
 }
 
 /* ---------------------------------------------------------------------- */
@@ -32,7 +33,7 @@ body {
 /* Form */
 
 .box form {
-    background: #FDF7FD;
+    background: rgba(255, 255, 255, 0.75);
     position: absolute;
     inset: 4px;
     padding: 50px 40px;
@@ -40,6 +41,7 @@ body {
     z-index: 2;
     display: flex;
     flex-direction: column;
+    border: 1px solid black;
 }
 
 .box form h2 {
@@ -47,6 +49,7 @@ body {
     font-weight: 500;
     text-align: center;
     letter-spacing: 0.1em;
+    margin-bottom: 25px;
 }
 
 .box .boxIdentity {
@@ -181,18 +184,19 @@ body {
     border: none;
     outline: none;
     padding: 9px 5px;
-    background: #AB4ABA;
+    background: white;
     cursor: pointer;
     font-size: 0.9em;
     border-radius: 4px;
     font-weight: 600;
     width: 125px;
-    margin-top: 10px;
-    color: white;
+    margin-top: 20px;
+    color: black;
+    border: 2px solid black;
 }
 
 .box form input[type="submit"]:hover {
-    background: rgba(171, 74, 186, 0.75);
+    background: whitesmoke;
 }
 
 .box form input[type="submit"]:active {
@@ -260,11 +264,6 @@ body {
 @media screen and (max-width: 991px) {
     .box {
         width: 600px;
-        height: 585px;
-    }
-
-        .box h2 {
-        margin-bottom: 25px;
     }
 }
 
