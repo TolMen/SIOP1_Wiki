@@ -24,6 +24,10 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
+.custom-navbar a{
+    text-decoration: none;
+}
+
 .navbar-nav .custom-nav-link.active {
     font-weight: bold;
     color: black !important;

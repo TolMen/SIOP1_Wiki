@@ -4,7 +4,9 @@ $current_page = basename($_SERVER['PHP_SELF']); // Récupère uniquement le nom 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top custom-navbar">
     <div class="container-fluid">
-        <span class="navbar-brand"></i> Civilipédia</span>
+        <a href="home.php">
+            <span class="navbar-brand">Civilipédia</span>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
