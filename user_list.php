@@ -184,9 +184,13 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                                     </label><br><br>
                                     <label for="ReasonID">Raison :</label><br>
                                     <input class="inputReason" type="text" id="ReasonID" name="reason" required /><br>
+
                                     <label for="EndDateID">Durée :</label><br>
                                     <input type="date" id="EndDateID" name="endDate" required /><br><br>
+
                                     <input class="buttonSubmit" type="submit" value="Bannir temporairement" />
+
+                                    <a class="text-danger" href="src/control/UserControl/resetAllUser.php">Réinitialiser les utilisateurs</a>
                                 </form>
                             </div>
                         </div>

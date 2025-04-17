@@ -54,6 +54,8 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                 <input class="inputID" type="number" min="0" name="user_id" />
 
                 <input class="buttonSubmit" type="submit" value="Rechercher" />
+
+                <a class="text-danger" href="src/control/ArtControl/resetAllArt.php">Réinitialiser les articles</a>
             </form>
         </div>
 
