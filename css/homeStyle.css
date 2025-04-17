@@ -3,7 +3,8 @@
 /* En-tête / Section de présentation */
 .header {
     place-content: center;
-    background: url(../assets/img/imgPrincipal.jpg) no-repeat center center fixed;
+    background: url(../assets/img/imgPrincipal.jpg) no-repeat center center
+        fixed;
     background-size: cover;
     background-attachment: fixed;
     height: 50vh;
@@ -26,7 +27,6 @@
     font-size: 20px;
 }
 
-
 /* =========================== CARTES D’ARTICLE =========================== */
 
 .article-card {
@@ -45,15 +45,16 @@
 }
 
 /* Image dans la carte */
-.image_contenu{
+.image_contenu {
     display: flex;
     align-items: center;
-    height: 200px;
+    height: 130px;
     overflow: hidden;
-    background-color: black;
+    background-color: white;
+    border-bottom: 1px solid black;
 }
 .image_contenu img {
-    width:100%;
+    width: 100%;
     object-fit: scale-down;
 }
 
@@ -97,4 +98,22 @@
 /* Lien vers l’article */
 .readArt {
     text-decoration: none;
+}
+
+.image_contenu {
+    position: relative;
+}
+
+.delete-badge {
+    position: absolute;
+    background-color: white;
+    top: 5px;
+    right: 5px;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 3px 7px;
+    cursor: pointer;
+    z-index: 10;
+    width: 30px;
+    height: 30px;
 }
