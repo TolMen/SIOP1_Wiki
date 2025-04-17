@@ -29,7 +29,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
     <?php include 'src/component/head.php'; ?>
     <link rel="stylesheet" href="css/listStyle.css" />
 
-        <title>Wiki - Gestion des articles</title>
+        <title>Civilipédia - Gestion des articles</title>
     </head>
 
 

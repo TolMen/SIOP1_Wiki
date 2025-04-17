@@ -22,7 +22,7 @@ $errorMessage = isset($messages[$errorKey]) ? htmlspecialchars($messages[$errorK
     <?php include 'src/component/head.php'; ?>
     <link rel="stylesheet" href="css/styleAccount/styleIdemAccountForm.css" />
     <link rel="stylesheet" href="css/styleAccount/styleLoginForm.css" />
-    <title>Wiki - Connexion</title>
+    <title>Civilipédia - Connexion</title>
 </head>
 
 <body>
