@@ -29,7 +29,7 @@ include_once 'checkBanned.php'; // Vérification si l'utilisateur est banni
 
     <div class="main-container">
         <div class="box">
-            <form method="POST" action="src/control/ArtControl/addArt.php" enctype="multipart/form-data">
+            <form id="formArt" method="POST" action="src/control/ArtControl/addArt.php" enctype="multipart/form-data">
                 <h2>Publier un article</h2>
 
                 <div class="boxIdentity">
@@ -83,7 +83,7 @@ include_once 'checkBanned.php'; // Vérification si l'utilisateur est banni
             theme: 'snow'
         });
 
-        var form = document.querySelector('form');
+        var form = document.querySelector('#formArt');
         form.onsubmit = function() {
             var hiddenContent = document.querySelector('input[name=content]');
             hiddenContent.value = quill.root.innerHTML; // Récupère le contenu en HTML
