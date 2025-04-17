@@ -44,40 +44,51 @@ foreach ($articles as $article) {
 */
     $dateToShow = !empty($article['updated_at']) ? $article['updated_at'] : $article['created_at'];
 ?>
-    <div class="container mt-4">
+    <div class="article-wrapper container">
+
+        <!-- Titre centré au-dessus de tout -->
         <div class="row">
-            <div class="col-md-8 article-container">
-                <h2 class="title font-weight-bold border-bottom pb-4 text-center"> <?= htmlspecialchars($article['title']); ?> </h2>
-
-                <!-- Image pour la vue mobile -->
-                <div class="text-center d-block d-md-none">
-                    <img src="<?= htmlspecialchars($imageUrl) ?>" alt="Image de l'article" class="img-fluid rounded shadow mx-auto d-block mb-3" style="height: 225px; margin: 25px 0">
-                </div>
-
-                <div class="text text-center"> <?= nl2br($article['content']); ?> </div>
-
-                <div class="text-muted border-top pt-1">
-                    <p class="mb-0 mt-2">✏️ Dernière modification par : <?= htmlspecialchars($userArticles['username'] ?? 'Aucune modification'); ?></p>
-                    <p class="mb-0">📅 En date du : <?= date("d/m/Y à H:i", strtotime($dateToShow)); ?></p>
-                    <p class="mb-0 mt-0">📝 Auteur d'origine : <?= htmlspecialchars($userFirstArticles['username']); ?></p>
-                </div>
-
-                <div class="mt-2">
-                    <a href="historique.php?articleID=<?php echo $article['id']; ?>" class="btn btn-outline-primary btn-sm">Historique</a>
-                    <?php if (isset($_SESSION['userID'])) { ?>
-                        <a href="updateArt.php?articleID=<?php echo $postArtId; ?>" class="btn btn-outline-secondary btn-sm">Modification</a>
-                    <?php } ?>
-                </div>
-            </div>
-
-            <!-- Image pour la vue desktop -->
-            <div class="col-md-4 d-flex justify-content-center d-none d-md-block">
-                <div class="sticky-top" style="top: 175px; height: 450px;">
-                    <img src="<?= htmlspecialchars($imageUrl) ?>" alt="Image de l'article" class="img-fluid rounded shadow mx-auto d-block">
+            <div class="col-12">
+                <div class="article-header text-center">
+                    <h1 class="article-title"><?= htmlspecialchars($article['title']); ?></h1>
                 </div>
             </div>
         </div>
+
+        <!-- Image & contenu en ordre responsive -->
+        <div class="row">
+
+            <!-- Contenu -->
+            <div class="col-lg-8 order-last order-lg-first">
+                <div class="article-content">
+                    <?= nl2br($article['content']); ?>
+                </div>
+            </div>
+
+
+            <!-- Image -->
+            <div class="col-lg-4 order-first order-lg-last">
+                <div class="article-image-desktop sticky-top z-0">
+                    <div class="link mb-3">
+                        <a href="templateArt.php?articleID=<?= $article['id']; ?>" class="btn btn-outline-dark btn-sm active">Lire</a>
+                        <a href="historique.php?articleID=<?= $article['id']; ?>" class="btn btn-outline-dark btn-sm">Historique</a>
+                        <?php if (isset($_SESSION['userID'])) { ?>
+                            <a href="updateArt.php?articleID=<?= $postArtId; ?>" class="btn btn-outline-primary btn-sm">Modifier</a>
+                        <?php } ?>
+                    </div>
+                    <img src="<?= htmlspecialchars($imageUrl) ?>" alt="Image de l'article" class="img-fluid rounded shadow">
+                    <div class="article-meta mt-3">
+                        <p>✏️ Dernière modification par : <strong><?= htmlspecialchars($userArticles['username'] ?? 'Aucune modification'); ?></strong></p>
+                        <p>📅 Le : <strong><?= date("d/m/Y à H:i", strtotime($dateToShow)); ?></strong></p>
+                        <p>📝 Auteur d’origine : <strong><?= htmlspecialchars($userFirstArticles['username']); ?></strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+
 <?php
 }
 ?>
