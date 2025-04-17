@@ -79,7 +79,7 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
                     </a>
                 </div>
                 <div class="col-12 col-sm-4 col-lg-4">
-                    <a href="src/control/ArtControl/resetAllArt.php" class="card-link">
+                    <a href="src/control/UserControl/resetAllUser.php" class="card-link">
                         <div class="card dashboard-card reset">
                             <div class="card-body text-center">
                                 <i class="fas fa-database fa-3x" style="color: rgba(255,0,0,0.7)"></i>
