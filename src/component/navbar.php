@@ -2,7 +2,7 @@
 $current_page = basename($_SERVER['PHP_SELF']); // Récupère uniquement le nom du fichier actuel
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top custom-navbar">
+<nav class="navbar navbar-expand-xl navbar-light bg-light fixed-top custom-navbar">
     <div class="container-fluid">
         <a href="home.php">
             <span class="navbar-brand">Civilipédia</span>
