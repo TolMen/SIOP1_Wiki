@@ -70,8 +70,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
 
         <div class="UserCase active col-1">Suppression</div>
 
-        <?php
-        foreach ($articles as $article) { ?>
+        <?php foreach ($articles as $article) { ?>
             <div class="userCase col-8">
                 <!-- ID -->
                 <div class="col-1"><?php echo $article["id"] ?></div>
