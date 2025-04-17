@@ -28,3 +28,16 @@ jobs:
       run: |
         sshpass -p ${{ secrets.PASSWORD_SIO_WIKI }} ssh -p 1622 jfrachisse@sio.jbdelasalle.com \
           'chmod 775 /home/SIO/jfrachisse/public_html/TP_WIKI/assets/imgUpload'
+
+    - name: Set public read/execute on all files and folders except imgUpload
+      run: |
+        sshpass -p ${{ secrets.PASSWORD_SIO_WIKI }} ssh -p 1622 jfrachisse@sio.jbdelasalle.com << 'EOF'
+          cd /home/SIO/jfrachisse/public_html/TP_WIKI
+
+          # Donner les droits rx aux autres pour tous les dossiers (hors imgUpload)
+          find . -type d ! -path './assets/imgUpload*' -exec chmod o+rx {} \;
+
+          # Donner les droits r aux autres pour tous les fichiers (hors imgUpload)
+          find . -type f ! -path './assets/imgUpload*' -exec chmod o+r {} \;
+        EOF
+
