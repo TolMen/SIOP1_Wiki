@@ -5,6 +5,14 @@ session_start();
 
 include_once 'checkBanned.php';
 
+$messages = [
+    "loginExist" => "Ce pseudo existe déjà !",
+    "idemPassword" => "Les mots de passe ne correspondent pas !"
+];
+
+$errorKey = isset($_GET) ? array_key_first($_GET) : null;
+$errorMessage = isset($messages[$errorKey]) ? htmlspecialchars($messages[$errorKey], ENT_QUOTES) : null;
+
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +36,7 @@ include_once 'checkBanned.php';
         <div class="box">
             <span class="borderLine"></span>
             <!-- Form -->
-            <form method="POST" action="src/control/UserControl/userregister.php">
+            <form method="POST" action="src/control/UserControl/registUser.php">
                 <h2>Inscription</h2>
                 <!-- Input fields -->
                 <div class="boxIdentity">
@@ -49,12 +57,6 @@ include_once 'checkBanned.php';
                     <i></i>
                 </div>
 
-                <?php if (!empty(htmlspecialchars(!empty($_GET["invalid"]), ENT_QUOTES))) { ?>
-                    <label class="invalidCase">Identifiant déjà existant</label><br><br>
-                <?php } else { ?>
-                    <label></label><br>
-                <?php } ?>
-
                 <!-- End of Input fields -->
                 <div class="links">
                     <a href="login.php">Connexion</a>
@@ -69,10 +71,21 @@ include_once 'checkBanned.php';
     <!-- Inclusion du pied de page -->
     <?php include 'src/component/footer.php' ?>
 
+    <!-- Popup error -->
+    <?php if (!empty($errorMessage)) { ?>
+        <div id="popup" class="popup show">
+            <div class="popup-content">
+                <p><?php echo $errorMessage; ?></p>
+                <a href="register.php" id="closePopup">Fermer</a>
+            </div>
+        </div>
+    <?php } ?>
+
     <!-- Liens vers les scripts JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+    <script src="js/popupScript.js"></script>
 </body>
 
 </html>

@@ -1,348 +1,95 @@
-.phrase_accroche h1 {
-  color: white;
-  font-size: 70px;
-  text-align: center;
-  font-family: "Pacifico", serif;
-  font-weight: 900;
-  font-style: italic;
-}
-.phrase_accroche h5 {
-  color: white;
-  font-size: 50px;
-  text-align: center;
-  font-family: "Pacifico", serif;
-  font-weight: 900;
-  font-style: italic;
-}
-.phrase_accroche h2 {
-  color: white;
-  font-size: 70px;
-  text-align: center;
-  font-family: "Pacifico", serif;
-  font-weight: 900;
-  font-style: italic;
-}
-.phrase_accroche {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  backdrop-filter: blur(2px);
-  width: 45%;
+/* =========================== MISE EN PAGE GÉNÉRALE =========================== */
+
+/* En-tête / Section de présentation */
+.header {
+    place-content: center;
+    background: url(../assets/img/imgPrincipal.jpg) no-repeat center center fixed;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 50vh;
+    border-bottom: 1px solid black;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
-.phrase_accroche p {
-  color: white;
-  font-style: italic;
-  font-size: 15px;
-}
-#presentation_section {
-  place-content: center;
-  background-image: url("../assets/img/background_section1.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  height: 50vh;
-}
-/* Section présentation */
-#presentation_section .phrase_accroche {
-  text-align: center;
-  padding: 20px;
+.header .text {
+    padding-left: 25px;
 }
 
-#presentation_section h1,
-#presentation_section h2,
-#presentation_section h5 {
-  margin: 0;
-  padding: 0;
+.header .text h1 {
+    color: black;
+    font-weight: bold;
+    font-size: 70px;
 }
 
-/* Responsivité pour les petits écrans */
-@media (max-width: 1024px) {
-  #presentation_section h1 {
-      font-size: 6vw;
-  }
-  #presentation_section h2 {
-      font-size: 6vw;
-  }
-  #presentation_section h5 {
-      font-size: 4vw;
-  }
+.header .text p {
+    color: black;
+    font-size: 20px;
 }
 
-@media (max-width: 768px) {
-  #presentation_section h1 {
-      font-size: 9vw;
-  }
-  #presentation_section h2 {
-      font-size: 8vw;
-  }
-  #presentation_section h5 {
-      font-size: 6vw;
-  }
-}
 
-@media (max-width: 480px) {
-  #presentation_section h1 {
-      font-size: 10vw;
-  }
-  #presentation_section h2 {
-      font-size: 10vw;
-  }
-  #presentation_section h5 {
-      font-size: 8vw;
-  }
-}
+/* =========================== CARTES D’ARTICLE =========================== */
 
-.lead {
-  font-size: 1.2rem; 
-}
-
-#search_content {
-  padding: 8px;
-  display: flex;
-  place-content: center;
-  margin-bottom: 25px;
-}
-
-.content_recherche {
-  display: flex;
-  background-color: white;
-  gap: 5px;
-}
-.content_recherche input {
-  border: none;
-}
-.formulaire {
-  display: flex;
-  flex-direction: row;
-  background-color: white;
-  border: solid;
-  border-radius: 10px;
-  padding: 7px;
-  width: min-content;
-}
-.recherche {
-  color: rgb(194, 118, 188);
-  border: none;
-  background-color: transparent;
-}
-
-/* Grille des articles */
-.articles-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Quatre articles par ligne */
-   gap: 50px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Responsivité pour les écrans plus petits */
-@media (max-width: 1024px) {
-  .articles-grid {
-      grid-template-columns: repeat(3, 1fr); /* 3 articles par ligne sur tablettes */
-  }
-}
-
-@media (max-width: 768px) {
-  .articles-grid {
-      grid-template-columns: repeat(2, 1fr); /* 2 articles par ligne sur mobile */
-  }
-}
-
-@media (max-width: 480px) {
-  .articles-grid {
-      grid-template-columns: 1fr; /* 1 article par ligne sur très petit écran */
-  }
-}
-
-/* Carte de chaque article */
 .article-card {
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
-  margin-bottom: 15px;
-  display: flex;
-  flex-direction: column;
-  height: 35vh;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 .article-card:hover {
-  transform: translateY(-5px);
+    transform: translateY(-5px);
 }
 
-/* Image */
-.image_contenu{
-  height: 50%;
-}
+/* Image dans la carte */
 .image_contenu img {
-  width: 100%; 
-  height: 100%; 
-  object-fit: scale-down; 
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;
 }
-/* Contenu de l'article */
+
+/* Contenu textuel dans la carte */
 .article-card .content {
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  place-content: center;
-  height: 40%;
-
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    place-content: center;
+    text-align: center;
 }
 
+/* Titre de l’article */
 .article-card h3 {
-  font-size: 15px;
-  font-weight: 700;
-  text-align: center;
-  color: black;
-  padding-top: 30px;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    color: black;
+
+    /* Limitation à une ligne avec "..." */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    /* Largeur maximale à ne pas dépasser */
+    max-width: 100%;
 }
 
+/* Description ou extrait */
 .article-card p {
-  font-size: 14px;
-  color: #bca9a9;
+    font-size: 14px;
+    color: #bca9a9;
 }
 
+/* Date de publication ou de mise à jour */
 .article-card .date {
-  color: #555;
-  font-size: 14px;
-
+    color: #555;
+    font-size: 14px;
 }
 
-.article-card .read-more {
-  text-decoration: none;
-  font-size: 14px;
-  color: #0066cc;
-  font-weight: bold;
-}
-
-.article-card .read-more:hover {
-  text-decoration: underline;
-}
-.article-card .read-morehistorique {
-  text-decoration: none;
-  font-size: 14px;
-  color: #888e96;
-  font-weight: bold;
-}
-
-.article-card .read-morehistorique:hover {
-  text-decoration: underline;
-}
-
-.description {
-  display: flex;
-  justify-content: center;
-  padding: 4px;
-}
-.description-content {
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 5px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-}
-.img-size {
-  height: 300px;
-}
-.img-description-content {
-  display: flex;
-  justify-content: center;
-}
-.infos h2 {
-  font-weight: 600;
-  color: rgb(186, 137, 72);
-  text-align: center;
-}
-.infos p {
-  text-align: center;
-}
-.infos p {
-  margin-top: 15px;
-}
-.body-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  gap: 30px;
-}
-.line-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-}
-
-.line {
-  flex-grow: 1;
-  height: 2px;
-  background-color: #0066cc;
-  max-width: 150px;
-}
-
-.line-content span {
-  font-size: 18px;
-  font-weight: bold;
-  color: #0066cc;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.article_choix {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-}
-
-.article_choix img {
-  height: 20px;
-  width: 20px;
-}
- /* Derniere session  */
-
- .civilization-section {
-/* background-color: #563e32; */
-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  background-size: cover;
-  background-position: center;
-  color: #563e32;
-  text-align: center;
-  padding: 50px 20px;
-  
-}
-
-.civilization-section .container {
-  margin: 0 auto;
-}
-
-.civilization-section h2 {
-  font-size: 24px;
-  margin-bottom: 15px;
-}
-
-.civilization-section .quote {
-  font-style: italic;
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-
-.explore-btn {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
-  color: white;
-  background: #8B4513;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.explore-btn:hover {
-  background: #50372b;
+/* Lien vers l’article */
+.readArt {
+    text-decoration: none;
 }

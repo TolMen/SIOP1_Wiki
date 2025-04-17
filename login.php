@@ -3,6 +3,15 @@
 session_name("main");
 session_start();
 
+include_once 'checkBanned.php';
+
+$messages = [
+    "banned" => "Utilisateur banni !",
+    "infoFalse" => "Le compte n'existe pas"
+];
+
+$errorKey = isset($_GET) ? array_key_first($_GET) : null;
+$errorMessage = isset($messages[$errorKey]) ? htmlspecialchars($messages[$errorKey], ENT_QUOTES) : null;
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +34,7 @@ session_start();
         <div class="box">
             <span class="borderLine"></span>
             <!-- Form -->
-            <form method="POST" action="src/control/UserControl/userlogin.php">
+            <form method="POST" action="src/control/UserControl/loginUser.php">
                 <h2>Connexion</h2>
                 <!-- Input fields -->
                 <div class="inputBox inputBoxOther">
@@ -38,16 +47,6 @@ session_start();
                     <span>Mot de passe</span>
                     <i></i>
                 </div>
-
-                <?php if (!empty(htmlspecialchars(!empty($_GET["invalid"]), ENT_QUOTES))) { ?>
-                    <label class="invalidCase">Identifiant ou mot de passe invalide</label><br><br>
-                <?php } elseif (htmlspecialchars(!empty($_GET["banned"]), ENT_QUOTES)) { ?>
-                    <label class="invalidCase">Utilisateur banni du site</label><br><br>
-                <?php } else { ?>
-                    <label></label><br>
-                <?php } ?>
-
-
                 <!-- End of Input fields -->
                 <div class="links">
                     <a href="register.php">Inscription</a>
@@ -62,10 +61,21 @@ session_start();
     <!-- Inclusion du pied de page -->
     <?php include 'src/component/footer.php' ?>
 
+    <!-- Popup error -->
+    <?php if (!empty($errorMessage)) { ?>
+        <div id="popup" class="popup show">
+            <div class="popup-content">
+                <p><?php echo $errorMessage; ?></p>
+                <a href="login.php" id="closePopup">Fermer</a>
+            </div>
+        </div>
+    <?php } ?>
+
     <!-- Liens vers les scripts JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+    <script src="js/popupScript.js"></script>
 </body>
 
 </html>

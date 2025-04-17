@@ -4,18 +4,21 @@ $current_page = basename($_SERVER['PHP_SELF']); // Récupère uniquement le nom 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top custom-navbar">
     <div class="container-fluid">
-        <span class="navbar-brand"></i> Civilipédia</span>
+        <a href="home.php">
+            <span class="navbar-brand">Civilipédia</span>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <form class="d-flex position-relative" role="search">
+                <input class="form-control me-2" type="search" placeholder="Rechercher un article..." aria-label="Search" id="searchInput" autocomplete="off">
+                <ul id="searchResults" class="list-group position-absolute w-100" style="z-index: 1000;"></ul>
+            </form>
+
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link custom-nav-link <?php echo ($current_page == 'home.php') ? 'active text-primary' : ''; ?>" href="home.php">Accueil</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="home.php#list_art">Gestion des articles</a>
                 </li>
 
                 <li class="nav-item">
@@ -47,3 +50,5 @@ $current_page = basename($_SERVER['PHP_SELF']); // Récupère uniquement le nom 
         </div>
     </div>
 </nav>
+
+<script src="js/liveSearch.js"></script>

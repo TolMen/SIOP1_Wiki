@@ -10,6 +10,7 @@ body {
     align-items: center;
     flex-direction: column;
     flex-grow: 1;
+    padding: 50px 0;
 }
 
 /* ---------------------------------------------------------------------- */
@@ -19,7 +20,7 @@ body {
 .box {
     position: relative;
     width: 380px;
-    height: 420px;
+    height: 422px;
     border-radius: 8px;
     overflow: hidden;
 }
@@ -219,8 +220,10 @@ body {
 .box form .links a {
     margin: 10px 10px;
     font-size: 0.75em;
-    color: black;
+    color: #CEA37E;
+    font-weight: bold;
     text-decoration: none;
+    font-style: italic;
 }
 
 /* Form button final */
@@ -245,6 +248,59 @@ body {
 
 .box form input[type="submit"]:active {
     opacity: 0.8;
+}
+
+/* Popup */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+    border: 2px solid black;
+}
+
+.popup.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#closePopup {
+    background: white;
+    color: black;
+    border: 2px solid black;
+    padding: 5px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+#closePopup:hover {
+    background: whitesmoke;
 }
 
 /* ---------------------------------------------------------------------- */

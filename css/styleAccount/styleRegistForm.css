@@ -3,11 +3,15 @@
 }
 
 .box {
-    height: 500px;
+    height: 510px;
 }
 
 .box form {
     background: #FCF9F6;
+}
+
+.box form .links a {
+    color: #9B9EF0;
 }
 
 /* ---------------------------------------------------------------------- */
@@ -18,9 +22,9 @@
         0deg,
         transparent,
         transparent,
-        #000000,
-        #000000,
-        #000000
+        #CEA37E,
+        #CEA37E,
+        #CEA37E
     );
 }
 
@@ -30,34 +34,18 @@
         0deg,
         transparent,
         transparent,
-        #000000,
-        #000000,
-        #000000
+        #CEA37E,
+        #CEA37E,
+        #CEA37E
     );
 }
 
 .borderLine::before {
     top: -35%;
-    background: linear-gradient(
-        0deg,
-        transparent,
-        transparent,
-        #CEA37E,
-        #CEA37E,
-        #CEA37E
-    );
 }
 
 .borderLine::after {
     top: -35%;
-    background: linear-gradient(
-        0deg,
-        transparent,
-        transparent,
-        #CEA37E,
-        #CEA37E,
-        #CEA37E
-    );
 }
 
 /* ---------------------------------------------------------------------- */

@@ -1,5 +1,4 @@
 <?php
-
 session_name("main");
 session_start();
 
@@ -8,8 +7,8 @@ if (empty($_SESSION['userID'])) {
     exit;
 }
 
-include_once 'src/control/BDDControl/connectBDD.php';
-include_once 'checkBanned.php';
+include_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
+include_once 'checkBanned.php'; // Vérification si l'utilisateur est banni
 
 ?>
 
@@ -20,57 +19,62 @@ include_once 'checkBanned.php';
     <!-- Inclusion des balise meta -->
     <?php include 'src/component/head.php'; ?>
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="css/styleArticle/styleCUArt.css" />
     <title>Création d'article</title>
 </head>
 
 <body>
-
     <!-- Inclusion de la barre de navigation -->
-    <?php include 'src/component/navbar.php' ?>
+    <?php include 'src/component/navbar.php'; ?>
 
-    <!-- Section pour publier un article -->
-    <section class="container py-5">
-        <h2 class="text-center mb-4">Publier un article</h2>
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
-                <form method="POST" action="src/control/ArtControl/addArt.php" enctype="multipart/form-data" class="bg-light p-4 rounded shadow">
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Titre *</label>
-                        <input type="text" id="title" name="title" class="form-control" placeholder="Entrez le titre de l'article" required>
+    <div class="main-container">
+        <div class="box">
+            <form method="POST" action="src/control/ArtControl/addArt.php" enctype="multipart/form-data">
+                <h2>Publier un article</h2>
+
+                <div class="boxIdentity">
+                    <div class="inputBox inputBoxIdentity">
+                        <input type="text" id="title" name="title" required />
+                        <span>Titre *</span>
+                        <i></i>
                     </div>
-                    <div class="mb-3">
-                        <label for="editor" class="form-label">Contenu *</label>
-                        <div id="editor" style="height: 100px;" placeholder="Écrivez le contenu ici..." required></div>
+                </div>
+
+                <div class="boxContent">
+                    <span class="content">Contenu *</span>
+                    <div class="editor">
+                        <div class="editorQuill" id="editor" required></div>
                         <input type="hidden" id="hidden-content" name="content">
                     </div>
-                    <div class="mb-3">
-                        <label for="images" class="form-label">Images *</label>
-                        <input type="file" id="images" name="images" class="form-control" required>
+                </div>
+
+                <div class="boxOther">
+                    <div class="inputBox inputBoxOther full-width">
+                        <input type="file" id="images" name="images" required />
+                        <span>Image *</span>
+                        <i></i>
                     </div>
-                    <div class="mb-3">
-                        <label for="datePublication" class="form-label">Date de publication *</label>
-                        <input type="date" id="createdAt" name="createdAt" value="<?php echo date('Y-m-d'); ?>" class=" form-control" required>
+
+                    <div class="inputBox inputBoxOther full-width">
+                        <input type="date" id="createdAt" name="createdAt" value="<?php echo date('Y-m-d'); ?>" required />
+                        <span>Date de publication *</span>
+                        <i></i>
                     </div>
-                    <div class="text-left">
-                        <button type="submit" name="publishArticle" class="btn btn-primary w-30">
-                            <i class="fas fa-paper-plane me-2"></i>Publier l'article
-                        </button>
-                        <a href="home.php" class="btn btn-danger w-15">Annuler</a>
-                    </div>
-                </form>
-            </div>
+                </div>
+
+                <div class="link">
+                    <input type="submit" name="publishArticle" value="Publier l'article">
+                    <a href="home.php" class="cancel-link">Annuler</a>
+                </div>
+            </form>
         </div>
-    </section>
-    <!-- Fin de section pour publier un article -->
+    </div>
 
     <!-- Inclusion du pied de page -->
-    <?php include 'src/component/footer.php' ?>
+    <?php include 'src/component/footer.php'; ?>
 
     <!-- Scripts JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 
     <!-- Initialize Quill editor -->
@@ -86,4 +90,5 @@ include_once 'checkBanned.php';
         };
     </script>
 </body>
+
 </html>

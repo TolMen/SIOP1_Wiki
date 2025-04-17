@@ -19,11 +19,10 @@ body {
 /* ---------------------------------------------------------------------- */
 
 /* Form box */
-
 .box {
     position: relative;
     width: 800px;
-    height: 585px;
+    height: 650px; /* Ajusté la hauteur pour inclure l'éditeur Quill */
     border-radius: 8px;
     overflow: hidden;
 }
@@ -31,12 +30,11 @@ body {
 /* ---------------------------------------------------------------------- */
 
 /* Form */
-
 .box form {
     background: rgba(255, 255, 255, 0.75);
     position: absolute;
     inset: 4px;
-    padding: 50px 40px;
+    padding: 30px 40px;
     border-radius: 8px;
     z-index: 2;
     display: flex;
@@ -63,14 +61,40 @@ body {
     position: relative;
 }
 
-.box form .inputBoxOther {
+.box form .inputBoxOther,
+.box form .boxContent {
     margin-top: 35px;
-    width: 300px;
+}
+
+.box form .editor {
+    border: 2px solid black;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.box form .editorQuill {
+    height: 150px;
 }
 
 .box .boxIdentity .inputBoxIdentity {
     flex: 1;
 }
+
+.box form .inputBoxOther {
+    width: 300px;
+}
+
+.boxOther {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 35px;
+}
+
+.boxOther .inputBoxOther {
+    flex: 1;
+}
+
 
 .box form .inputBox textarea {
     position: relative;
@@ -109,7 +133,6 @@ body {
     margin-bottom: 35px;
 }
 
-
 .box form .inputBox input {
     position: relative;
     width: 100%;
@@ -136,8 +159,16 @@ body {
     transition: 0.5s;
 }
 
+.box form .boxContent span.content {
+    color: black;
+    font-size: 0.75em;
+    letter-spacing: 0.05em;
+}
+
 .box form .inputBox input:valid ~ span,
-.box form .inputBox input:focus ~ span {
+.box form .inputBox input:focus ~ span,
+.box form .inputBox input[type="file"] ~ span,
+.box form .boxContent ~ span {
     color: black;
     font-size: 0.75em;
     transform: translateY(-34px);
@@ -156,28 +187,24 @@ body {
 }
 
 .box form .inputBox input:valid ~ i,
-.box form .inputBox input:focus ~ i {
+.box form .inputBox input:focus ~ i,
+.box form .inputBox input[type="file"] ~ span,
+.box form .boxContent ~ span  {
     height: 44px;
     background: transparent;
 }
 
 /* Form link */
 
-.box form .links {
+.box form .link {
     display: flex;
     justify-content: end;
-}
-
-.box form .links a {
-    margin: 10px 10px;
-    font-size: 0.75em;
-    color: black;
-    text-decoration: none;
+    align-items: center;
 }
 
 /* Form button final */
-
-.box form input[type="submit"] {
+.box form .link input[type="submit"],
+.box form .link .cancel-link {
     outline: none;
     padding: 9px 5px;
     background: white;
@@ -191,69 +218,28 @@ body {
     border: 2px solid black;
 }
 
-.box form input[type="submit"]:hover {
-    background: whitesmoke;
-}
-
-.box form input[type="submit"]:active {
-    opacity: 0.8;
-}
-
-/* Popup */
-.popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.55);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-.popup-content {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
+.box form .link .cancel-link {
     text-align: center;
-    animation: fadeIn 0.5s ease-out;
-    border: 2px solid black;
+    text-decoration: none;
+    width: 80px;
 }
 
-.popup.show {
-    opacity: 1;
-    pointer-events: all;
+.box form .link input[type="submit"] {
+    margin-right: 15px;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-#closePopup {
-    background: white;
-    color: black;
-    border: 2px solid black;
-    padding: 5px 15px;
-    border-radius: 4px;
-}
-
-#closePopup:hover {
+.box form .link input[type="submit"]:hover,
+.box form .link .cancel-link:hover {
     background: whitesmoke;
+}
+
+.box form .link input[type="submit"]:active {
+    opacity: 0.8;
 }
 
 /* ---------------------------------------------------------------------- */
 
-/* CSS Responsive */
+/* Responsive CSS */
 
 @media screen and (max-width: 991px) {
     .box {
@@ -278,6 +264,5 @@ body {
         width: 350px;
     }
 }
-
 
 /* ---------------------------------------------------------------------- */

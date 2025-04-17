@@ -21,7 +21,7 @@ if (!empty($_GET['articleID'])) {
 $artPostModel = new ArtPostModel();
 $articles = $artPostModel->getPostArt($bdd, $postArtId);
 $imageData = $artPostModel->getArticleImage($bdd, $postArtId);
-$imageUrl = $imageData['url'] ?? 'assets/img/civilisation.png'; // Image par défaut
+$imageUrl = $imageData['url'] ?? 'assets/img/imgDefault.jpg';
 
 
 if (!empty($articles)) {
@@ -40,12 +40,11 @@ if (!empty($articles)) {
 foreach ($articles as $article) {
 
     /*
-- Vérifier si dateUpdate est null, pour choisir la date à affiché
+- Vérifie si dateUpdate est null, pour choisir la date à affiché
 */
     $dateToShow = !empty($article['updated_at']) ? $article['updated_at'] : $article['created_at'];
 ?>
     <div class="container mt-4">
-        <button class="btn btn-secondary w-15" onclick="history.back()">Retour</button>
         <div class="row">
             <div class="col-md-8 article-container">
                 <h2 class="title font-weight-bold border-bottom pb-4 text-center"> <?= htmlspecialchars($article['title']); ?> </h2>
