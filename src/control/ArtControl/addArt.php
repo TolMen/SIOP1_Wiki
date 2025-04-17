@@ -47,7 +47,7 @@ if (isset($_POST['publishArticle'])) {
             /*
             - Génére un nom unique avec l'ID de l'article
             */
-            $uniqueName = 'imgArticle' . $articleID . '_' . uniqid() . '.' . $fileExt;
+            $uniqueName = 'imgCivi_' . $articleID . '_' . uniqid() . '.' . $fileExt;
             $destPath = $uploadDir . $uniqueName;
 
             /*

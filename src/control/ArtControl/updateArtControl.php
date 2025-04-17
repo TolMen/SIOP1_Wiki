@@ -73,11 +73,11 @@ if (isset($_POST['updateArticle'])) {
     // Mise à jour de l'article (sans l'image)
     if ($updateArticleModel->updateArticle($bdd, $articleId, $title, $content, $userId)) {
         // Si une nouvelle image est fournie, mettez-la à jour dans la table images
-        if (isset($_FILES['images']) && $_FILES['images']['error'] == 0) {
+        if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
             // Gestion de l'image (compression, redimensionnement, etc.)
             $uploadDir = '../../../assets/imgUpload/';
-            $fileTmpPath = $_FILES['images']['tmp_name'];
-            $fileName = $_FILES['images']['name'];
+            $fileTmpPath = $_FILES['image']['tmp_name'];
+            $fileName = $_FILES['image']['name'];
             $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
             $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
@@ -86,7 +86,7 @@ if (isset($_POST['updateArticle'])) {
                 exit;
             }
 
-            $uniqueName = 'imgArticle' . $articleId . '_' . uniqid() . '.' . $fileExt;
+            $uniqueName = 'imgCivi_' . $articleId . '_' . uniqid() . '.' . $fileExt;
             $destPath = $uploadDir . $uniqueName;
 
             // Compression de l'image
