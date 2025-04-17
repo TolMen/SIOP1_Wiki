@@ -29,7 +29,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
     <?php include 'src/component/head.php'; ?>
     <link rel="stylesheet" href="css/listStyle.css" />
 
-        <title>Wiki - Gestion des articles</title>
+        <title>Civilipédia - Gestion des articles</title>
     </head>
 
 
@@ -54,6 +54,8 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
                 <input class="inputID" type="number" min="0" name="user_id" />
 
                 <input class="buttonSubmit" type="submit" value="Rechercher" />
+
+                <a class="text-danger" href="src/control/ArtControl/resetAllArt.php">Réinitialiser les articles</a>
             </form>
         </div>
 
@@ -68,8 +70,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
 
         <div class="UserCase active col-1">Suppression</div>
 
-        <?php
-        foreach ($articles as $article) { ?>
+        <?php foreach ($articles as $article) { ?>
             <div class="userCase col-8">
                 <!-- ID -->
                 <div class="col-1"><?php echo $article["id"] ?></div>
@@ -111,7 +112,9 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
             <!-- Code pour supprimer un article -->
             <div class="userCase col-1">
                 <div>
-                    <img src="assets/svg/trash.svg" alt="+" data-bs-toggle="modal" data-bs-target="#delete<?php echo $article["id"]; ?>" style="cursor: pointer; width: 40px;">
+                    <a data-bs-toggle="modal" data-bs-target="#delete<?php echo $article["id"]; ?>" style="cursor: pointer; width: 40px;">
+                        <i class="fa-solid fa-trash" style="color: red; font-size: 36px"></i>
+                    </a>
                 </div>
                 <div class="modal fade" id="delete<?php echo $article["id"]; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
