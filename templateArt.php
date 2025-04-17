@@ -33,7 +33,7 @@ ob_end_clean();
     <!-- Inclusion de la barre de navigation -->
     <?php include 'src/component/navbar.php' ?>
     <!-- Milieu de page -->
-    <section class="infoArticle" style="margin: 0; padding: 0; min-height: 82vh; display: flex; flex-direction: column;">
+    <section class="main-container">
         <?php include 'src/control/ArtControl/postArt.php'; ?>
     </section>
     <!-- Fin du milieu de la page -->
@@ -46,4 +46,5 @@ ob_end_clean();
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 </body>
+
 </html>

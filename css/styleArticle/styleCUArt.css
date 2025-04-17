@@ -12,7 +12,8 @@ body {
     flex-direction: column;
     flex-grow: 1;
     padding: 50px 0;
-    background: url(../../assets/img/imgPrincipal.jpg) no-repeat center center fixed;
+    background: url(../../assets/img/imgPrincipal.jpg) no-repeat center center
+        fixed;
     background-size: cover;
 }
 
@@ -94,7 +95,6 @@ body {
 .boxOther .inputBoxOther {
     flex: 1;
 }
-
 
 .box form .inputBox textarea {
     position: relative;
@@ -189,7 +189,7 @@ body {
 .box form .inputBox input:valid ~ i,
 .box form .inputBox input:focus ~ i,
 .box form .inputBox input[type="file"] ~ span,
-.box form .boxContent ~ span  {
+.box form .boxContent ~ span {
     height: 44px;
     background: transparent;
 }
@@ -256,12 +256,22 @@ body {
 @media screen and (max-width: 550px) {
     .box {
         width: 400px;
+        height: 775px;
+    }
+
+    .boxOther {
+        flex-direction: column;
+    }
+
+    .boxOther .inputBoxOther {
+        width: 100%;
     }
 }
 
 @media screen and (max-width: 450px) {
     .box {
         width: 350px;
+        height: 800px;
     }
 }
 
