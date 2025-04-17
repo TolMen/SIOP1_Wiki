@@ -26,12 +26,9 @@ body {
 .queryUsers {
     margin-top: 15px;
     background: white;
-    min-height: 50px;
-    border: rgba(0, 0, 0);
-    border-style: ridge;
-    border-radius: 10px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
+    min-height: 65px;
+    border: ridge rgba(0, 0, 0);
+    border-radius: 10px 10px 0 0;
 }
 
 .userCase {
@@ -40,9 +37,8 @@ body {
         rgba(255, 255, 255, 0.5),
         rgba(255, 255, 255, 0.75)
     );
-    min-height: 50px;
-    border: rgba(0, 0, 0);
-    border-style: ridge;
+    min-height: 75px;
+    border: ridge rgba(0, 0, 0);
     border-radius: 10px;
 }
 
@@ -52,11 +48,10 @@ img {
 
 .active {
     background: white;
-    min-height: 50px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    border: rgba(0, 0, 0);
-    border-style: ridge;
+    min-height: 65px;
+    margin-top: 0;
+    margin-bottom: 0;
+    border: ridge black;
     border-radius: 10px;
 }
 
