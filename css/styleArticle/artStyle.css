@@ -1,0 +1,173 @@
+@media screen and (min-width: 768px) {
+    .article-container {
+        padding-right: 100px;
+    }
+
+    .img-mobile {
+        height: 225px;
+    }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-container {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 25px 0;
+}
+
+.article-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: black;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.5rem;
+    text-align: start;
+}
+
+.article-wrapper {
+    padding: 2rem;
+}
+
+.article-content {
+    font-size: 1.1rem;
+    color: #444;
+    margin-top: 15px;
+}
+
+.article-meta {
+    font-size: 0.95rem;
+    color: #666;
+    border-top: 2px solid #ddd;
+    padding-top: 1rem;
+}
+
+
+.article-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.link {
+    border-bottom: 2px solid #ddd;
+    padding: 1rem 0px;
+}
+
+
+
+.article-image-desktop img,
+.article-image-mobile img {
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.article-image-desktop {
+    top: 100px;
+}
+
+@media (max-width: 768px) {
+    .article-title {
+        font-size: 1.75rem;
+    }
+}
+
+.link .active {
+    background-color: black !important;
+    color: white !important;
+    cursor: default;
+}
+
+.link a {
+    margin-right: 5px;
+}
+
+/* Mode édition : petits contours discrets */
+
+/* Image modifiable */
+.editable-image {
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 15px;
+    display: block;
+    max-width: 100%;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-wrapper-edit {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+}
+
+/* Icône crayon */
+.edit-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 3px 7px;
+    cursor: pointer;
+    z-index: 10;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-icon:hover {
+    background: #f8f9fa;
+    transform: scale(1.05);
+}
+
+.edit-icon i {
+    font-size: 16px;
+    color: #212529;
+}
+
+/* Pour que le champ titre ait une bordure cohérente avec Quill */
+input#title {
+    border-radius: 0 !important;
+    border: 1px solid #ccc;
+    box-shadow: none;
+}
+
+.image-wrapper-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.article-image-view {
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 15px;
+    max-width: 100%;
+    display: block;
+}
+
+
+@media  screen and (max-width: 991px) {
+    .article-header, h1 {
+        margin: 0;
+    }
+
+    .article-meta {
+        border-bottom: 2px solid #ddd;
+    }
+}
