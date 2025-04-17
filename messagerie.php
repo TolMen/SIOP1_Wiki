@@ -25,7 +25,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
             crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/messagerie.css" />
 
-        <title>Wiki - Messagerie</title>
+        <title>Civilipédia - Messagerie</title>
     </head>
 
     <body>
