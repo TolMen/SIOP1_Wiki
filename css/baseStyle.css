@@ -36,3 +36,22 @@
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.15);
     z-index: 1020;
 }
+
+/* Search bar */
+
+#searchResults {
+    max-height: 200px;
+    overflow-y: auto;
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+
+#searchResults li {
+    cursor: pointer;
+}
+
+#searchResults li:hover {
+    background-color: #f0f0f0;
+}
+
