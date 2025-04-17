@@ -14,7 +14,7 @@ $isBanned = !empty($_POST["isBanned"]) ? htmlspecialchars($_POST["isBanned"], EN
 
 if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
     $recupUser = new RecupUserModel();
-    $users = $recupUser->getUserInfo($bdd, $isBanned, $id, $username, $role);
+    $users = $recupUser->getUserInfo($bdd);
 } else {
     header("Location: javascript://history.go(-1)");
     exit;
@@ -42,7 +42,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
     <div class="queryUsers col-10">
         <form method="POST" action="user_list.php">
             <label for="userID">ID :</label>
-            <input class="inputID" type="number" min="0" id="userID" name="id" />
+            <input class="inputID" type="number" min="1" id="userID" name="id" />
 
             <label for="usernameID">Identifiant :</label>
             <input class="inputUsername" type="text" id="usernameID" name="username" />

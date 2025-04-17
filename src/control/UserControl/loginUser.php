@@ -16,11 +16,6 @@ if (!empty($user)) {
     $_SESSION["userID"] = $user["id"];
     $_SESSION["userRole"] = $user["role"];
 
-    if ($_SESSION["userRole"] == "admin") {
-        header("Location: ../../../dashboard.php");
-        exit;
-    }
-
     header("Location: ../../../home.php");
     exit;
 } else {
