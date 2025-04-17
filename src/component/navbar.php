@@ -26,9 +26,18 @@ $current_page = basename($_SERVER['PHP_SELF']); // Récupère uniquement le nom 
                 </li>
 
                 <?php if (isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'admin'): ?>
-                    <li class="nav-item">
-                        <a class="nav-link custom-nav-link <?php echo ($current_page == 'dashboard.php') ? 'active text-primary' : ''; ?>" href="dashboard.php">Dashboard</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link custom-nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administration</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="article_list.php">Gestion des articles</a></li>
+                            <li><a class="dropdown-item" href="user_list.php">Gestion des utilisateurs</a></li>
+                            <li><a class="dropdown-item" href="messagerie.php">Messagerie</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="src/control/ArtControl/resetAllArt.php">Réinitialiser les articles</a></li>
+                            <li><a class="dropdown-item text-danger" href="src/control/UserControl/resetAllUser.php">Réinitialiser les utilisateurs</a></li>
+                        </ul>
                     </li>
+
                 <?php endif; ?>
 
                 <?php if (!empty($_SESSION['userID'])): ?>
