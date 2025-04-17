@@ -21,7 +21,7 @@ if (!empty($_GET['articleID'])) {
 $artPostModel = new ArtPostModel();
 $articles = $artPostModel->getPostArt($bdd, $postArtId);
 $imageData = $artPostModel->getArticleImage($bdd, $postArtId);
-$imageUrl = $imageData['url'] ?? 'assets/img/civilisation.png'; // Image par défaut
+$imageUrl = $imageData['url'] ?? 'assets/img/imgDefault.jpg';
 
 
 if (!empty($articles)) {
