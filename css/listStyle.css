@@ -1,9 +1,6 @@
 
-body > * {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+html, body {
+    width: 100%;
 }
 
 body {
@@ -11,83 +8,60 @@ body {
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
-    min-height: 100vh;
 }
 
-.userList > * {
+.filer_form {
     display: flex;
+    background: white;
+    justify-content: space-around;
+    align-items: center;
+    height: 65px;
+    margin-top: 30px;
+}
+
+.form-item {
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: 7px;
-    margin-bottom: 7px;
+    gap: 10px;
 }
 
-.queryUsers {
-    margin-top: 15px;
-    background: white;
-    min-height: 65px;
-    border: ridge rgba(0, 0, 0);
-    border-radius: 10px 10px 0 0;
+.table {
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
-.userCase {
-    background: linear-gradient(
-        to bottom right,
-        rgba(255, 255, 255, 0.5),
-        rgba(255, 255, 255, 0.75)
-    );
-    min-height: 75px;
-    border: ridge rgba(0, 0, 0);
-    border-radius: 10px;
+th, td {
+    text-align: center;
 }
 
-img {
-    border-radius: 25%;
+input[type="number"] {
+    width: 75px;
 }
 
-.active {
-    background: white;
-    min-height: 65px;
-    margin-top: 0;
-    margin-bottom: 0;
-    border: ridge black;
-    border-radius: 10px;
+input[type="text"] {
+    width: 250px;
 }
 
-.inputID {
-    width: 60px;
-}
-
-.inputUsername, .inputReason {
-    width: 100px;
-}
-
-.buttonSubmit {
-    min-height: 40px;
-    min-width: 150px;
-    border: solid 2px black;
-    border-radius: 50px;
-    transition: all 0.3s ease-in-out;
-}
-
-.buttonSubmit:hover {
-    transform: scale(1.05);
-    background: rgba(255, 255, 255, 0.75);
-    min-height: 40px;
-    min-width: 150px;
-    border: solid 2px black;
-    border-radius: 50px;
-}
-
-.userCase.banned {
-    background: rgba(255, 50, 50, 0.5);
-}
-
-.cantban {
-    cursor: no-drop;
-}
-
-.eye {
+input[type="submit"] {
+    border: none;
+    outline: none;
+    padding: 9px 5px;
+    background: black;
     cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 4px;
+    font-weight: 600;
+    width: 125px;
+    color: white;
+}
+
+input[type="submit"]:hover {
+    background: rgba(0, 0, 0, 0.75);
+}
+
+input[type="submit"]:active {
+    opacity: 0.8;
 }
