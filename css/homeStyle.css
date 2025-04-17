@@ -45,9 +45,15 @@
 }
 
 /* Image dans la carte */
+.image_contenu{
+    display: flex;
+    align-items: center;
+    height: 200px;
+    overflow: hidden;
+    background-color: black;
+}
 .image_contenu img {
-    width: 100%;
-    height: 100%;
+    width:100%;
     object-fit: scale-down;
 }
 
