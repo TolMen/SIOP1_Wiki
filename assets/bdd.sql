@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS article_version;
 DROP TABLE IF EXISTS article;
 DROP TABLE IF EXISTS ban;
 DROP TABLE IF EXISTS contact;
-DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS users;
 
 -- Réactive les contraintes de clé étrangère
 SET FOREIGN_KEY_CHECKS = 1;
@@ -31,7 +31,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 -- Création des tables :
 -- Table `users`
-CREATE TABLE IF NOT EXISTS user (
+CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE, -- UNIQUE pour éviter les doublons
     password VARCHAR(255) NOT NULL,
@@ -47,8 +47,8 @@ CREATE TABLE IF NOT EXISTS article (
     updated_at DATETIME NULL,
     firstAuthor INT NOT NULL,
     user_id INT NOT NULL,
-    FOREIGN KEY (firstAuthor) REFERENCES user(id) ON DELETE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
+    FOREIGN KEY (firstAuthor) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- Table `article_versions`
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS article_version (
     user_id INT NOT NULL,
     article_id INT NOT NULL,
     FOREIGN KEY (article_id) REFERENCES article(id) ON DELETE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- Table `images`
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS ban (
     start_date DATE NOT NULL,
     end_date DATE DEFAULT NULL,
     user_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- Table `contact`
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS contact (
 -- Jeux de données
 
 -- Insertion des utilisateurs fictifs avec génération de hash
-INSERT INTO user (username, password, role) VALUES
+INSERT INTO users (username, password, role) VALUES
 ('root', SHA2('root', 256), 'admin'), -- Utilisateur administrateur
 ('user1', SHA2('password1', 256), 'user'),       -- Premier utilisateur fictif
 ('user2', SHA2('password2', 256), 'user');       -- Deuxième utilisateur fictif
@@ -107,7 +107,7 @@ INSERT INTO user (username, password, role) VALUES
 -- Insertion d'un ban temporaire pour 'user2' pour une durée de 7 jours
 INSERT INTO ban (reason, start_date, end_date, user_id)
 VALUES 
-('Violation des règles de conduite', NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY), 3);
+('Violation des règles de conduite', "2025/01/01 00:00:00", DATE_ADD("2025/01/01 00:00:00", INTERVAL 7 DAY), 3);
 
 
 -- Insertion du contenu d'articles sur les civilisations
@@ -122,7 +122,7 @@ La religion inca était polythéiste, avec un panthéon de divinités liées aux
 L'architecture inca témoigne de leur maîtrise technique et esthétique. Des sites emblématiques comme le Machu Picchu illustrent leur capacité à intégrer harmonieusement les constructions dans des environnements naturels difficiles, utilisant des techniques de taille de pierre précises sans mortier. <br>
 Malgré leur puissance, les Incas ont été confrontés à l'arrivée des conquistadors espagnols au XVIᵉ siècle. En 1532, l'empereur Atahualpa fut capturé par Francisco Pizarro, marquant le début de la chute de l'empire inca. Cependant, l'héritage inca perdure à travers les traditions, les langues et les vestiges archéologiques qui continuent de fasciner le monde entier.
 ", 
-NOW(), 1, 2),
+"2025/01/01 00:00:00", 1, 2),
 
 ("Les Mayas : Astronomes Érudits et Architectes des Cités Éternelles", 
 "La civilisation maya, l'une des plus fascinantes de Mésoamérique, s'est épanouie sur une vaste région englobant le sud du Mexique, le Guatemala, le Belize, ainsi que des parties du Honduras et du Salvador. Connus pour leurs avancées remarquables en écriture, art, architecture, agriculture, mathématiques et astronomie, les Mayas ont laissé un héritage culturel inestimable.<br>
@@ -132,7 +132,7 @@ La société maya était structurée en une hiérarchie complexe, avec une élit
 Vers la fin de la période classique, entre le VIIIᵉ et le IXᵉ siècle, de nombreuses cités mayas des Basses-Terres ont été abandonnées, marquant un déclin mystérieux souvent qualifié d'effondrement de la civilisation maya classique. Les causes de cet effondrement font l'objet de débats parmi les chercheurs, impliquant des facteurs tels que des conflits internes, des changements environnementaux et des perturbations économiques.<br>
 Malgré ces bouleversements, les Mayas ont perduré, et aujourd'hui, des millions de descendants continuent de vivre dans les régions ancestrales, préservant leur langue et leurs traditions, témoignant de la résilience et de la continuité de cette civilisation emblématique.
 ", 
-NOW(), 1, 1),
+"2025/01/01 00:00:00", 1, 1),
 
 ("Les Aztèques : Guerriers Valeureux et Bâtisseurs d''un Empire Flottant", 
 "Les Aztèques, également appelés Mexicas, étaient un peuple amérindien de langue nahuatl qui a dominé la Mésoamérique entre le XIVᵉ et le XVIᵉ siècle. Originaires d'Aztlan, une région mythique du nord, ils ont migré vers le plateau central du Mexique, fondant en 1325 leur capitale, Mexico-Tenochtitlan, sur les îles du lac Texcoco.<br>
@@ -142,7 +142,7 @@ L'architecture aztèque se distinguait par des constructions impressionnantes, n
 L'arrivée des conquistadors espagnols, menés par Hernán Cortés en 1519, a marqué le début de la chute de l'empire aztèque. Après des alliances avec des peuples soumis et des épidémies dévastatrices, Tenochtitlan est tombée en 1521, signant la fin de cette civilisation florissante.<br>
 Aujourd'hui, l'héritage aztèque perdure à travers les traditions, la langue nahuatl encore parlée par des communautés, et les vestiges archéologiques qui continuent de fasciner et d'inspirer le monde entier.
 ", 
-NOW(), 1, 1),
+"2025/01/01 00:00:00", 1, 1),
 
 ("Les Vikings : Navigateurs audacieux et bâtisseurs d'empires", 
 "Les Vikings, originaires des régions actuelles de la Norvège, du Danemark et de la Suède, sont des figures emblématiques du Moyen Âge, connus pour leur audace, leur expertise maritime et leur influence durable sur l'histoire de l'Europe et au-delà. Entre le VIIIᵉ et le XIᵉ siècle, ces peuples scandinaves ont marqué le monde par leurs raids, leurs explorations et leurs conquêtes, s'étendant sur de vastes territoires, de l'Islande au Groenland, en passant par la Normandie, la Russie, et même l'Amérique du Nord.<br>
@@ -151,7 +151,7 @@ Outre leurs exploits guerriers, les Vikings étaient d'habiles commerçants. Gr�
 La société viking était centrée autour des clans familiaux, où l'honneur, la bravoure et la loyauté étaient des valeurs essentielles. Les Vikings étaient également des guerriers redoutables, et leurs croyances polythéistes jouaient un rôle crucial dans leur culture. Ils vénéraient des dieux puissants comme Odin, Thor et Freyja, et croyaient fermement à l'importance de l'au-delà, en particulier au Valhalla, où les guerriers morts au combat étaient accueillis par les dieux.<br>
 L'impact des Vikings sur l'histoire mondiale est immense. De la toponymie aux traditions culturelles, en passant par des vestiges archéologiques qui témoignent de leur passage, leur influence se fait encore sentir aujourd’hui. Leurs raids ont contribué à façonner les frontières et les sociétés européennes, et leur culture continue de fasciner par sa richesse et son mystère. Les Vikings, loin d’être de simples pillards, ont été des bâtisseurs de civilisations, laissant derrière eux une empreinte indélébile sur l'histoire de l'humanité.
 ", 
-NOW(), 1, 2),
+"2025/01/01 00:00:00", 1, 2),
 
 ("Les Atlantes : Peuple légendaire des confins de l''Afrique antique", 
 "Les Atlantes sont un peuple mythique évoqué par les auteurs antiques, notamment Hérodote, qui les situe dans les régions désertiques de la Libye, à proximité de la montagne nommée « Atlas ». Cette localisation précise demeure incertaine, et les informations sur ce peuple sont principalement légendaires.<br>
@@ -160,7 +160,7 @@ Le nom « Atlantes » a inspiré Platon pour nommer la civilisation fictive de l
 Outre Hérodote, d'autres auteurs antiques mentionnent les Atlantes, bien que leurs descriptions soient souvent vagues et légendaires. Par exemple, Pline l'Ancien rapporte que les Atlantes habitent « au milieu des solitudes », sans fournir de détails supplémentaires.<br>
 En somme, les Atlantes demeurent un peuple mystérieux de l'Antiquité, dont les récits ont traversé les âges, alimentant l'imaginaire collectif et inspirant diverses légendes, notamment celle de l'Atlantide.
 ", 
-NOW(), 1, 1),
+"2025/01/01 00:00:00", 1, 1),
 
 ("Les Peuples de la Mésopotamie : Berceaux des Civilisations Anciennes", 
 "La Mésopotamie, située entre les fleuves Tigre et Euphrate, est souvent qualifiée de « berceau de la civilisation ». Cette région a été le foyer de plusieurs peuples et civilisations qui ont marqué l'histoire antique par leurs innovations culturelles, politiques et technologiques.<br>
@@ -172,14 +172,14 @@ Les Assyriens, originaires du nord de la Mésopotamie, ont établi un empire pui
 <br>Au VIᵉ siècle av. J.-C., les Chaldéens, également appelés Néobabyloniens, ont restauré la grandeur de Babylone sous le règne de Nabuchodonosor II. Ils sont célèbres pour la reconstruction de la ville, notamment la porte d'Ishtar et les jardins suspendus, et pour leur rôle dans la déportation des Juifs à Babylone.
 <br>La Mésopotamie a ainsi été le théâtre de civilisations successives, chacune contribuant à l'évolution de la région et laissant un héritage durable dans les domaines de l'écriture, du droit, des sciences et de l'urbanisme.
 ", 
-NOW(), 1, 1),
+"2025/01/01 00:00:00", 1, 1),
 
 ("Les Hittites : Pionniers du Fer et Diplomates de l’Antiquité", 
 "La civilisation hittite, établie en Anatolie (l’actuelle Turquie), a prospéré entre le XVIIᵉ et le XIIᵉ siècle av. J.-C. Leur capitale, Hattusa, située dans les collines du nord de l'Anatolie, était un centre politique et religieux entouré de puissantes fortifications et ornée de portes monumentales comme la Porte des Lions. Les Hittites étaient des maîtres de la métallurgie du fer, une technologie qui leur conférait un avantage militaire significatif et renforçait leur économie.
 <br>Sur le plan militaire, ils se sont distingués par l’utilisation des chars de guerre, jouant un rôle clé dans leurs campagnes. Leur puissance atteignit son apogée sous le règne de Suppiluliuma Iᵉʳ, qui étendit leur influence jusqu’au Levant. Ils sont également célèbres pour avoir signé le premier traité de paix connu de l’histoire, le traité de Kadesh, conclu avec Ramsès II d’Égypte après une bataille majeure en 1274 av. J.-C.
 <br>La religion hittite était polythéiste, intégrant des divinités locales et étrangères, ce qui reflétait la diversité culturelle de leur empire. Cependant, vers 1200 av. J.-C., les Hittites disparurent brutalement, probablement à cause des invasions des Peuples de la mer et des bouleversements internes. Leur héritage demeure important, notamment dans les domaines de la diplomatie et de la métallurgie.
 ", 
-NOW(), 1, 1),
+"2025/01/01 00:00:00", 1, 1),
 
 ("Les Phéniciens : Navigateurs Ingénieux et Créateurs de l’Alphabet", 
 "Les Phéniciens, établis sur les côtes de l’actuel Liban, ont prospéré entre le XIIᵉ et le IIIᵉ siècle av. J.-C. Connus comme des maîtres navigateurs, ils étaient d’excellents commerçants, reliant les côtes méditerranéennes grâce à un réseau de ports florissants comme Tyr, Sidon et Byblos. Ils ont également fondé de nombreuses colonies, dont la plus célèbre est Carthage, qui deviendra plus tard une puissance majeure.
@@ -187,7 +187,7 @@ NOW(), 1, 1),
 <br>Les Phéniciens étaient célèbres pour leur teinture pourpre, produite à partir du murex, un mollusque marin. Cette couleur, rare et précieuse, était réservée à l’élite et symbolisait le pouvoir et la richesse. Leur influence s’étendait bien au-delà du commerce : ils ont diffusé des idées, des technologies et des produits dans toute la Méditerranée.
 <br>Malgré leur prospérité, les Phéniciens ont subi la domination des Assyriens, des Babyloniens, et enfin des Romains, ce qui a marqué le déclin progressif de leur civilisation. Leur héritage perdure à travers l’alphabet et les vestiges de leurs colonies.
 ", 
-NOW(), 1, 1),
+"2025/01/01 00:00:00", 1, 1),
 
 ("Les Minoens : L’Âge d’Or de la Crète", 
 "Les Minoens, qui ont prospéré sur l’île de Crète entre 3000 et 1450 av. J.-C., sont l’une des premières grandes civilisations européennes. Leur culture doit son nom au légendaire roi Minos, connu pour le mythe du Minotaure. La société minoenne était centrée sur le commerce maritime, reliant la Crète à l’Égypte, au Proche-Orient et à la Grèce continentale.
@@ -195,7 +195,7 @@ NOW(), 1, 1),
 <br>Les Minoens utilisaient un système d’écriture appelé Linéaire A, encore indéchiffré, ce qui limite notre compréhension de leur société. Cependant, leur influence sur les Grecs mycéniens est évidente, notamment dans les domaines religieux et artistiques.
 <br>Vers 1450 av. J.-C., la civilisation minoenne déclina brusquement, probablement à cause de l’éruption volcanique de Santorin, suivie d’invasions des Mycéniens. Malgré leur disparition, leur héritage perdure dans la mythologie grecque et les vestiges archéologiques.
 ", 
-NOW(), 1, 3),
+"2025/01/01 00:00:00", 1, 3),
 
 ("Les Mycéniens : Les Guerriers d’Homère", 
 "Les Mycéniens, qui ont dominé la Grèce continentale entre 1600 et 1100 av. J.-C., sont considérés comme les prédécesseurs directs des Grecs classiques. Leur civilisation tire son nom de la cité de Mycènes, l’une des nombreuses cités fortifiées qui étaient au cœur de leur culture.
@@ -203,7 +203,7 @@ NOW(), 1, 3),
 <br>Ils maîtrisaient l’écriture sous la forme du Linéaire B, un système utilisé pour des documents administratifs, ce qui montre leur organisation avancée. Leurs richesses provenaient du commerce, des raids et de l’agriculture, et ils ont établi des contacts avec les Minoens, les Hittites et les Égyptiens.
 <br>La civilisation mycénienne déclina vers 1100 av. J.-C., marquant le début de l’âge sombre grec. Les raisons de cet effondrement restent débattues, impliquant peut-être des invasions, des troubles internes et des catastrophes naturelles. Cependant, leur influence se retrouve dans la culture grecque classique, notamment dans leur architecture, leur art et leurs récits héroïques.
 ",
-NOW(), 1, 1);
+"2025/01/01 00:00:00", 1, 1);
 
 
 -- Insertion du contenu d'articles sur les civilisations
@@ -223,3 +223,18 @@ VALUES
 ("Les Vikings", 
 "En attente d'informations
 ", "2025/01/01 00:00:00", 1, 4);
+
+-- Insertion des images par défaut pour les articles
+
+INSERT INTO image (url, created_at, article_id)
+VALUES
+("assets/imgDefault/imgCivi_Incas.jpg", "2025/01/01 00:00:00", 1),
+("assets/imgDefault/imgCivi_Azteques.jpg", "2025/01/01 00:00:00", 3),
+("assets/imgDefault/imgCivi_Mayas.jpg", "2025/01/01 00:00:00", 2),
+("assets/imgDefault/imgCivi_Vikings.jpg", "2025/01/01 00:00:00", 4),
+("assets/imgDefault/imgCivi_Atlantes.jpg", "2025/01/01 00:00:00", 5),
+("assets/imgDefault/imgCivi_Mesopotamie.jpg", "2025/01/01 00:00:00", 6),
+("assets/imgDefault/imgCivi_Hittite.jpg", "2025/01/01 00:00:00", 7),
+("assets/imgDefault/imgCivi_Pheniciens.jpg", "2025/01/01 00:00:00", 8),
+("assets/imgDefault/imgCivi_Minoens.jpg", "2025/01/01 00:00:00", 9),
+("assets/imgDefault/imgCivi_Myceniens.jpg", "2025/01/01 00:00:00", 10);
