@@ -8,11 +8,15 @@
     }
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 .main-container {
     background: white;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
     flex-grow: 1;
     padding: 25px 0;

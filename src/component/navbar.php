@@ -29,7 +29,6 @@ $current_page = basename($_SERVER['PHP_SELF']); // Récupère uniquement le nom 
                     <li class="nav-item dropdown">
                         <a class="nav-link custom-nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administration</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="article_list.php">Gestion des articles</a></li>
                             <li><a class="dropdown-item" href="user_list.php">Gestion des utilisateurs</a></li>
                             <li><a class="dropdown-item" href="messagerie.php">Messagerie</a></li>
                             <li><hr class="dropdown-divider"></li>
