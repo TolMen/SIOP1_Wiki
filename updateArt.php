@@ -39,7 +39,7 @@ if (isset($_GET['articleID'])) {
 
     <div class="main-container">
         <div class="box">
-            <form method="POST" action="src/control/ArtControl/updateArtControl.php?articleID=<?php echo $articleID; ?>" enctype="multipart/form-data">
+            <form id="formArt" method="POST" action="src/control/ArtControl/updateArtControl.php?articleID=<?php echo $articleID; ?>" enctype="multipart/form-data">
                 <h2>Modifier l'article</h2>
 
                 <div class="boxIdentity">
@@ -84,7 +84,7 @@ if (isset($_GET['articleID'])) {
             theme: 'snow'
         });
 
-        var form = document.querySelector('form');
+        var form = document.querySelector('#formArt');
         form.onsubmit = function() {
             var hiddenContent = document.querySelector('input[name=content]');
             hiddenContent.value = quill.root.innerHTML;
