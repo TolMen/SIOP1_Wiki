@@ -73,7 +73,7 @@ foreach ($articles as $article) {
                         <a href="templateArt.php?articleID=<?= $article['id']; ?>" class="btn btn-outline-dark btn-sm active">Lire</a>
                         <a href="historique.php?articleID=<?= $article['id']; ?>" class="btn btn-outline-dark btn-sm">Historique</a>
                         <?php if (isset($_SESSION['userID'])) { ?>
-                            <a href="updateArt.php?articleID=<?= $postArtId; ?>" class="btn btn-outline-primary btn-sm">Modifier</a>
+                            <a href="updateArt.php?articleID=<?= $postArtId; ?>" class="btn btn-outline-dark btn-sm">Modifier</a>
                         <?php } ?>
                     </div>
                     <img src="<?= htmlspecialchars($imageUrl) ?>" alt="Image de l'article" class="img-fluid rounded shadow">
