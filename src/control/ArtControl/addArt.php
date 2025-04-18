@@ -40,7 +40,7 @@ if (isset($_POST['publishArticle'])) {
             $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
 
             if (!in_array($fileExt, $allowedTypes)) {
-                echo "Format non supporté.";
+                header('Location: ../../../createArt.php?extentionFail=true');
                 exit;
             }
 
@@ -57,7 +57,7 @@ if (isset($_POST['publishArticle'])) {
                 $imgUrl = 'assets/imgUpload/' . $uniqueName;
                 $addArticleModel->insertImage($bdd, $imgUrl, $createdAt, $articleID);
             } else {
-                echo "Erreur lors de la compression de l'image.";
+                header('Location: ../../../createArt.php?compressionFail=true');
                 exit;
             }
         }
@@ -68,6 +68,7 @@ if (isset($_POST['publishArticle'])) {
         header('Location: ../../../templateArt.php?articleID=' . $articleID);
         throw new Exception("Redirection vers la page d'accueil");
     } else {
-        echo "Erreur lors de l'envoi de l'article";
+        header('Location: ../../../createArt.php?uploadFail=true');
+        exit;
     }
 }

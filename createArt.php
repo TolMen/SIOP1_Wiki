@@ -10,6 +10,15 @@ if (empty($_SESSION['userID'])) {
 include_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
 include_once 'checkBanned.php'; // Vérification si l'utilisateur est banni
 
+$messages = [
+    "compressionFail" => "Erreur lors de la compression de l'image",
+    "extentionFail" => "Erreur lors de l'upload de l'image",
+    "uploadFail" => "Erreur lors de l'upload de l'image",
+];
+
+$errorKey = isset($_GET) ? array_key_first($_GET) : null;
+$errorMessage = isset($messages[$errorKey]) ? htmlspecialchars($messages[$errorKey], ENT_QUOTES) : null;
+
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +29,7 @@ include_once 'checkBanned.php'; // Vérification si l'utilisateur est banni
     <?php include 'src/component/head.php'; ?>
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/styleArticle/styleCUArt.css" />
+    <link rel="stylesheet" href="css/stylePopUp/stylePopUp.css">
     <title>Création d'article</title>
 </head>
 
@@ -73,6 +83,16 @@ include_once 'checkBanned.php'; // Vérification si l'utilisateur est banni
     <!-- Inclusion du pied de page -->
     <?php include 'src/component/footer.php'; ?>
 
+    <!-- Popup error -->
+    <?php if (!empty($errorMessage)) { ?>
+        <div id="popup" class="popup show">
+            <div class="popup-content">
+                <p><?php echo $errorMessage; ?></p>
+                <a href="login.php" id="closePopup">Fermer</a>
+            </div>
+        </div>
+    <?php } ?>
+
     <!-- Scripts JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
@@ -89,6 +109,7 @@ include_once 'checkBanned.php'; // Vérification si l'utilisateur est banni
             hiddenContent.value = quill.root.innerHTML; // Récupère le contenu en HTML
         };
     </script>
+    <script src="js/popupScript.js"></script>
 </body>
 
 </html>
