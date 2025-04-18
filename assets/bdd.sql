@@ -205,25 +205,6 @@ La civilisation mycénienne déclina vers 1100 av. J.-C., marquant le début de 
 ",
 "2025/01/01 00:00:00", 1, 1);
 
-
--- Insertion du contenu d'articles sur les civilisations
-
-INSERT INTO article_version (title, content, created_at, user_id, article_id)
-VALUES
-("Les Incas : Maîtres des andes & Architectes d'un empire légendaire",
-"La civilisation inca, épanouie entre le XIIIᵉ et le XVIᵉ siècle, a su dominer les vastes étendus de l'Amérique du Sud, englobant des territoires correspondant aujourd'hui au Pérou, à l'Équateur, à la Bolivie, ainsi qu'à des parties de la Colombie, du Chili et de l'Argentine. Au cœur de cet empire se trouvait Cuzco, la capitale sacrée, considérée comme le 'nombril du monde'. <br><br>
-Les Incas ont développé une société hautement organisée, avec une administration centralisée et une infrastructure impressionnante. Le réseau routier inca, s'étendant sur des milliers de kilomètres, facilitait les communications et le contrôle des vastes territoires. Les chasquis, messagers rapides, parcouraient ces routes pour transmettre des informations à travers l'empire. <br><br>
-L'agriculture était au cœur de l'économie inca. Grâce à des techniques ingénieuses comme les terrasses de culture et des systèmes d'irrigation avancés, ils cultivaient une variété de produits tels que le maïs, la pomme de terre et le quinoa. L'élevage de camélidés, comme les lamas et les alpagas, fournissait de la laine, de la viande et servait de moyen de transport.
-", "2025/01/01 00:00:00", 1, 1),
-
-("Les Minoens : L’Âge d’Or de la crète", 
-"Les Minoens, qui ont prospéré sur l’île de Crète entre 3000 et 1450 av. J.-C., sont l’une des premières grandes civilisations européennes. Leur culture doit son nom au légendaire roi Minos, connu pour le mythe du Minotaure.
-", "2025/01/01 00:00:00", 1, 9),
-
-("Les Vikings", 
-"En attente d'informations
-", "2025/01/01 00:00:00", 1, 4);
-
 -- Insertion des images par défaut pour les articles
 
 INSERT INTO image (url, created_at, article_id)

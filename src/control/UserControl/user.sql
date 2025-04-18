@@ -4,7 +4,6 @@ USE siop1_wiki;
 
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS ban;
-DROP TABLE IF EXISTS contact;
 DROP TABLE IF EXISTS user;
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -23,16 +22,6 @@ CREATE TABLE IF NOT EXISTS ban (
     end_date DATE DEFAULT NULL,
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
-) ENGINE=InnoDB;
-
--- Table `contact`
-CREATE TABLE IF NOT EXISTS contact (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    subject VARCHAR(255) NOT NULL,
-    message TEXT NOT NULL,
-    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
 -- Insertion des utilisateurs fictifs avec génération de hash
