@@ -10,5 +10,5 @@ if (empty($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
 }
 
 $bdd->exec(file_get_contents("user.sql"));
-header("Location: ../../../user_list.php");
+header("Location: ../../../home.php");
 
