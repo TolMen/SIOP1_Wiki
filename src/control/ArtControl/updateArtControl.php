@@ -34,6 +34,8 @@ if (isset($_GET['articleID'])) {
         $oldImageUrl = $query->fetch(PDO::FETCH_ASSOC)['url'];
     }
 
+    $versionDate = $article['updated_at'] ?? $article['created_at'];
+
     /* 
     - Sauvegarder l'ancienne version de l'article dans la table article_versions
     */
@@ -42,7 +44,7 @@ if (isset($_GET['articleID'])) {
         $articleId,
         $article['title'],
         $article['content'],
-        $article['created_at'],
+        $versionDate,
         $article['user_id'],
         $oldImageUrl // Ajoute l'ancienne URL de l'image
     );
