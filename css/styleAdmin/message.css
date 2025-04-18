@@ -1,0 +1,119 @@
+/* MISE EN PAGE GÉNÉRALE */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 50px 0;
+}
+
+
+/* =========================== MISE EN PAGE GÉNÉRALE =========================== */
+
+/* En-tête / Section de présentation */
+.header {
+    place-content: center;
+    background: url(../../assets/img/imgPrincipal.jpg) no-repeat center center
+        fixed;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 35vh;
+    border-bottom: 1px solid black;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.header .text {
+    padding-left: 25px;
+}
+
+.header .text h1 {
+    color: black;
+    font-weight: bold;
+    font-size: 70px;
+}
+
+.header .text p {
+    color: black;
+    font-size: 20px;
+}
+
+/* =========================== CARTES D’ARTICLE =========================== */
+
+.message-card {
+    position: relative;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.message-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Contenu textuel dans la carte */
+.message-card .content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    text-align: center;
+}
+
+/* Titre de l’article */
+.message-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    color: black;
+
+    /* Limitation à une ligne avec "..." */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    /* Largeur maximale à ne pas dépasser */
+    max-width: 100%;
+}
+
+/* Description ou extrait */
+.message-card p {
+    font-size: 14px;
+    color: black;
+}
+
+/* Date de publication ou de mise à jour */
+.message-card .date {
+    color: #555;
+    font-size: 14px;
+}
+
+/* Lien vers l’article */
+.readArt {
+    text-decoration: none;
+}
+
+.delete-badge {
+    position: absolute;
+    background-color: white;
+    top: 5px;
+    right: 5px;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 3px 7px;
+    cursor: pointer;
+    z-index: 10;
+    width: 30px;
+    height: 30px;
+}

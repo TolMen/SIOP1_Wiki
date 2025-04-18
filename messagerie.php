@@ -18,7 +18,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
 
 <head>
     <?php include 'src/component/head.php'; ?>
-    <link rel="stylesheet" href="css/messagerie.css" />
+    <link rel="stylesheet" href="css/styleAdmin/message.css" />
     <link rel="stylesheet" href="css/stylePopUp/stylePopUp.css">
     <title>Civilipédia - Messagerie</title>
 </head>

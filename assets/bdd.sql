@@ -1,10 +1,7 @@
 -- Configuration BDD
 
 SET NAMES utf8mb4;
-USE 202425_b3_jfrachisse ; 
--- ATTENTION : Il faut changer le nom de la BDD si on veut l'utiliser sur un autre serveur !
--- Nom de la BDD quand on push : 202425_b3_jfrachisse 
--- Nom de la BDD en local : siop1_wiki
+USE 202425_b3_jfrachisse; 
 
 -- ---------------------------------------------
 

@@ -10,12 +10,10 @@ class banCheckUserModel {
         return $querybanned->fetch();
     }
 
-    public function getInfoUserBan(PDO $bdd, $userID) {
-        $state = $bdd->prepare("SELECT * FROM ban WHERE user_id = ? ORDER BY start_date LIMIT 1");
+    public function getInfoUserBan(PDO $bdd, $userID)
+    {
+        $state = $bdd->prepare("SELECT reason, start_date, end_date FROM ban WHERE user_id = ? ORDER BY start_date LIMIT 1");
         $state->execute(array($userID));
-        return $state->fetch();
+        return $state->fetch(PDO::FETCH_ASSOC); // Utilisation de PDO::FETCH_ASSOC pour obtenir un tableau associatif
     }
-
-    
-
 }

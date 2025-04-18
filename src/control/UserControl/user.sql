@@ -1,15 +1,24 @@
+-- Configuration BDD
 
 SET NAMES utf8mb4;
-USE 202425_b3_jfrachisse;
--- ATTENTION : Il faut changer le nom de la BDD si on veut l'utiliser sur un autre serveur !
--- Nom de la BDD quand on push : 202425_b3_jfrachisse 
--- Nom de la BDD en local : siop1_wiki
+USE 202425_b3_jfrachisse; 
 
+-- ---------------------------------------------
+
+-- Désactive temporairement les contraintes de clé étrangère
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- Suppression des tables dans le bon ordre
 DROP TABLE IF EXISTS ban;
 DROP TABLE IF EXISTS users;
+
+-- Réactive les contraintes de clé étrangère
 SET FOREIGN_KEY_CHECKS = 1;
 
+-- ---------------------------------------------
+
+-- Création des tables :
+-- Table `users`
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE, -- UNIQUE pour éviter les doublons
@@ -27,6 +36,9 @@ CREATE TABLE IF NOT EXISTS ban (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+-- ---------------------------------------------
+
+-- Jeux de données
 -- Insertion des utilisateurs fictifs avec génération de hash
 INSERT INTO users (username, password, role) VALUES
 ('root', SHA2('root', 256), 'admin'), -- Utilisateur administrateur
