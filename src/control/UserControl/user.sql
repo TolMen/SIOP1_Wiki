@@ -7,10 +7,10 @@ USE 202425_b3_jfrachisse;
 
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS ban;
-DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS users;
 SET FOREIGN_KEY_CHECKS = 1;
 
-CREATE TABLE IF NOT EXISTS user (
+CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE, -- UNIQUE pour éviter les doublons
     password VARCHAR(255) NOT NULL,
@@ -24,11 +24,11 @@ CREATE TABLE IF NOT EXISTS ban (
     start_date DATE NOT NULL,
     end_date DATE DEFAULT NULL,
     user_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- Insertion des utilisateurs fictifs avec génération de hash
-INSERT INTO user (username, password, role) VALUES
+INSERT INTO users (username, password, role) VALUES
 ('root', SHA2('root', 256), 'admin'), -- Utilisateur administrateur
 ('user1', SHA2('password1', 256), 'user'),       -- Premier utilisateur fictif
 ('user2', SHA2('password2', 256), 'user');       -- Deuxième utilisateur fictif
