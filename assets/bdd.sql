@@ -2,14 +2,17 @@
 -- Désactive temporairement les contraintes de clé étrangère
 SET FOREIGN_KEY_CHECKS = 0;
 
-DROP DATABASE IF EXISTS siop1_wiki;
+DROP DATABASE IF EXISTS 202425_b3_jfrachisse ;
 
 -- Réactive les contraintes de clé étrangère
 SET FOREIGN_KEY_CHECKS = 1;
 
 SET NAMES utf8mb4;
 CREATE DATABASE IF NOT EXISTS siop1_wiki;
-USE siop1_wiki;
+USE 202425_b3_jfrachisse ; 
+-- ATTENTION : Il faut changer le nom de la BDD si on veut l'utiliser sur un autre serveur !
+-- Nom de la BDD quand on push : 202425_b3_jfrachisse 
+-- Nom de la BDD en local : siop1_wiki
 
 -- ---------------------------------------------
 
