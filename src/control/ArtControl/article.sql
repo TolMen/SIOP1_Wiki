@@ -1,16 +1,24 @@
+-- Configuration BDD
 
 SET NAMES utf8mb4;
 USE 202425_b3_jfrachisse;
--- ATTENTION : Il faut changer le nom de la BDD si on veut l'utiliser sur un autre serveur !
--- Nom de la BDD quand on push : 202425_b3_jfrachisse 
--- Nom de la BDD en local : siop1_wiki
 
+-- ---------------------------------------------
+
+-- Désactive temporairement les contraintes de clé étrangère
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- Suppression des tables dans le bon ordre
 DROP TABLE IF EXISTS image;
 DROP TABLE IF EXISTS article_version;
 DROP TABLE IF EXISTS article;
+
+-- Réactive les contraintes de clé étrangère
 SET FOREIGN_KEY_CHECKS = 1;
 
+-- ---------------------------------------------
+
+-- Création des tables :
 -- Table `articles`
 CREATE TABLE IF NOT EXISTS article (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -46,6 +54,9 @@ CREATE TABLE IF NOT EXISTS image (
     FOREIGN KEY (article_id) REFERENCES article(id) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
+-- ---------------------------------------------
+
+-- Jeux de données
 
 -- Insertion du contenu d'articles sur les civilisations
 
