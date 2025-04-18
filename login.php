@@ -22,6 +22,7 @@ $errorMessage = isset($messages[$errorKey]) ? htmlspecialchars($messages[$errorK
     <?php include 'src/component/head.php'; ?>
     <link rel="stylesheet" href="css/styleAccount/styleIdemAccountForm.css" />
     <link rel="stylesheet" href="css/styleAccount/styleLoginForm.css" />
+    <link rel="stylesheet" href="css/stylePopUp/stylePopUp.css">
     <title>Civilipédia - Connexion</title>
 </head>
 

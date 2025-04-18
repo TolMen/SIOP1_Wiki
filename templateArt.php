@@ -14,7 +14,7 @@ include 'src/control/ArtControl/postArt.php';
 
 <head>
     <?php include 'src/component/head.php'; ?>
-    <link rel="stylesheet" href="css/articleStyle.css" />
+    <link rel="stylesheet" href="css/styleArticle/artStyle.css" />
     <title>Article : <?= htmlspecialchars($article['title']); ?></title>
 </head>
 
@@ -51,7 +51,9 @@ include 'src/control/ArtControl/postArt.php';
                                 <a href="updateArt.php?articleID=<?= $article['id']; ?>" class="btn btn-outline-dark btn-sm">Modifier</a>
                             <?php } ?>
                         </div>
-                        <img src="<?= htmlspecialchars($imageUrl) ?>" alt="Image de l'article" class="img-fluid rounded shadow">
+                        <div class="image-wrapper-view">
+                            <img src="<?= htmlspecialchars($imageUrl) ?>" alt="Image de l'article" class="img-fluid rounded shadow article-image-view">
+                        </div>
                         <div class="article-meta mt-3">
                             <p>✏️ Dernière modification par : <strong><?= htmlspecialchars($userArticles['username'] ?? 'Aucune modification'); ?></strong></p>
                             <p>📅 Le : <strong><?= date("d/m/Y à H:i", strtotime($dateToShow)); ?></strong></p>

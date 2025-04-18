@@ -31,7 +31,7 @@ if (isset($_GET['articleID'])) {
 
 <head>
     <?php include 'src/component/head.php'; ?>
-    <link rel="stylesheet" href="css/articleStyle.css" />
+    <link rel="stylesheet" href="css/styleArticle/artStyle.css" />
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <title>Modification : <?= htmlspecialchars($articleAncien['title']); ?></title>
@@ -75,15 +75,14 @@ if (isset($_GET['articleID'])) {
                                 <a href="historique.php?articleID=<?= $articleID; ?>" class="btn btn-outline-dark btn-sm">Historique</a>
                                 <a href="#" class="btn btn-outline-dark btn-sm active">Modifier</a>
                             </div>
-                            <div class="position-relative mb-3">
-                                <img src="<?= htmlspecialchars($imageUrl) ?>" alt="Image de l'article" class="img-fluid rounded shadow editable-image" id="preview-img">
-                                <label for="imageUpload" class="edit-icon">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </label>
+                            <div class="position-relative mb-3 image-container">
+                                <div class="image-wrapper-edit">
+                                    <img src="<?= htmlspecialchars($imageUrl) ?>" alt="Image de l'article" class="img-fluid rounded shadow editable-image" id="preview-img">
+                                    <label for="imageUpload" class="edit-icon">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </label>
+                                </div>
                                 <input type="file" id="imageUpload" name="image" accept="image/*" class="d-none" onchange="previewImage(this)">
-                            </div>
-                            <div class="article-meta mt-3">
-                                <p>🛠️ Vous êtes en mode modification</p>
                             </div>
                         </div>
                     </div>

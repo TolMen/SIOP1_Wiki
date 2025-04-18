@@ -1,80 +1,99 @@
+<!-- messagerie.php -->
 <?php
-
 session_name("main");
 session_start();
 
-include_once 'src/control/BDDControl/connectBDD.php'; // Connexion à la BDD
+include_once 'src/control/BDDControl/connectBDD.php';
 
 if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
-    require_once 'src/control/BDDControl/connectBDD.php'; // $bdd
-    require_once 'src/control/MessControl/getAllMess.php'; // $messages
+    require_once 'src/control/MessControl/getAllMess.php';
 } else {
     header("Location: javascript://history.go(-1)");
     exit;
 }
-
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
 
-    <head>
-        <?php include 'src/component/head.php'; ?>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="css/messagerie.css" />
+<head>
+    <?php include 'src/component/head.php'; ?>
+    <link rel="stylesheet" href="css/messagerie.css" />
+    <link rel="stylesheet" href="css/stylePopUp/stylePopUp.css">
+    <title>Civilipédia - Messagerie</title>
+</head>
 
-        <title>Civilipédia - Messagerie</title>
-    </head>
+<body>
+    <?php include_once 'src/component/navbar.php' ?>
 
-    <body>
-        <?php include_once 'src/component/navbar.php' ?>
-        <div class="global">
+    <header class="header">
+        <div class="text">
             <h1>Messagerie</h1>
-            <div class="container cases">
-                <div class="row g-3">
-                    <?php foreach ($messages as $message) { ?>
-                        <div class="divcol col-12 col-sm-6 col-md-4 col-lg-3">
-                            <div class="case">
-                                <a class="trash" href="./src/control/BDDControl/deleteMessage.php?id=<?php echo $message['id'] ?>">
-                                    <img src="./assets/svg/trash.svg" alt="Supprimer" />
-                                </a>
-                                <h5>De : <?php echo htmlspecialchars($message["name"]); ?></h5>
-                                <h6>Sujet : <?php echo htmlspecialchars($message["subject"]); ?></h6>
-                                <br>
-                                <p class="message-overflow"><?php echo htmlspecialchars($message["message"]); ?></p>
-                                <button class="col-2 bouton" tabindex="0" data-bs-toggle="modal" data-bs-target="#<?php echo $message['id'] ?>">Voir
+            <p>Messages envoyés par les utilisateurs.</p>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <section class="container">
+            <div class="row g-4">
+                <?php foreach ($messages as $message) { ?>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                        <div class="message-card">
+                            <a href="src/control/BDDControl/deleteMessage.php?id=<?= $message['id'] ?>" class="delete-badge" title="Supprimer le message">
+                                <i class="fa-solid fa-trash" style="color: red;"></i>
+                            </a>
+                            <div class="content">
+                                <h3><?= htmlspecialchars($message['subject']) ?></h3>
+                                <p><strong>De :</strong> <?= htmlspecialchars($message['name']) ?></p>
+                                <button class="btn btn-outline-dark btn-sm mt-2 show-popup"
+                                    data-nom="<?= htmlspecialchars($message['name']) ?>"
+                                    data-email="<?= htmlspecialchars($message['email']) ?>"
+                                    data-objet="<?= htmlspecialchars($message['subject']) ?>"
+                                    data-message="<?= htmlspecialchars($message['message']) ?>">
+                                    Lire
                                 </button>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="modal fade" id="<?php echo $message['id'] ?>" tabindex="-1">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <div class="modal-title fs-5">
-                                            <h5>De : <?php echo htmlspecialchars($message["name"]); ?> (<?php echo htmlspecialchars($message["email"]); ?>)</h5>
-                                            <h6>Sujet : <?php echo htmlspecialchars($message["subject"]); ?></h6>
-                                        </div>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="mess<?= $message['id'] ?>" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div>
+                                        <h5 class="modal-title"><?= htmlspecialchars($message['subject']) ?></h5>
+                                        <small>De : <?= htmlspecialchars($message['name']) ?> (<?= htmlspecialchars($message['email']) ?>)</small>
                                     </div>
-                                    <div class="modal-body">
-                                        <p><?php echo htmlspecialchars($message["message"]); ?></p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                        <button type="button" class="btn btn-danger" onclick="window.location.href = './src/control/BDDControl/deleteMessage.php?id=<?php echo $message['id'] ?>';">Supprimer</button>
-                                    </div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><?= nl2br(htmlspecialchars($message['message'])) ?></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                    <a href="src/control/BDDControl/deleteMessage.php?id=<?= $message['id'] ?>" class="btn btn-danger">Supprimer</a>
                                 </div>
                             </div>
                         </div>
-                    <?php } ?>
-                </div>
+                    </div>
+                <?php } ?>
             </div>
-            
-            <!-- Inclusion du pied de page -->
-            <?php include 'src/component/footer.php' ?>
+        </section>
+    </main>
+
+        <?php include 'src/component/footer.php'; ?>
+
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <p id="popup-message"></p>
+                <button id="closePopup">Fermer</button>
+            </div>
         </div>
-    </body>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/messagePopup.js"></script>
+
+</body>
+
 </html>

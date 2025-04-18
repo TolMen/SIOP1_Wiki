@@ -50,10 +50,18 @@ if (empty($articles)) {
                 $imageUrl = $imageData['url'] ?? 'assets/img/imgDefault.jpg';
             ?>
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <a href="templateArt.php?articleID=<?php echo $article['id']; ?>" class="readArt">
+                    <a href="templateArt.php?articleID=<?php echo $article['id']; ?>" class="readArt" title="Lire l'article">
                         <div class="article-card">
                             <div class="image_contenu">
                                 <img src="<?= htmlspecialchars($imageUrl) ?>" alt="Image de l'article">
+                                <?php if (
+                                    isset($_SESSION["userRole"], $_SESSION["userID"]) &&
+                                    ($_SESSION["userRole"] == "admin" || $_SESSION["userID"] == $article['firstAuthor'])
+                                ) { ?>
+                                    <a href="src/control/ArtControl/deleteArt.php?articleID=<?php echo $article['id']; ?>" class="delete-badge" title="Supprimer l'article">
+                                        <i class="fa-solid fa-trash" style="color: red;"></i>
+                                    </a>
+                                <?php } ?>
                             </div>
                             <div class="content">
                                 <h3><?php echo htmlspecialchars($article['title']); ?></h3>
@@ -62,11 +70,6 @@ if (empty($articles)) {
                                         ? date("d/m/Y à H:i", strtotime($article['created_at']))
                                         : date("d/m/Y à H:i", strtotime($article['updated_at'])) ?>
                                 </span>
-                                <?php if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] === "admin") { ?>
-                                    <a href="src/control/ArtControl/deleteArt.php?articleID=<?php echo $article['id']; ?>">
-                                        <i class="fa-solid fa-trash" title="Supprimer l'article" style="color: red;"></i>
-                                    </a>
-                                <?php } ?>
                             </div>
                         </div>
                     </a>

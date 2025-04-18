@@ -23,6 +23,7 @@ $errorMessage = isset($messages[$errorKey]) ? htmlspecialchars($messages[$errorK
     <?php include 'src/component/head.php'; ?>
     <link rel="stylesheet" href="css/styleAccount/styleIdemAccountForm.css" />
     <link rel="stylesheet" href="css/styleAccount/styleRegistForm.css">
+    <link rel="stylesheet" href="css/stylePopUp/stylePopUp.css">
     <title>Civilipédia - Inscription</title>
 </head>
 

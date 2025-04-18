@@ -1,13 +1,13 @@
 <?php
 
-include_once 'src/control/BDDControl/connectBDD.php';
+include_once '../../control/BDDControl/connectBDD.php';
 
 class DeleteArtModel {
 
     public function firstAuthorArt(PDO $bdd, $articleID) {
         $firstAuthorId = $bdd->prepare("SELECT firstAuthor FROM article WHERE id = ?");
         $firstAuthorId->execute(array($articleID));
-        return $firstAuthorId->fetch();
+        return $firstAuthorId->fetch(PDO::FETCH_ASSOC);
     }
 
     public function deleteArt(PDO $bdd, $articleID) {
