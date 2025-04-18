@@ -28,7 +28,7 @@ else {
 
 if ($method == "ban") {
     $getAreBan = new getSanctionModel() ;
-    $getAreBan->getBan($bdd, $reason, $end_date, $user_id) ;
+    $getAreBan->getBan($bdd, $reason, $end_date, $user_id);
 }
 
 if ($method == "unban") {
