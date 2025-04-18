@@ -88,7 +88,7 @@ $errorMessage = isset($messages[$errorKey]) ? htmlspecialchars($messages[$errorK
         <div id="popup" class="popup show">
             <div class="popup-content">
                 <p><?php echo $errorMessage; ?></p>
-                <a href="login.php" id="closePopup">Fermer</a>
+                <a href="createArt.php" id="closePopup">Fermer</a>
             </div>
         </div>
     <?php } ?>
