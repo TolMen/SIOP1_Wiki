@@ -1,0 +1,181 @@
+/* Structure de la page */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Conteneur principal */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 50px 0;
+}
+
+/* Header */
+.header {
+    place-content: center;
+    background: url(../../assets/img/imgPrincipal.jpg) no-repeat center center fixed;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 35vh;
+    border-bottom: 1px solid black;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.header .text {
+    padding-left: 25px;
+}
+
+.header .text h1 {
+    color: black;
+    font-weight: bold;
+    font-size: 70px;
+}
+
+.header .text p {
+    color: black;
+    font-size: 20px;
+}
+
+/* Formulaire de filtre */
+.filter-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(4px);
+    flex-wrap: wrap;
+}
+
+.filter-form {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 25px 30px;
+    display: flex;
+    flex-direction: column;
+    max-width: 950px;
+    flex-grow: 1;
+}
+
+.filter-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-end;
+}
+
+/* Style des champs de filtre */
+.inputBoxFilter {
+    position: relative;
+    flex: 1 1 180px;
+    min-width: 160px;
+}
+
+.inputBoxFilter input {
+    width: 100%;
+    padding: 14px 10px 6px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: black;
+    border-bottom: 2px solid black;
+    z-index: 10;
+}
+
+.inputBoxFilter span {
+    position: absolute;
+    left: 0;
+    padding: 14px 0px 6px;
+    pointer-events: none;
+    color: black;
+    font-size: 1em;
+    transition: 0.4s;
+}
+
+.inputBoxFilter input:focus ~ span,
+.inputBoxFilter input:valid ~ span {
+    color: black;
+    font-size: 0.75em;
+    transform: translateY(-24px);
+}
+
+.inputBoxFilter i {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    border-bottom: 2px solid black;
+    pointer-events: none;
+}
+
+.inputBoxFilter input:focus ~ i,
+.inputBoxFilter input:valid ~ i {
+    height: 38px;
+    background: transparent;
+}
+
+/* Bouton du formulaire */
+.submit-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.submit-container input[type="submit"] {
+    height: 38px;
+    padding: 0 20px;
+    background: black;
+    border: 2px solid black;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.submit-container input[type="submit"]:hover {
+    background: rgba(0, 0, 0, 0.75);
+}
+
+/* Tableau */
+.table-container {
+    background-color: rgba(255, 255, 255, 0.92);
+    margin-top: 15px;
+    border-radius: 10px;
+    box-shadow: none;
+    overflow-x: auto;  /* Permet le défilement horizontal */
+}
+
+.table {
+    min-width: 100%; /* Assure que le tableau prenne toute la largeur de son conteneur */
+    width: auto;
+    table-layout: fixed; /* Fixe la disposition du tableau */
+}
+
+.table thead th {
+    vertical-align: middle;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+.table .btn {
+    margin: 2px;
+}
+
+/* Responsivité */
+@media screen and (max-width: 768px) {
+    .filter-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

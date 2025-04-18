@@ -6,8 +6,6 @@ body {
 }
 
 .main-container {
-    background: url(../../assets/img/imgPrincipal.jpg) no-repeat center center fixed;
-    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,7 +20,7 @@ body {
 /* En-tête / Section de présentation */
 .header {
     place-content: center;
-    background: url(../assets/img/imgPrincipal.jpg) no-repeat center center
+    background: url(../../assets/img/imgPrincipal.jpg) no-repeat center center
         fixed;
     background-size: cover;
     background-attachment: fixed;

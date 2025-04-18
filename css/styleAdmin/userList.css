@@ -1,0 +1,258 @@
+/* Structure de la page */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Conteneur principal */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 50px 0;
+}
+
+/* Header */
+.header {
+    place-content: center;
+    background: url(../../assets/img/imgPrincipal.jpg) no-repeat center center fixed;
+    background-size: cover;
+    height: 35vh;
+    border-bottom: 1px solid black;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.header .text {
+    padding-left: 25px;
+}
+
+.header .text h1 {
+    color: black;
+    font-weight: bold;
+    font-size: 70px;
+}
+
+.header .text p {
+    color: black;
+    font-size: 20px;
+}
+
+/* Tableaux */
+.table-container {
+    background-color: rgba(255, 255, 255, 0.92);
+    margin-top: 15px;
+    border-radius: 10px;
+    box-shadow: none;
+    overflow-x: auto;
+}
+
+.table {
+    min-width: 100%;
+    width: auto;
+    table-layout: fixed;
+}
+
+.table thead th {
+    vertical-align: middle;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+.table .btn {
+    margin: 2px;
+}
+
+/* Action links */
+.action_deban, .action_ban {
+    cursor: pointer;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.action_deban:hover, .action_ban:hover {
+    color: #0056b3;
+}
+
+/* Modals */
+.modal-content {
+    border-radius: 8px;
+}
+
+/* Reset link */
+.reset-link {
+    color: red;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.reset-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsivité */
+@media screen and (max-width: 768px) {
+    .filter-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+
+/* ---------------------------------------------------------------------- */
+/* Modales de bannissement stylées comme les formulaires principaux */
+
+/* Fond assombri derrière la modale */
+.modal-backdrop.show {
+    background-color: rgba(0, 0, 0, 0.6); /* Fond plus sombre */
+}
+
+/* Centrage parfait de la modale */
+.modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0 auto;
+}
+
+/* Contenu de la modale */
+.modal-content {
+    background: rgba(255, 255, 255, 0.88);
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 20px 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* En-tête de la modale */
+.modal-header {
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.modal-header .modal-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: black;
+    margin: 0;
+}
+
+/* Corps de la modale */
+.modal-body {
+    padding: 10px 0;
+    margin: 0;
+}
+
+.modal-body label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: black;
+}
+
+.modal-body h5 {
+    font-weight: 500;
+    font-size: 1em;
+    color: black;
+    margin: 10px 0;
+}
+
+.modal-body input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px;
+    border: 2px solid black;
+    background: transparent;
+    outline: none;
+    border-radius: 4px;
+    font-size: 1em;
+    color: black;
+    letter-spacing: 0.05em;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.modal-body input[type="text"]:focus {
+    border-color: #000;
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* Bouton submit */
+.modal-body input[type="submit"] {
+    margin-top: 10px;
+    background: white;
+    border: 2px solid black;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9em;
+    cursor: pointer;
+    color: black;
+    transition: background 0.3s ease;
+}
+
+.modal-body input[type="submit"]:hover {
+    background: whitesmoke;
+}
+
+.modal-body input[type="submit"]:active {
+    opacity: 0.85;
+}
+
+/* Pied de modale */
+.modal-footer {
+    padding: 10px 0;
+    margin: 0;
+}
+
+/* Bouton de fermeture */
+.btn-close {
+    background-color: transparent;
+    border: none;
+    font-size: 1.1rem;
+    color: black;
+    opacity: 1;
+    padding: 0;
+    margin: 0;
+}
+
+.btn-close:hover {
+    filter: brightness(0.8);
+}
+
+
+.modal-body input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px;
+    border: 2px solid black;
+    background: transparent;
+    outline: none;
+    border-radius: 4px;
+    font-size: 1em;
+    color: black;
+    letter-spacing: 0.05em;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Amélioration du focus */
+.modal-body input[type="date"]:focus {
+    border-color: #000;
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* Pour une cohérence visuelle des icônes et texte */
+.modal-body input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Pour icône noire sur fond clair */
+    cursor: pointer;
+}
