@@ -68,6 +68,7 @@ if (!empty($_SESSION["userID"]) && $_SESSION["userRole"] == "admin") {
             echo "<tr>";
         }
         ?>
+
         <th scope="row"><?php echo $user["userid"] ?></th>
         <td><?php echo $user["username"] ?></td>
         <td><?php echo $user["role"] ?></td>
