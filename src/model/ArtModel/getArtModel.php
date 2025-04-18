@@ -12,10 +12,9 @@ class GetArtModel
     - Cette fonction récupère les informations des articles
     */
     public function getArticleId(PDO $bdd, $articleId) {
-        $recupArt = $bdd->prepare('SELECT *, image.url FROM article INNER JOIN image ON article_id = article.id WHERE article.id = ?');
+        $recupArt = $bdd->prepare('SELECT *, image.url FROM article LEFT JOIN image ON article_id = article.id WHERE article.id = ?');
         $recupArt->execute([$articleId]);
         return $recupArt->fetch(PDO::FETCH_ASSOC);
-        
     }
 
     public function getFiltredArticles($bdd, $id, $mots_cles, $user_id) {
