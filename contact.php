@@ -15,6 +15,7 @@ include_once 'checkBanned.php'; // Vérification si l'utilisateur est banni
 <head>
     <?php include 'src/component/head.php'; ?>
     <link rel="stylesheet" href="css/styleContact/styleContactForm.css" />
+    <link rel="stylesheet" href="css/stylePopUp/stylePopUp.css">
 
     <title>Civilipédia - Contact</title>
 </head>
